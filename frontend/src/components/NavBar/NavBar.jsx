@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/session";
+import "./NavBar.css";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
@@ -24,19 +25,21 @@ function NavBar() {
       );
     } else {
       return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
+        <div className="linksAuth">
+          <Link to={"/signup"}>
+            <button>Signup</button>
+          </Link>
+          {/* <Link to={"/login"}>Login</Link> */}
         </div>
       );
     }
   };
 
   return (
-    <>
-      <h1>Habit Tree</h1>
+    <div className="navBar">
+      {/* <h1>Habit Tree</h1> */}
       {getLinks()}
-    </>
+    </div>
   );
 }
 

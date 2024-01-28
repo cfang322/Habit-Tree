@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import "./SessionForms.css";
 import { signup, clearSessionErrors } from "../../store/session";
+import "./SignupForm.css";
 
 function SignupForm() {
   const [email, setEmail] = useState("");

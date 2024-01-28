@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import "./SessionForms.css";
+import "./LoginForm.css";
 
 import { login, clearSessionErrors } from "../../store/session";
 
@@ -28,7 +28,7 @@ function LoginForm() {
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
+      {/* <h2>Log In Form</h2> */}
       <div className="errors">{errors?.email}</div>
       <label>
         <span>Email</span>

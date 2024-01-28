@@ -1,4 +1,9 @@
+import "./Feed.css";
 const Feed = () => {
-  return <h1>Habit Tree</h1>;
+  return (
+    <div className="feedPage">
+      <h1>Welcome</h1>
+    </div>
+  );
 };
 export default Feed;

@@ -1,0 +1,8 @@
+.navBar {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: end;
+}
+.linksAuth {
+}
