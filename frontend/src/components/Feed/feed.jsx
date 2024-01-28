@@ -1,8 +1,14 @@
+import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
 const Feed = () => {
   return (
     <div className="feedPage">
-      <h1>Welcome</h1>
+      <div className="navBar">
+        <NavBar />
+      </div>
+      <div className="feedContainer">
+        <h1>Welcome</h1>
+      </div>
     </div>
   );
 };

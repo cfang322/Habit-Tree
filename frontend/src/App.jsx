@@ -13,27 +13,14 @@ import Feed from "./components/Feed/Feed";
 
 import { getCurrentUser } from "./store/session";
 
-const Layout = () => {
-  return (
-    <>
-      <NavBar />
-      <Outlet />
-    </>
-  );
-};
-
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: <Outlet />,
     children: [
       {
         path: "/",
         element: <AuthRoute component={MainPage} />,
       },
-      // {
-      //   path: "login",
-      //   element: <AuthRoute component={LoginForm} />,
-      // },
       {
         path: "signup",
         element: <AuthRoute component={SignupForm} />,

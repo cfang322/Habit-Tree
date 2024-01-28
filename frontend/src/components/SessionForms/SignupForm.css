@@ -1,0 +1,23 @@
+div.signupForm {
+  font-family: sans-serif;
+  background-color: white;
+  width: 500px;
+  height: 500px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* padding: 10px; */
+}
+
+.signupForm input {
+  border: solid 1px;
+}
+
+div.login {
+  display: flex;
+  justify-content: center;
+}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import "./SessionForms.css";
 import { signup, clearSessionErrors } from "../../store/session";
 import "./SignupForm.css";
+import { Link } from "react-router-dom";
 
 function SignupForm() {
   const [email, setEmail] = useState("");
@@ -53,56 +54,65 @@ function SignupForm() {
   };
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
+    <div className="signupForm">
+      <form className="sessionForm" onSubmit={handleSubmit}>
+        <div className="errors">{errors?.email}</div>
+        <label>
+          <span>Email</span>{" "}
+        </label>
+        <input type="text" value={email} onChange={update("email")} />
+
+        <div className="errors">{errors?.username}</div>
+        <label>
+          <span>Username</span>
+        </label>
         <input
-          type="text"
-          value={email}
-          onChange={update("email")}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input
+          // className="signInput"
           type="text"
           value={username}
           onChange={update("username")}
-          placeholder="Username"
         />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
+
+        <div className="errors">{errors?.password}</div>
+        <label>
+          <span>Password</span>
+        </label>
         <input
+          // className="signInput"
           type="password"
           value={password}
           onChange={update("password")}
-          placeholder="Password"
         />
-      </label>
-      <div className="errors">
-        {password !== password2 && "Confirm Password field must match"}
-      </div>
-      <label>
-        <span>Confirm Password</span>
+
+        <div className="errors">
+          {password !== password2 && "Confirm Password field must match"}
+        </div>
+        <label>
+          <span>Confirm Password</span>
+        </label>
         <input
+          // className="signInput"
           type="password"
           value={password2}
           onChange={update("password2")}
-          placeholder="Confirm Password"
         />
-      </label>
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
-      />
-    </form>
+
+        <input
+          className={email || username ? "active" : "signup"}
+          type="submit"
+          value="Sign Up"
+          disabled={!email || !username || !password || password !== password2}
+        />
+      </form>
+      <div className="login">
+        <p className="session-redirect">
+          Already in Habit Tree?&#160;
+          <Link to="/" style={{ textDecoration: "none" }}>
+            Login
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 }
 

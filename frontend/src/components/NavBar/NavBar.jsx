@@ -13,32 +13,40 @@ function NavBar() {
     dispatch(logout());
   };
 
-  const getLinks = () => {
-    if (loggedIn) {
-      return (
-        <div className="links-nav">
-          {/* <Link to={"/tweets"}>All Tweets</Link>
-          <Link to={"/profile"}>Profile</Link>
-          <Link to={"/tweets/new"}>Write a Tweet</Link> */}
-          <button onClick={logoutUser}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="linksAuth">
-          <Link to={"/signup"}>
-            <button>Signup</button>
-          </Link>
-          {/* <Link to={"/login"}>Login</Link> */}
-        </div>
-      );
-    }
-  };
+  // const getLinks = () => {
+  //   if (loggedIn) {
+  //     return (
+  //       <div className="links-nav">
+  //         {/* <Link to={"/tweets"}>All Tweets</Link>
+  //         <Link to={"/profile"}>Profile</Link>
+  //         <Link to={"/tweets/new"}>Write a Tweet</Link> */}
+  //         <button onClick={logoutUser}>Logout</button>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <div className="linksAuth">
+  //         <Link to={"/signup"}>
+  //           <button>Signup</button>
+  //         </Link>
+  //         {/* <Link to={"/login"}>Login</Link> */}
+  //       </div>
+  //     );
+  //   }
+  // };
 
   return (
     <div className="navBar">
-      {/* <h1>Habit Tree</h1> */}
-      {getLinks()}
+      {loggedIn && (
+        <div className="links-nav">
+          {/* <Link to={"/tweets"}>All Tweets</Link>
+        <Link to={"/profile"}>Profile</Link>
+        <Link to={"/tweets/new"}>Write a Tweet</Link> */}
+          <button onClick={logoutUser}>Logout</button>
+        </div>
+      )}
+
+      {/* {getLinks()} */}
     </div>
   );
 }
