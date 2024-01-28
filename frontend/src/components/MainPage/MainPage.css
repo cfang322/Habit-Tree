@@ -1,12 +1,18 @@
 .main {
-  background-color: aquamarine;
+  background-image: url(../../assets/mainPage.jpeg);
+  background-repeat: no-repeat;
   width: 100%;
   min-height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+.title {
+  margin-top: 150px;
+  font-size: 50px;
+  color: white;
+}
 .footer {
   position: absolute;
   bottom: 0;

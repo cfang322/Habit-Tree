@@ -1,0 +1,50 @@
+div.loginForm {
+  font-family: sans-serif;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: transparent; */
+  /* background-color: #ccc; */
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: green;
+}
+
+form.sessionForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding: 20px;
+  /* justify-content: center; */
+}
+
+.sessionForm input {
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+input.login {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: green;
+}
+
+input.active {
+  background-color: green;
+  color: white;
+}
+
+div.signUp {
+  display: flex;
+  justify-content: center;
+}
