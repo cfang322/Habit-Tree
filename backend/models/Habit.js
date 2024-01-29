@@ -15,6 +15,7 @@ const habitSchema = new Schema({
   startDate: { type: Date },
   endDate: { type: Date },
   completed: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
 })
 
 
