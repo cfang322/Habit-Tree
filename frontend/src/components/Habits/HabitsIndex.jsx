@@ -3,7 +3,7 @@ import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
 import { useEffect } from "react";
 import HabitIndexItem from "./HabitsIndexItem";
 
-const HabitIndex = () => {
+const HabitsIndex = () => {
   const dispatch = useDispatch();
   const habits = useSelector(selectAllHabitsArray);
 
@@ -21,4 +21,4 @@ const HabitIndex = () => {
     </div>
   );
 };
-export default HabitIndex;
+export default HabitsIndex;

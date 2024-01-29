@@ -20,14 +20,14 @@ export const removeHabit = (habitId) => ({
   habitId,
 });
 
-const selectHabits = (state) => state.habits.all;
+const selectHabits = (state) => state.habits;
 
 export const selectAllHabitsArray = createSelector(selectHabits, (habits) =>
   Object.values(habits)
 );
 
 export const fetchHabits = () => async (dispatch) => {
-  const res = await jwtFetch("/api/habits");
+  const res = await jwtFetch("/api/habits/feed");
   if (res.ok) {
     const habits = await res.json();
     dispatch(receiveHabits(habits));
