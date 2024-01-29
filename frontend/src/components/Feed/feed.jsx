@@ -24,6 +24,7 @@ const Feed = () => {
         <div>
           <HabitsIndex />
         </div>
+
         <button onClick={handleClick}>Add Habit</button>
         {modalType && <CreateHabit />}
       </div>
