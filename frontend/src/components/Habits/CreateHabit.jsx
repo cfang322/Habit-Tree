@@ -36,10 +36,6 @@ const CreateHabit = () => {
   const handleCloseBtn = () => {
     dispatch(modalActions.hideModal());
   };
-  const handleFile = ({ currentTarget }) => {
-    const file = currentTarget.files[0];
-    setPhotoFile(file);
-  };
 
   return (
     <Modal>

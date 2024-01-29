@@ -1,4 +1,4 @@
-// import HabitIndex from "../Habits/HabitsIndex";
+import HabitsIndex from "../Habits/HabitsIndex";
 import { useDispatch, useSelector } from "react-redux";
 import * as modalActions from "../../store/reducers/modals";
 
@@ -22,7 +22,7 @@ const Feed = () => {
       </div>
       <div className="feedContainer">
         <h1>Welcome</h1>
-        {/* <HabitIndex /> */}
+        <HabitsIndex />
         <button onClick={handleClick}>Add Habit</button>
         {modalType && <CreateHabit />}
       </div>
