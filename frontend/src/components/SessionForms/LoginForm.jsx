@@ -49,7 +49,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
         <input type="password" value={password} onChange={update("password")} />
 
         <input
-          className={email ? "active" : "login"}
+          className={email ? "active" : "btn"}
           type="submit"
           value="Log In"
           disabled={!email || !password}
