@@ -12,7 +12,9 @@ const { isProduction } = require('./config/keys')
 require('./models/User');
 require('./config/passport');
 require('./models/Habit');
+require('./models/Note');
 
+const notesRouter = require('./routes/api/notes');
 const usersRouter = require('./routes/api/users');
 const habitsRouter = require('./routes/api/habits');
 const csrfRouter = require('./routes/api/csrf');
@@ -41,6 +43,7 @@ app.use(
 
 
 app.use('/api/habits', habitsRouter);
+app.use('/api/notes', notesRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
