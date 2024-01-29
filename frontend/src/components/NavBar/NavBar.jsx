@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
-import { logout } from "../../store/session";
+import { logout } from "../../store/reducers/session";
 import "./NavBar.css";
 
 function NavBar() {

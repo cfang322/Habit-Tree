@@ -5,7 +5,18 @@ import App from "./App";
 import "./index.css";
 import configureStore from "./store/store";
 import "./reset.css";
+import * as sessionAction from "./store/reducers/session";
+import * as modalActions from "./store/reducers/modals";
+import jwtFetch from "./store/jwt";
+
 const store = configureStore();
+
+if (import.meta.env.MODE !== "production") {
+  window.store = store;
+  window.sessionAction = sessionAction;
+  window.jwtFetch = jwtFetch;
+  window.modalActions = modalActions;
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

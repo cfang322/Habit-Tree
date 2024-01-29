@@ -1,6 +1,6 @@
 div.signupForm {
   font-family: sans-serif;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
   width: 500px;
   height: 500px;
   border-radius: 8px;
@@ -10,6 +10,7 @@ div.signupForm {
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   /* padding: 10px; */
 }
 

@@ -4,14 +4,12 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 
-import NavBar from "./components/NavBar/NavBar";
-
 import MainPage from "./components/MainPage/MainPage";
 // import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import Feed from "./components/Feed/Feed";
 
-import { getCurrentUser } from "./store/session";
+import { getCurrentUser } from "./store/reducers/session";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +19,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <AuthRoute component={MainPage} />,
       },
+
       {
         path: "signup",
         element: <AuthRoute component={SignupForm} />,

@@ -1,4 +1,4 @@
-import jwtFetch from "./jwt";
+import jwtFetch from "../jwt";
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";

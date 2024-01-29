@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import "./SessionForms.css";
-import { signup, clearSessionErrors } from "../../store/session";
+import { signup, clearSessionErrors } from "../../store/reducers/session";
 import "./SignupForm.css";
 import { Link } from "react-router-dom";
 
-function SignupForm() {
+function SignupForm({ setShowSignUp, setShowLogin }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -107,7 +107,13 @@ function SignupForm() {
       <div className="login">
         <p className="session-redirect">
           Already in Habit Tree?&#160;
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link
+            style={{ textDecoration: "none" }}
+            onClick={() => {
+              setShowSignUp(false);
+              setShowLogin(true);
+            }}
+          >
             Login
           </Link>
         </p>
