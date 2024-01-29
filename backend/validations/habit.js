@@ -12,5 +12,7 @@ const validateHabitInput = [
   check('habitType')
     .exist({ checkFalsy: true })
     .withMessage('Type must be checked'),
-  check('')
-]
+  handleValidationErrors
+];
+
+module.exports = validateHabitInput
