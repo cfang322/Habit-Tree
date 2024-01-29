@@ -1,12 +1,9 @@
 const debug = require('debug');
 const passport = require('passport');
 
-
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-
 
 const cors = require('cors')
 const csurf = require('csurf')
@@ -14,7 +11,10 @@ const { isProduction } = require('./config/keys')
 
 require('./models/User');
 require('./config/passport');
+require('./models/Habit');
+
 const usersRouter = require('./routes/api/users');
+const habitsRouter = require('./routes/api/habits');
 const csrfRouter = require('./routes/api/csrf');
 
 const app = express();
@@ -39,6 +39,8 @@ app.use(
   })
 )
 
+
+app.use('/api/habits', habitsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
