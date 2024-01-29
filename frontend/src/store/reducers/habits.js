@@ -35,7 +35,7 @@ export const fetchHabits = () => async (dispatch) => {
 };
 
 export const createHabit = (habit) => async (dispatch) => {
-  const res = await jwtFetch("/api/habits", {
+  const res = await jwtFetch("/api/habits/habit", {
     method: "POST",
     body: JSON.stringify(habit),
   });
@@ -75,7 +75,7 @@ const habitsReducer = (state = {}, action) => {
     case RECEIVE_HABIT:
       return { ...nextState, [action.habit.id]: action.habit };
     case REMOVE_HABIT:
-      delete nextState[action.postId];
+      delete nextState[action.habitId];
       return nextState;
     default:
       return state;

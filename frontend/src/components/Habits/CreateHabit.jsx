@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createHabit } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
+import "./CreateHabit.css";
 
 const CreateHabit = () => {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.session.user.id);
 
   const [habitData, setHabitData] = useState({
-    user: "",
+    user: userId,
     name: "",
     category: "",
     habitType: "building",
-    acheived: 0,
+    achieved: 0,
     goal: 0,
     goalPeriod: "",
     startDate: "",
@@ -45,74 +47,99 @@ const CreateHabit = () => {
         </button>
         <div className="sharedBody">
           <form onSubmit={handleSubmit}>
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              value={habitData.name}
-              onChange={handleChange}
-            />
-            <label>Category</label>
-            <input
-              type="text"
-              name="category"
-              value={habitData.category}
-              onChange={handleChange}
-            />
-            <label>Habit Type</label>
-            <input
-              type="text"
-              name="habitType"
-              value={habitData.habitType}
-              onChange={handleChange}
-            />
-            <label>Achieved</label>
-            <input
-              type="number"
-              name="achieved"
-              value={habitData.acheived}
-              onChange={handleChange}
-            />
-            <label>Goal</label>
-            <input
-              type="number"
-              name="goal"
-              value={habitData.goal}
-              onChange={handleChange}
-            />
-            <label>Goal Period</label>
-            <select
-              name="goalPeriod"
-              value={habitData.goalPeriod}
-              onChange={handleChange}
-            >
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-            </select>
-            <label>Start Date:</label>
-            <input
-              type="date"
-              name="startDate"
-              value={habitData.startDate}
-              onChange={handleChange}
-            />
-            <label>End Date:</label>
-            <input
-              type="date"
-              name="endDate"
-              value={habitData.endDate}
-              onChange={handleChange}
-            />
-            <label>Completed:</label>
-            <input
-              type="checkbox"
-              name="completed"
-              checked={habitData.completed}
-              onChange={() =>
-                setHabitData({ ...habitData, completed: !habitData.completed })
-              }
-            />
+            <div>
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={habitData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Category:</label>
+              <input
+                type="text"
+                name="category"
+                value={habitData.category}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Habit Type:</label>
+              <select
+                name="habitType"
+                value={habitData.habitType}
+                onChange={handleChange}
+              >
+                <option value="building">Building</option>
+                <option value="quitting">Quitting</option>
+                required
+              </select>
+            </div>
+            <div>
+              <label>Achieved:</label>
+              <input
+                type="number"
+                name="achieved"
+                value={habitData.achieved}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Goal</label>
+              <input
+                type="number"
+                name="goal"
+                value={habitData.goal}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Goal Period:</label>
+              <select
+                name="goalPeriod"
+                value={habitData.goalPeriod}
+                onChange={handleChange}
+              >
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+              </select>
+            </div>
+            <div>
+              <label>Start Date:</label>
+              <input
+                type="date"
+                name="startDate"
+                value={habitData.startDate}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>End Date:</label>
+              <input
+                type="date"
+                name="endDate"
+                value={habitData.endDate}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="checkBox">
+              <label>Completed:</label>
+              <input
+                className="check"
+                type="checkbox"
+                name="completed"
+                checked={habitData.completed}
+                onChange={() =>
+                  setHabitData({
+                    ...habitData,
+                    completed: !habitData.completed,
+                  })
+                }
+              />
+            </div>
 
             <button type="submit">Create Habit</button>
           </form>
