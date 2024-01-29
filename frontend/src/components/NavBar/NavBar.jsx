@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/reducers/session";
 import "./NavBar.css";
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
@@ -37,16 +39,14 @@ function NavBar() {
 
   return (
     <div className="navBar">
-      {loggedIn && (
-        <div className="links-nav">
-          {/* <Link to={"/tweets"}>All Tweets</Link>
-          <Link to={"/profile"}>Profile</Link>
-          <Link to={"/tweets/new"}>Write a Tweet</Link> */}
-          <button onClick={logoutUser}>Logout</button>
-        </div>
-      )}
-      
-      {/* {getLinks()} */}
+      <div className="home">
+        <NavLink to="/feed">
+          <img src={logo} alt="logo" width={50} height={50} />
+        </NavLink>
+      </div>
+      <button className="logoutBtn" onClick={logoutUser}>
+        Logout
+      </button>
     </div>
   );
 }
