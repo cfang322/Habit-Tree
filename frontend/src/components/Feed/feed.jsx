@@ -21,8 +21,9 @@ const Feed = () => {
         <NavBar />
       </div>
       <div className="feedContainer">
-        <h1>Welcome</h1>
-        <HabitsIndex />
+        <div>
+          <HabitsIndex />
+        </div>
         <button onClick={handleClick}>Add Habit</button>
         {modalType && <CreateHabit />}
       </div>

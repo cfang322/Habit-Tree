@@ -6,6 +6,7 @@ import HabitIndexItem from "./HabitsIndexItem";
 const HabitsIndex = () => {
   const dispatch = useDispatch();
   const habits = useSelector(selectAllHabitsArray);
+  // const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(fetchHabits());
@@ -14,8 +15,8 @@ const HabitsIndex = () => {
   return (
     <div>
       <ul>
-        {habits.map((habit) => (
-          <HabitIndexItem key={habit.id} habit={habit} />
+        {habits.map((habit, index) => (
+          <HabitIndexItem key={`${habit.id}_${index}`} habit={habit} />
         ))}
       </ul>
     </div>

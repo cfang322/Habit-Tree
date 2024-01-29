@@ -1,6 +1,7 @@
 const HabitIndexItem = ({ habit }) => {
   return (
     <div className="habit">
+      <p>{habit.user}</p>
       <h2>{habit.name}</h2>
       <p>{habit.category}</p>
       <p>{habit.habitType}</p>
