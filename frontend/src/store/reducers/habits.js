@@ -71,7 +71,7 @@ const habitsReducer = (state = {}, action) => {
   const nextState = { ...state };
   switch (action.type) {
     case RECEIVE_HABITS:
-      return { ...action.habits };
+      return { ...state, ...action.habits };
     case RECEIVE_HABIT:
       return { ...nextState, [action.habit.id]: action.habit };
     case REMOVE_HABIT:

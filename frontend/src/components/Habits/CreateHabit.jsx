@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createHabit } from "../../store/reducers/habits";
+import * as habitsAction from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
 import "./CreateHabit.css";
 
 const CreateHabit = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.session.user.id);
+  const userId = useSelector((state) => state.session.user._id);
 
   const [habitData, setHabitData] = useState({
     user: userId,
@@ -31,7 +31,13 @@ const CreateHabit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createHabit(habitData));
+    const formattedData = {
+      ...habitData,
+      startDate: new Date(habitData.startDate).toISOString(),
+      endDate: new Date(habitData.endDate).toISOString(),
+    };
+    // console.log(formattedData);
+    dispatch(habitsAction.createHabit(formattedData));
     dispatch(modalActions.hideModal());
   };
 
@@ -54,6 +60,7 @@ const CreateHabit = () => {
                 name="name"
                 value={habitData.name}
                 onChange={handleChange}
+                required
               />
             </div>
             <div>
@@ -71,10 +78,10 @@ const CreateHabit = () => {
                 name="habitType"
                 value={habitData.habitType}
                 onChange={handleChange}
+                required
               >
                 <option value="building">Building</option>
                 <option value="quitting">Quitting</option>
-                required
               </select>
             </div>
             <div>
