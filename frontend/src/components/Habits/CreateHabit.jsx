@@ -16,7 +16,7 @@ const CreateHabit = () => {
     habitType: "building",
     achieved: 0,
     goal: 0,
-    goalPeriod: "",
+    goalPeriod: "day",
     startDate: "",
     endDate: "",
     completed: false,
@@ -85,16 +85,7 @@ const CreateHabit = () => {
               </select>
             </div>
             <div>
-              <label>Achieved:</label>
-              <input
-                type="number"
-                name="achieved"
-                value={habitData.achieved}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>Goal</label>
+              <label>Count:</label>
               <input
                 type="number"
                 name="goal"
