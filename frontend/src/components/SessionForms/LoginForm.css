@@ -4,7 +4,7 @@ div.loginForm {
   /* background-color: transparent; */
   /* background-color: #ccc; */
   width: 500px;
-  height: 300px;
+  height: 350px;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -47,4 +47,16 @@ input.active {
 div.signUp {
   display: flex;
   justify-content: center;
+}
+
+.demoBtn {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: green;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 10px;
 }

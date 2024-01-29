@@ -27,6 +27,12 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
     dispatch(login({ email, password }));
   };
 
+  const handleDemoLogin = () => {
+    const demoEmail = "demo@user.io";
+    const demoPassword = "password";
+    dispatch(login({ email: demoEmail, password: demoPassword }));
+  };
+
   return (
     <div className="loginForm">
       <form className="sessionForm" onSubmit={handleSubmit}>
@@ -47,14 +53,17 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
           <span>Password</span>
         </label>
         <input type="password" value={password} onChange={update("password")} />
-
         <input
           className={email ? "active" : "btn"}
           type="submit"
           value="Log In"
           disabled={!email || !password}
         />
+        <button className="demoBtn" onClick={handleDemoLogin}>
+          Demo Login
+        </button>
       </form>
+
       <div className="signUp">
         <p className="session-redirect">
           New to Habit Tree?&#160;
