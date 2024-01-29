@@ -8,6 +8,7 @@ import "./reset.css";
 import * as sessionAction from "./store/reducers/session";
 import * as modalActions from "./store/reducers/modals";
 import jwtFetch from "./store/jwt";
+import * as habitsAction from "./store/reducers/habits";
 
 const store = configureStore();
 
@@ -16,6 +17,7 @@ if (import.meta.env.MODE !== "production") {
   window.sessionAction = sessionAction;
   window.jwtFetch = jwtFetch;
   window.modalActions = modalActions;
+  window.habitsAction = habitsAction;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(

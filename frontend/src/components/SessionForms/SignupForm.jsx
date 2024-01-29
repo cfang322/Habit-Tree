@@ -98,7 +98,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
         />
 
         <input
-          className={email || username ? "active" : "signup"}
+          className={email || username ? "active" : "btn"}
           type="submit"
           value="Sign Up"
           disabled={!email || !username || !password || password !== password2}

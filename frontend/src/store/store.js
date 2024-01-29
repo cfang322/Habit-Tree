@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { thunk } from "redux-thunk";
-import sessionReducer from "./reducers/session";
-import { sessionErrorsReducer } from "./reducers/session";
+import session from "./reducers/session";
+import habits from "./reducers/habits";
 
 const rootReducer = combineReducers({
-  session: sessionReducer,
-  errors: sessionErrorsReducer,
+  session,
+  habits,
   // Add reducers here
 });
 
