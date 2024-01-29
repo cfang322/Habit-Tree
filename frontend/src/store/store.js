@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { thunk } from "redux-thunk";
 import session from "./reducers/session";
 import habits from "./reducers/habits";
+import notes from "./reducers/notes";
 import modals from "./reducers/modals";
 
 const rootReducer = combineReducers({

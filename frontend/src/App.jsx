@@ -8,6 +8,7 @@ import MainPage from "./components/MainPage/MainPage";
 // import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import Feed from "./components/Feed/Feed";
+import NotesIndex from "./components/Notes/NotesIndex";
 
 import { getCurrentUser } from "./store/reducers/session";
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "feed",
         element: <ProtectedRoute component={Feed} />,
+      },
+      {
+        path: "notes",
+        element: <ProtectedRoute component={NotesIndex} />,
       },
     ],
   },

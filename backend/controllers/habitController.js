@@ -9,7 +9,6 @@ const indexHabits = async (req, res) => {
   }
 };
 
-
 const showHabit = async (req, res) => {
   const { id } = req.params;
   try {
@@ -23,7 +22,6 @@ const showHabit = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
 
 const createHabit = async (req, res) => {
   const {
@@ -59,8 +57,6 @@ const createHabit = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-
 
 const updateHabit = async (req, res) => {
   const { id } = req.params;
