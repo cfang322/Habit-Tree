@@ -1,19 +1,63 @@
-table {
-  width: 800px;
-  height: 200px;
+/* HabitsIndex.css */
+
+.table {
+  width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px; /* Add margin at the bottom for spacing */
 }
 
-th,
-td {
-  border: 2px solid black; /* Set the border to solid black */
-  padding: 8px; /* Add padding to the cells for better spacing */
-}
-
-th {
-  border-bottom: 2px solid black; /* Apply a thicker border to the bottom of th elements */
-}
-
-td {
+.th,
+.td {
+  padding: 12px;
   text-align: center;
+  border: 1px solid #ddd; /* Add border to table cells */
+}
+
+.th {
+  background-color: #f0f0f0; /* Light gray background for header cells */
+  font-weight: bold;
+}
+
+.tbody .td {
+  border-top: none; /* Remove top border from tbody cells */
+}
+
+/* Adjustments for mobile responsiveness */
+@media only screen and (max-width: 600px) {
+  .table {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+/* Styles for header and footer */
+.header,
+.footer {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.box {
+  border: solid 1px black;
+  width: 20px;
+  height: 20px;
+}
+
+/* Adjust the width of .td and td.boxId */
+.td,
+td.boxId {
+  width: 20px;
+}
+
+/* HabitsIndex.css */
+.current-date {
+  background-color: black;
+  color: white; /* Light gray background for the current date */
+}
+
+.current-day {
+  background-color: black;
+  color: white; /* Light gray background for the current day */
 }
