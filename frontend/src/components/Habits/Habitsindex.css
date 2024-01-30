@@ -1,0 +1,19 @@
+table {
+  width: 800px;
+  height: 200px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid black; /* Set the border to solid black */
+  padding: 8px; /* Add padding to the cells for better spacing */
+}
+
+th {
+  border-bottom: 2px solid black; /* Apply a thicker border to the bottom of th elements */
+}
+
+td {
+  text-align: center;
+}
