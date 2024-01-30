@@ -1,13 +1,19 @@
 table {
+  width: 800px;
+  height: 200px;
   border-collapse: collapse;
-  width: 100%;
 }
+
 th,
 td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: left;
+  border: 2px solid black; /* Set the border to solid black */
+  padding: 8px; /* Add padding to the cells for better spacing */
 }
+
 th {
-  background-color: #f2f2f2;
+  border-bottom: 2px solid black; /* Apply a thicker border to the bottom of th elements */
+}
+
+td {
+  text-align: center;
 }
