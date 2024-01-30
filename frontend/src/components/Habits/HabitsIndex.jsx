@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
 import { useEffect, useState } from "react";
-import "./HabitsIndex.css";
-import React from "react";
+import "./Habitsindex.css";
+
+import Habit from "./Habit";
 
 const HabitsIndex = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,6 @@ const HabitsIndex = () => {
 
   const datesRow = generateDatesRow();
   const daysRow = generateDaysRow();
-  const currentDate = new Date().getDate();
 
   useEffect(() => {
     dispatch(fetchHabits());
@@ -83,14 +83,7 @@ const HabitsIndex = () => {
               Habits
             </th>
             {daysRow.map((day, index) => (
-              <th
-                key={index}
-                className={
-                  day === daysOfWeek[new Date().getDay()]
-                    ? "current-day th"
-                    : "th"
-                }
-              >
+              <th key={index} className="th">
                 {day}
               </th>
             ))}
@@ -105,7 +98,12 @@ const HabitsIndex = () => {
             {datesRow.map((date, index) => (
               <th
                 key={index}
-                className={date === currentDate ? "current-date th" : "th"}
+                className={
+                  date === new Date().getDate() &&
+                  currentMonth.getMonth() === new Date().getMonth()
+                    ? "current-date th"
+                    : "th"
+                }
               >
                 {date}
               </th>
@@ -115,7 +113,7 @@ const HabitsIndex = () => {
         <tbody className="tbody">
           {habits.map((habit, index) => (
             <tr key={`${habit.id}_${index}`}>
-              <th className="th">{habit.name}</th>
+              <Habit habit={habit} />
               {datesRow.map((date, index) => (
                 <td key={index} className="td">
                   {/* <div className="box"></div> */}
@@ -128,5 +126,4 @@ const HabitsIndex = () => {
     </div>
   );
 };
-
 export default HabitsIndex;

@@ -12,6 +12,7 @@ import NotesIndex from "./components/Notes/NotesIndex";
 import NoteIndexItem from "./components/Notes/NoteIndexItem";
 
 import { getCurrentUser } from "./store/reducers/session";
+import HabitIndexItem from "./components/Habits/HabitsIndexItem";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "feed",
         element: <ProtectedRoute component={Feed} />,
+      },
+      {
+        path: "/habits/:habitId",
+        element: <ProtectedRoute component={HabitIndexItem} />,
       },
       // {
       //   path: "notes",
