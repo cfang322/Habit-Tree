@@ -57,7 +57,7 @@ export const updateNote = (note) => async (dispatch) => {
 };
 
 export const deleteNote = (noteId) => async (dispatch) => {
-  const res = await jwtFetch(`api/habits/notes/${noteId}`, {
+  const res = await jwtFetch(`api/notes/${noteId}`, {
     method: "DELETE",
     body: JSON.stringify(noteId),
   });
