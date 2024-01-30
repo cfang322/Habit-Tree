@@ -7,7 +7,7 @@ import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import MainPage from "./components/MainPage/MainPage";
 // import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
-import Feed from "./components/Feed/Feed";
+import Feed from "./components/Feed/feed";
 import NotesIndex from "./components/Notes/NotesIndex";
 import NoteIndexItem from "./components/Notes/NoteIndexItem";
 
@@ -30,14 +30,14 @@ const router = createBrowserRouter([
         path: "feed",
         element: <ProtectedRoute component={Feed} />,
       },
-      // {
-      //   path: "notes",
-      //   element: <ProtectedRoute component={NotesIndex} />,
-      // },
-      // {
-      //   path: `notes/${note.id}`,
-      //   element: <ProtectedRoute component={NoteIndexItem} />,
-      // },
+      {
+        path: "notes",
+        element: <ProtectedRoute component={NotesIndex} />,
+      },
+      {
+        path: `notes/:id`,
+        element: <ProtectedRoute component={NoteIndexItem} />,
+      },
     ],
   },
 ]);

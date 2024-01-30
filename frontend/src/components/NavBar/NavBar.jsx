@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/reducers/session";
 import "./NavBar.css";
@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 function NavBar() {
-  const loggedIn = useSelector((state) => !!state.session.user);
+  // const loggedIn = useSelector((state) => !!state.session.user);r
   const dispatch = useDispatch();
 
   const logoutUser = (e) => {

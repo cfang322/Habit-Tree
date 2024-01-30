@@ -1,0 +1,87 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.noteModalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 12px;
+  height: 600px;
+  width: 400px;
+  background-color: white;
+  padding: 16px;
+  margin-left: 35px;
+  border-radius: 8px;
+}
+
+.noteModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 12px;
+  height: 400px;
+  width: 600px;
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.noteModalBtn {
+
+  margin-bottom: 20px;
+  background-color: #ccc;
+  color: green;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  width: 120px;
+  /* margin-bottom: 10px; */
+}
+
+.noteModalBtn:hover {
+  color: black;
+  background-color: rgb(167, 202, 141);
+}
+
+
+.noteText {
+  resize: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 600px;
+  max-width: 900px;
+}
+
+
+.close-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.close-btn:hover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: green;
+  font-size: 14px;
+}

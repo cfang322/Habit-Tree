@@ -27,33 +27,27 @@ const showNote = async (req, res) => {
 
 
 const createNote = async (req, res) => {
-  const { habitId, content } = req.body;
+  const { content } = req.body;
 
   try {
-    if (!habitId) {
-      return res.status(400).json({ error: 'habitId is required' });
-    }
-
     const newNote = new Note({
-      habit: habitId,
       content,
     });
 
     const savedNote = await newNote.save();
     res.json(savedNote);
   } catch (error) {
-    console.error('Error creating note:', error);
+    console.error("Error creating note:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 const updateNote = async (req, res) => {
   const { habitId, noteId } = req.params;
   const { content } = req.body;
 
   try {
-    const note = await Note.findOneAndUpdate(
+    const note = await Note.findByIdAndUpdate(
       { _id: noteId, habit: habitId },
       { content },
       { new: true }

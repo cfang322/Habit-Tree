@@ -101,7 +101,7 @@
 // export default HabitsIndex;
 
 import { useState } from "react";
-import "./HabitsIndex.css";
+import "./Habitsindex.css";
 import { useSelector } from "react-redux";
 import { selectAllHabitsArray } from "../../store/reducers/habits";
 
