@@ -1,47 +1,58 @@
 .navBar {
   width: 100%;
-  height: 80px;
+  height: 65px;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  background-color: rgb(125, 168, 125);
-  padding: 0 20px 0 20px; 
+  background-color: #132b1e;
+  padding: 0 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
 .logout {
-  padding-right: 30px;
+  padding-right: 20px;
 }
 
 .homeBtn {
-  padding-right: 100px;
+  padding-right: 20px;
 }
 
 .home {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #cbcbcb; 
-  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.home a {
+  text-decoration: none;
+}
+
+.typewriter-text {
+  font-family: 'Courier New', Courier, monospace; 
+  font-size: 35px; 
+  margin-left: 8px; 
+  color: #e1e9eb; 
+  font-weight: 250;
 }
 
 .logoutBtn {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0;
   border: none;
-  border-radius: 10px;
-  padding: 10px;
-  color: rgb(71, 34, 34);
-  background-color: #cbcbcb;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #ecf0f1;
+  background-color: #3c7148;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 500;
   font-size: medium;
-  margin-left: auto;
+  /* margin-left: auto; */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .logoutBtn:hover {
-  background-color: rgb(167, 202, 141);
+  background-color: rgb(78, 67, 37);
 }
 
 .dropdown-content {
@@ -49,7 +60,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  width: 100%;
+  width: 180px;
   background-color: #fff;
   border: 1px solid #ddd; 
   border-radius: 8px;
@@ -59,8 +70,8 @@
 
 .dropdown-content a {
   display: block;
-  padding: 10px;
-  color: #023102; 
+  padding: 12px 20px;
+  color: #2c3e50;; 
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
@@ -77,7 +88,7 @@
 
 .dropdown-content div {
   cursor: pointer;
-  padding: 10px;
+  padding: 12px 20px;
 }
 
 .logout {
