@@ -5,7 +5,7 @@ div.feedContainer {
 }
 
 .addBtn {
-  margin-left: 30px;
+  margin-left: 90px;
   padding: 8px;
   border: 1px solid #ddd;
   cursor: pointer;
@@ -20,4 +20,8 @@ div.feedContainer {
   margin-top: 20px; /* Adjust margin as needed */
   width: 90%; /* Adjust the width of the table box */
   overflow-x: auto; /* Enable horizontal scrolling if necessary */
+}
+
+div.feedTable {
+  margin-left: 60px;
 }

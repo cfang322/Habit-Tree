@@ -74,7 +74,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
         <div className="sharedBody">
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Name:</label>
+              <label>Name: *</label>
               <input
                 type="text"
                 name="name"
@@ -84,16 +84,17 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               />
             </div>
             <div>
-              <label>Category:</label>
+              <label>Category: *</label>
               <input
                 type="text"
                 name="category"
                 value={habitData.category}
                 onChange={handleChange}
+                required
               />
             </div>
             <div>
-              <label>Habit Type:</label>
+              <label>Habit Type: *</label>
               <select
                 name="habitType"
                 value={habitData.habitType}
