@@ -70,7 +70,6 @@
   color: #6fa34e;
 }
 
-/* Show the dropdown when the parent is hovered */
 .logout:hover .dropdown-content {
   display: block;
   filter: grayscale(1);
