@@ -67,7 +67,6 @@ export const deleteHabit = (habitId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(removeHabit(habitId));
-    dispatch(fetchHabits());
   }
 };
 
@@ -77,7 +76,10 @@ const habitsReducer = (state = {}, action) => {
     case RECEIVE_HABITS:
       return action.habits;
     case RECEIVE_HABIT:
-      return { ...state, [action.habit.id]: action.habit };
+      return {
+        ...state,
+        [action.habit.id]: { ...state[action.habit.id], ...action.habit },
+      };
     case REMOVE_HABIT:
       delete nextState[action.habitId];
       return nextState;
