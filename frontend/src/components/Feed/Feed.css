@@ -1,4 +1,18 @@
 div.feedContainer {
   width: 100%;
   min-height: 100vh;
+  position: absolute;
+}
+
+.addBtn {
+  margin-left: 30px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.feedTableBox {
+  margin-top: 20px; /* Adjust margin as needed */
+  width: 90%; /* Adjust the width of the table box */
+  overflow-x: auto; /* Enable horizontal scrolling if necessary */
 }

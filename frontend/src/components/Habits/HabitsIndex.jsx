@@ -67,62 +67,68 @@ const HabitsIndex = () => {
   return (
     <div>
       <div className="navigation">
-        <button onClick={goToPreviousMonth}>Previous Month</button>
+        <button onClick={goToPreviousMonth}>
+          <img src="https://app.dailyhabits.xyz/static/icons/left.svg" />
+        </button>
         <span colSpan={datesRow.length + 1}>
           {currentMonth.toLocaleDateString("en-US", {
             month: "long",
             year: "numeric",
           })}
         </span>
-        <button onClick={goToNextMonth}>Next Month</button>
+        <button onClick={goToNextMonth}>
+          <img src="https://app.dailyhabits.xyz/static/icons/right.svg" />
+        </button>
       </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th rowSpan={2} className="th">
-              Habits
-            </th>
-            {daysRow.map((day, index) => (
-              <th key={index} className="th">
-                {day}
+      <div className="feedTable">
+        <table className="table">
+          <thead>
+            <tr>
+              <th rowSpan={2} className="th">
+                Habits
               </th>
-            ))}
-            <th rowSpan={2} className="th">
-              Goal
-            </th>
-            <th rowSpan={2} className="th">
-              Achieved
-            </th>
-          </tr>
-          <tr>
-            {datesRow.map((date, index) => (
-              <th
-                key={index}
-                className={
-                  date === new Date().getDate() &&
-                  currentMonth.getMonth() === new Date().getMonth()
-                    ? "current-date th"
-                    : "th"
-                }
-              >
-                {date}
+              {daysRow.map((day, index) => (
+                <th key={index} className="th">
+                  {day}
+                </th>
+              ))}
+              <th rowSpan={2} className="th">
+                Goal
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="tbody">
-          {habits.map((habit, index) => (
-            <tr key={`${habit.id}_${index}`}>
-              <Habit habit={habit} />
+              <th rowSpan={2} className="th">
+                Achieved
+              </th>
+            </tr>
+            <tr>
               {datesRow.map((date, index) => (
-                <td key={index} className="td">
-                  {/* <div className="box"></div> */}
-                </td>
+                <th
+                  key={index}
+                  className={
+                    date === new Date().getDate() &&
+                    currentMonth.getMonth() === new Date().getMonth()
+                      ? "current-date th"
+                      : "th"
+                  }
+                >
+                  {date}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="tbody">
+            {habits.map((habit, index) => (
+              <tr key={`${habit.id}_${index}`}>
+                <Habit habit={habit} />
+                {datesRow.map((date, index) => (
+                  <td key={index} className="tdBox"></td>
+                ))}
+                <td className="goal">{habit.goal}</td>
+                <td className="achieved">{habit.achieved}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
