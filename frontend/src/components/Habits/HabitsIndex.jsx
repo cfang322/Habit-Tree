@@ -8,7 +8,6 @@ import "./Habitsindex.css";
 import Habit from "./Habit";
 
 import { useEffect, useState } from "react";
-import "./Habitsindex.css";
 import { useSelector } from "react-redux";
 
 const HabitsIndex = () => {
@@ -77,34 +76,36 @@ const HabitsIndex = () => {
 
   const handleClick = (habitId, habitIndex, dateIndex) => {
     const updatedHabit = { ...habits[habitIndex] };
-    const cellKey = `${habitId}_${dateIndex}`;
+    const cellKey = `${habitId}_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`;
 
+    const colorIndex = habitIndex % rowColors.length;
     if (clickedCells[cellKey]) {
-      // If the cell was clicked, decrement the achieved count and remove from clickedCells
+      if (updatedHabit.achieved === 0) {
+        return;
+      }
+
       updatedHabit.achieved -= 1;
       const newClickedCells = { ...clickedCells };
       delete newClickedCells[cellKey];
       setClickedCells(newClickedCells);
 
-      // Remove the cell from localStorage
       const updatedLocalStorage = {
         ...JSON.parse(localStorage.getItem("clickedCells")),
       };
       delete updatedLocalStorage[cellKey];
       localStorage.setItem("clickedCells", JSON.stringify(updatedLocalStorage));
     } else {
-      // If the cell was not clicked, increment the achieved count and add to clickedCells
       updatedHabit.achieved += 1;
-      setClickedCells({ ...clickedCells, [cellKey]: true });
+      setClickedCells({ ...clickedCells, [cellKey]: colorIndex });
 
-      // Add the cell to localStorage
       localStorage.setItem(
         "clickedCells",
         JSON.stringify({ ...clickedCells, [cellKey]: true })
       );
     }
 
-    // Dispatch the update to Redux store
+    updatedHabit.achieved = Math.max(0, updatedHabit.achieved);
+
     dispatch(updateHabit(habitId, updatedHabit));
   };
 
@@ -161,16 +162,36 @@ const HabitsIndex = () => {
           </thead>
           <tbody className="tbody">
             {habits.map((habit, habitIndex) => (
-              <tr key={`${habit.id}_${habitIndex}`}>
+              <tr key={`${habit._id}_${habitIndex}`}>
                 <Habit habit={habit} />
                 {datesRow.map((date, dateIndex) => (
                   <td
                     key={dateIndex}
                     className={
-                      clickedCells[`${habit._id}_${dateIndex}`]
-                        ? "tdBox clicked" // Add 'clicked' class if the cell is clicked
-                        : "tdBox"
+                      clickedCells[
+                        `${
+                          habit._id
+                        }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                      ]
+                        ? `tdBox clicked` // Add 'clicked' class if the cell is clicked
+                        : `tdBox`
                     }
+                    style={{
+                      backgroundColor:
+                        clickedCells[
+                          `${
+                            habit._id
+                          }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                        ] !== undefined
+                          ? rowColors[
+                              clickedCells[
+                                `${
+                                  habit._id
+                                }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                              ]
+                            ]
+                          : "transparent",
+                    }}
                     onClick={() =>
                       handleClick(habit._id, habitIndex, dateIndex)
                     }
