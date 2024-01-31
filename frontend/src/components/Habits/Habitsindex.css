@@ -1,13 +1,13 @@
 /* HabitsIndex.css */
 
 .table {
-  width: 100%;
+  /* width: 100%; */
   border-collapse: collapse;
   margin-bottom: 20px; /* Add margin at the bottom for spacing */
 }
 
 .th,
-.td {
+.tdBox {
   padding: 12px;
   text-align: center;
   border: 1px solid #ddd; /* Add border to table cells */
@@ -18,7 +18,7 @@
   font-weight: bold;
 }
 
-.tbody .td {
+.tbody .tdBox {
   border-top: none; /* Remove top border from tbody cells */
 }
 
@@ -60,4 +60,36 @@ td.boxId {
 .current-day {
   background-color: black;
   color: white; /* Light gray background for the current day */
+}
+
+.navigation {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation button {
+  margin: 10px;
+}
+
+.feedTable table {
+  width: 400px;
+  margin-left: 30px;
+  /* margin-right: 0px; */
+}
+
+.goal,
+.achieved {
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.tdBox {
+  cursor: pointer;
+}
+
+.clicked {
+  background-color: green;
+  color: white;
 }

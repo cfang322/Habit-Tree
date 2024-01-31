@@ -45,10 +45,10 @@ export const createHabit = (habit) => async (dispatch) => {
   }
 };
 
-export const updateHabit = (habit) => async (dispatch) => {
-  const res = await jwtFetch(`/api/habits/${habit.id}`, {
+export const updateHabit = (habitId, updatedHabit) => async (dispatch) => {
+  const res = await jwtFetch(`/api/habits/${habitId}`, {
     method: "PUT",
-    body: JSON.stringify(habit),
+    body: JSON.stringify(updatedHabit),
   });
 
   if (res.ok) {
@@ -60,7 +60,6 @@ export const updateHabit = (habit) => async (dispatch) => {
 export const deleteHabit = (habitId) => async (dispatch) => {
   const res = await jwtFetch(`/api/habits/${habitId}`, {
     method: "DELETE",
-    body: JSON.stringify(habitId),
   });
   if (res.ok) {
     dispatch(removeHabit(habitId));

@@ -21,12 +21,15 @@ const Feed = () => {
         <NavBar />
       </div>
       <div className="feedContainer">
-        <div>
+        <div className="feedTableBox">
           <HabitsIndex />
         </div>
-
-        <button onClick={handleClick}>Add Habit</button>
-        {modalType && <CreateHabit />}
+        <div>
+          <button onClick={handleClick} className="addBtn">
+            + Add Habit
+          </button>
+          {modalType && <CreateHabit />}
+        </div>
       </div>
     </div>
   );

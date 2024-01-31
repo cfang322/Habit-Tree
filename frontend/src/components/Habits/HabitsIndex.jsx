@@ -1,103 +1,14 @@
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
-import { useEffect, useState } from "react";
+import {
+  fetchHabits,
+  selectAllHabitsArray,
+  updateHabit,
+} from "../../store/reducers/habits";
 import "./Habitsindex.css";
+import Habit from "./Habit";
+=======
 
-// const HabitsIndex = () => {
-//   const dispatch = useDispatch();
-//   const habits = useSelector(selectAllHabitsArray);
-
-//   useEffect(() => {
-//     dispatch(fetchHabits());
-//   }, [dispatch]);
-
-//   return (
-//     <div>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th rowSpan={2}>Habits</th>
-//             <th>M</th>
-//             <th>T</th>
-//             <th>W</th>
-//             <th>T</th>
-//             <th>F</th>
-//             <th>S</th>
-//             <th>S</th>
-//             <th>M</th>
-//             <th>T</th>
-//             <th>W</th>
-//             <th>T</th>
-//             <th>F</th>
-//             <th>S</th>
-//             <th>S</th>
-//             <th>M</th>
-//             <th>T</th>
-//             <th>W</th>
-//             <th>T</th>
-//             <th>F</th>
-//             <th>S</th>
-//             <th>S</th>
-//             <th>M</th>
-//             <th>T</th>
-//             <th>W</th>
-//             <th>T</th>
-//             <th>F</th>
-//             <th>S</th>
-//             <th>S</th>
-//             <th>M</th>
-//             <th>T</th>
-//             <th>W</th>
-//             <th rowSpan={2}>Goal</th>
-//             <th rowSpan={2}>Achieved</th>
-//           </tr>
-//           <tr>
-//             <th>1</th>
-//             <th>2</th>
-//             <th>3</th>
-//             <th>4</th>
-//             <th>5</th>
-//             <th>6</th>
-//             <th>7</th>
-//             <th>8</th>
-//             <th>9</th>
-//             <th>10</th>
-//             <th>11</th>
-//             <th>12</th>
-//             <th>13</th>
-//             <th>14</th>
-//             <th>15</th>
-//             <th>16</th>
-//             <th>17</th>
-//             <th>18</th>
-//             <th>19</th>
-//             <th>20</th>
-//             <th>21</th>
-//             <th>22</th>
-//             <th>23</th>
-//             <th>24</th>
-//             <th>25</th>
-//             <th>26</th>
-//             <th>27</th>
-//             <th>28</th>
-//             <th>29</th>
-//             <th>30</th>
-//             <th>31</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {habits.map((habit) => (
-//             <tr key={habit.id}>
-//               <td>{habit.name}</td>
-//             </tr>
-//             // {/* <HabitIndexItem key={`${habit.id}_${index}`} habit={habit} /> */}
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-// export default HabitsIndex;
 
 import { useState } from "react";
 import "./Habitsindex.css";
@@ -106,11 +17,13 @@ import { selectAllHabitsArray } from "../../store/reducers/habits";
 
 
 
+
 const HabitsIndex = () => {
   const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [clickedCells, setClickedCells] = useState({}); // State to track clicked cells
   const habits = useSelector(selectAllHabitsArray);
-  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]; // Define daysOfWeek here
+  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
   const goToPreviousMonth = () => {
     const previousMonth = new Date(currentMonth);
@@ -132,13 +45,7 @@ const HabitsIndex = () => {
 
   const generateDatesRow = () => {
     const totalDays = getDaysInMonth(currentMonth);
-    const datesRow = [];
-
-    for (let i = 1; i <= totalDays; i++) {
-      datesRow.push(i);
-    }
-
-    return datesRow;
+    return Array.from({ length: totalDays }, (_, index) => index + 1);
   };
 
   const generateDaysRow = () => {
@@ -150,6 +57,7 @@ const HabitsIndex = () => {
       currentMonth.getMonth(),
       1
     ).getDay();
+
     for (let i = 0; i < totalDays; i++) {
       daysRow.push(daysOfWeek[dayIndex]);
       dayIndex = (dayIndex + 1) % 7;
@@ -165,66 +73,124 @@ const HabitsIndex = () => {
     dispatch(fetchHabits());
   }, [dispatch]);
 
+  // Load clicked cells from localStorage on component mount
+  useEffect(() => {
+    const storedClickedCells = localStorage.getItem("clickedCells");
+    if (storedClickedCells) {
+      setClickedCells(JSON.parse(storedClickedCells));
+    }
+  }, []);
+
+  const handleClick = (habitId, habitIndex, dateIndex) => {
+    const updatedHabit = { ...habits[habitIndex] };
+    const cellKey = `${habitId}_${dateIndex}`;
+
+    if (clickedCells[cellKey]) {
+      // If the cell was clicked, decrement the achieved count and remove from clickedCells
+      updatedHabit.achieved -= 1;
+      const newClickedCells = { ...clickedCells };
+      delete newClickedCells[cellKey];
+      setClickedCells(newClickedCells);
+
+      // Remove the cell from localStorage
+      const updatedLocalStorage = {
+        ...JSON.parse(localStorage.getItem("clickedCells")),
+      };
+      delete updatedLocalStorage[cellKey];
+      localStorage.setItem("clickedCells", JSON.stringify(updatedLocalStorage));
+    } else {
+      // If the cell was not clicked, increment the achieved count and add to clickedCells
+      updatedHabit.achieved += 1;
+      setClickedCells({ ...clickedCells, [cellKey]: true });
+
+      // Add the cell to localStorage
+      localStorage.setItem(
+        "clickedCells",
+        JSON.stringify({ ...clickedCells, [cellKey]: true })
+      );
+    }
+
+    // Dispatch the update to Redux store
+    dispatch(updateHabit(habitId, updatedHabit));
+  };
+
   return (
     <div>
       <div className="navigation">
-        <button onClick={goToPreviousMonth}>Previous Month</button>
+        <button onClick={goToPreviousMonth}>
+          <img src="https://app.dailyhabits.xyz/static/icons/left.svg" />
+        </button>
         <span colSpan={datesRow.length + 1}>
           {currentMonth.toLocaleDateString("en-US", {
             month: "long",
             year: "numeric",
           })}
         </span>
-        <button onClick={goToNextMonth}>Next Month</button>
+        <button onClick={goToNextMonth}>
+          <img src="https://app.dailyhabits.xyz/static/icons/right.svg" />
+        </button>
       </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th rowSpan={2} className="th">
-              Habits
-            </th>
-            {daysRow.map((day, index) => (
-              <th key={index} className="th">
-                {day}
+      <div className="feedTable">
+        <table className="table">
+          <thead>
+            <tr>
+              <th rowSpan={2} className="th">
+                Habits
               </th>
-            ))}
-            <th rowSpan={2} className="th">
-              Goal
-            </th>
-            <th rowSpan={2} className="th">
-              Achieved
-            </th>
-          </tr>
-          <tr>
-            {datesRow.map((date, index) => (
-              <th
-                key={index}
-                className={
-                  date === new Date().getDate() &&
-                  currentMonth.getMonth() === new Date().getMonth()
-                    ? "current-date th"
-                    : "th"
-                }
-              >
-                {date}
+              {daysRow.map((day, index) => (
+                <th key={index} className="th">
+                  {day}
+                </th>
+              ))}
+              <th rowSpan={2} className="th">
+                Goal
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="tbody">
-          {habits.map((habit, index) => (
-            <tr key={`${habit.id}_${index}`}>
-              <Habit habit={habit} />
+              <th rowSpan={2} className="th">
+                Achieved
+              </th>
+            </tr>
+            <tr>
               {datesRow.map((date, index) => (
-                <td key={index} className="td">
-                  {/* <div className="box"></div> */}
-                </td>
+                <th
+                  key={index}
+                  className={
+                    date === new Date().getDate() &&
+                    currentMonth.getMonth() === new Date().getMonth()
+                      ? "current-date th"
+                      : "th"
+                  }
+                >
+                  {date}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="tbody">
+            {habits.map((habit, habitIndex) => (
+              <tr key={`${habit.id}_${habitIndex}`}>
+                <Habit habit={habit} />
+                {datesRow.map((date, dateIndex) => (
+                  <td
+                    key={dateIndex}
+                    className={
+                      clickedCells[`${habit._id}_${dateIndex}`]
+                        ? "tdBox clicked" // Add 'clicked' class if the cell is clicked
+                        : "tdBox"
+                    }
+                    onClick={() =>
+                      handleClick(habit._id, habitIndex, dateIndex)
+                    }
+                  ></td>
+                ))}
+                <td className="goal">{habit.goal}</td>
+                <td className="achieved">{habit.achieved}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
+
 export default HabitsIndex;
