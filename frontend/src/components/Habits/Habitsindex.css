@@ -88,3 +88,8 @@ td.boxId {
 .tdBox {
   cursor: pointer;
 }
+
+.clicked {
+  background-color: green;
+  color: white;
+}

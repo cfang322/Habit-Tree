@@ -54,6 +54,12 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
       dispatch(modalActions.hideModal());
     }
   };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
 
   const handleCloseBtn = () => {
     if (editMode) {
@@ -156,7 +162,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               />
             </div>
 
-            <button type="submit">
+            <button type="submit" onClick={handleKeyDown}>
               {editMode ? "Update Habit" : "Create Habit"}
             </button>
           </form>

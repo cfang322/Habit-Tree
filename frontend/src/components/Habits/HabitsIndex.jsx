@@ -1,15 +1,19 @@
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
-import { useEffect, useState } from "react";
+import {
+  fetchHabits,
+  selectAllHabitsArray,
+  updateHabit,
+} from "../../store/reducers/habits";
 import "./Habitsindex.css";
-
 import Habit from "./Habit";
 
 const HabitsIndex = () => {
   const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [clickedCells, setClickedCells] = useState({}); // State to track clicked cells
   const habits = useSelector(selectAllHabitsArray);
-  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]; // Define daysOfWeek here
+  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
   const goToPreviousMonth = () => {
     const previousMonth = new Date(currentMonth);
@@ -31,13 +35,7 @@ const HabitsIndex = () => {
 
   const generateDatesRow = () => {
     const totalDays = getDaysInMonth(currentMonth);
-    const datesRow = [];
-
-    for (let i = 1; i <= totalDays; i++) {
-      datesRow.push(i);
-    }
-
-    return datesRow;
+    return Array.from({ length: totalDays }, (_, index) => index + 1);
   };
 
   const generateDaysRow = () => {
@@ -49,6 +47,7 @@ const HabitsIndex = () => {
       currentMonth.getMonth(),
       1
     ).getDay();
+
     for (let i = 0; i < totalDays; i++) {
       daysRow.push(daysOfWeek[dayIndex]);
       dayIndex = (dayIndex + 1) % 7;
@@ -63,6 +62,47 @@ const HabitsIndex = () => {
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch]);
+
+  // Load clicked cells from localStorage on component mount
+  useEffect(() => {
+    const storedClickedCells = localStorage.getItem("clickedCells");
+    if (storedClickedCells) {
+      setClickedCells(JSON.parse(storedClickedCells));
+    }
+  }, []);
+
+  const handleClick = (habitId, habitIndex, dateIndex) => {
+    const updatedHabit = { ...habits[habitIndex] };
+    const cellKey = `${habitId}_${dateIndex}`;
+
+    if (clickedCells[cellKey]) {
+      // If the cell was clicked, decrement the achieved count and remove from clickedCells
+      updatedHabit.achieved -= 1;
+      const newClickedCells = { ...clickedCells };
+      delete newClickedCells[cellKey];
+      setClickedCells(newClickedCells);
+
+      // Remove the cell from localStorage
+      const updatedLocalStorage = {
+        ...JSON.parse(localStorage.getItem("clickedCells")),
+      };
+      delete updatedLocalStorage[cellKey];
+      localStorage.setItem("clickedCells", JSON.stringify(updatedLocalStorage));
+    } else {
+      // If the cell was not clicked, increment the achieved count and add to clickedCells
+      updatedHabit.achieved += 1;
+      setClickedCells({ ...clickedCells, [cellKey]: true });
+
+      // Add the cell to localStorage
+      localStorage.setItem(
+        "clickedCells",
+        JSON.stringify({ ...clickedCells, [cellKey]: true })
+      );
+    }
+
+    // Dispatch the update to Redux store
+    dispatch(updateHabit(habitId, updatedHabit));
+  };
 
   return (
     <div>
@@ -116,11 +156,21 @@ const HabitsIndex = () => {
             </tr>
           </thead>
           <tbody className="tbody">
-            {habits.map((habit, index) => (
-              <tr key={`${habit.id}_${index}`}>
+            {habits.map((habit, habitIndex) => (
+              <tr key={`${habit.id}_${habitIndex}`}>
                 <Habit habit={habit} />
-                {datesRow.map((date, index) => (
-                  <td key={index} className="tdBox"></td>
+                {datesRow.map((date, dateIndex) => (
+                  <td
+                    key={dateIndex}
+                    className={
+                      clickedCells[`${habit._id}_${dateIndex}`]
+                        ? "tdBox clicked" // Add 'clicked' class if the cell is clicked
+                        : "tdBox"
+                    }
+                    onClick={() =>
+                      handleClick(habit._id, habitIndex, dateIndex)
+                    }
+                  ></td>
                 ))}
                 <td className="goal">{habit.goal}</td>
                 <td className="achieved">{habit.achieved}</td>
@@ -132,4 +182,5 @@ const HabitsIndex = () => {
     </div>
   );
 };
+
 export default HabitsIndex;
