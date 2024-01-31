@@ -32,7 +32,6 @@ const router = createBrowserRouter([
         element: <ProtectedRoute component={Feed} />,
       },
       {
-
         path: "/habits/:habitId",
         element: <ProtectedRoute component={HabitIndexItem} />,
       },

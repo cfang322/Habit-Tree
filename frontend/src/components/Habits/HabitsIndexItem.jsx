@@ -7,7 +7,7 @@ import {
   // updateHabit,
 } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
-import CreateHabit from "./createHabit";
+import CreateHabit from "./CreateHabit";
 import { useEffect, useState } from "react";
 
 const HabitIndexItem = () => {
