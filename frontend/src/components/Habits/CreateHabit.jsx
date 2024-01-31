@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as habitsAction from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
 import "./CreateHabit.css";
 
-const CreateHabit = () => {
+const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session.user._id);
 
@@ -21,6 +21,12 @@ const CreateHabit = () => {
     endDate: "",
     completed: false,
   });
+  useEffect(() => {
+    if (editMode && habitToEdit) {
+      setHabitData(habitToEdit);
+    }
+  }, [editMode, habitToEdit]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setHabitData({
@@ -36,12 +42,22 @@ const CreateHabit = () => {
       startDate: new Date(habitData.startDate).toISOString(),
       endDate: new Date(habitData.endDate).toISOString(),
     };
-    // console.log(formattedData);
-    dispatch(habitsAction.createHabit(formattedData));
-    dispatch(modalActions.hideModal());
+
+    if (editMode) {
+      // Dispatch updateHabit action
+      dispatch(habitsAction.updateHabit(habitData._id, formattedData));
+      handleCloseModal();
+    } else {
+      // Dispatch createHabit action
+      dispatch(habitsAction.createHabit(formattedData));
+      dispatch(modalActions.hideModal());
+    }
   };
 
   const handleCloseBtn = () => {
+    if (editMode) {
+      handleCloseModal(); // Call the function to close the modal
+    }
     dispatch(modalActions.hideModal());
   };
 
@@ -85,7 +101,7 @@ const CreateHabit = () => {
               </select>
             </div>
             <div>
-              <label>Count:</label>
+              <label>Count</label>
               <input
                 type="number"
                 name="goal"
@@ -139,7 +155,9 @@ const CreateHabit = () => {
               />
             </div>
 
-            <button type="submit">Create Habit</button>
+            <button type="submit">
+              {editMode ? "Update Habit" : "Create Habit"}
+            </button>
           </form>
         </div>
       </div>
