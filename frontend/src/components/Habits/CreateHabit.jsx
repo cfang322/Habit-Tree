@@ -44,12 +44,9 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     };
 
     if (editMode) {
-      // Dispatch updateHabit action
-      // handleUpdate();
       dispatch(habitsAction.updateHabit(habitData._id, formattedData));
       handleCloseModal();
     } else {
-      // Dispatch createHabit action
       dispatch(habitsAction.createHabit(formattedData));
       dispatch(modalActions.hideModal());
     }

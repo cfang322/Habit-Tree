@@ -1,9 +1,5 @@
 import { useDispatch } from "react-redux";
-import {
-  fetchHabits,
-  selectAllHabitsArray,
-  updateHabit,
-} from "../../store/reducers/habits";
+import { selectAllHabitsArray, updateHabit } from "../../store/reducers/habits";
 import "./Habitsindex.css";
 import Habit from "./Habit";
 
@@ -16,7 +12,7 @@ const HabitsIndex = () => {
   const [clickedCells, setClickedCells] = useState({}); // State to track clicked cells
   const habits = useSelector(selectAllHabitsArray);
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
-  const rowColors = ["#FF5733", "#33FF57", "#5733FF", "#FF3399", "#33FFFF"]; // Example colors
+  const rowColors = ["#7da87d", "#33FF57", "#5733FF", "#FF3399", "#33FFFF"]; // Example colors
 
   const goToPreviousMonth = () => {
     const previousMonth = new Date(currentMonth);
@@ -62,10 +58,6 @@ const HabitsIndex = () => {
   const datesRow = generateDatesRow();
   const daysRow = generateDaysRow();
 
-  useEffect(() => {
-    dispatch(fetchHabits());
-  }, [dispatch]);
-
   // Load clicked cells from localStorage on component mount
   useEffect(() => {
     const storedClickedCells = localStorage.getItem("clickedCells");
@@ -73,40 +65,35 @@ const HabitsIndex = () => {
       setClickedCells(JSON.parse(storedClickedCells));
     }
   }, []);
-
   const handleClick = (habitId, habitIndex, dateIndex) => {
     const updatedHabit = { ...habits[habitIndex] };
     const cellKey = `${habitId}_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`;
+    console.log("habitId", habitId, habitIndex, dateIndex, "cellKey", cellKey);
 
-    const colorIndex = habitIndex % rowColors.length;
-    if (clickedCells[cellKey]) {
-      if (updatedHabit.achieved === 0) {
-        return;
+    setClickedCells((prevClickedCells) => {
+      const newClickedCells = { ...prevClickedCells };
+      console.log("newClick", newClickedCells);
+      if (newClickedCells[cellKey]) {
+        if (updatedHabit.achieved === 0) {
+          return newClickedCells; // No change if achieved count is already 0
+        }
+
+        updatedHabit.achieved -= 1;
+        delete newClickedCells[cellKey];
+      } else {
+        updatedHabit.achieved += 1;
+        newClickedCells[cellKey] = true;
       }
 
-      updatedHabit.achieved -= 1;
-      const newClickedCells = { ...clickedCells };
-      delete newClickedCells[cellKey];
-      setClickedCells(newClickedCells);
+      // Update localStorage
+      localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
 
-      const updatedLocalStorage = {
-        ...JSON.parse(localStorage.getItem("clickedCells")),
-      };
-      delete updatedLocalStorage[cellKey];
-      localStorage.setItem("clickedCells", JSON.stringify(updatedLocalStorage));
-    } else {
-      updatedHabit.achieved += 1;
-      setClickedCells({ ...clickedCells, [cellKey]: colorIndex });
+      // Update habit in Redux store
+      updatedHabit.achieved = Math.max(0, updatedHabit.achieved);
+      dispatch(updateHabit(habitId, updatedHabit));
 
-      localStorage.setItem(
-        "clickedCells",
-        JSON.stringify({ ...clickedCells, [cellKey]: true })
-      );
-    }
-
-    updatedHabit.achieved = Math.max(0, updatedHabit.achieved);
-
-    dispatch(updateHabit(habitId, updatedHabit));
+      return newClickedCells; // Update clickedCells state
+    });
   };
 
   return (
@@ -167,15 +154,7 @@ const HabitsIndex = () => {
                 {datesRow.map((date, dateIndex) => (
                   <td
                     key={dateIndex}
-                    className={
-                      clickedCells[
-                        `${
-                          habit._id
-                        }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
-                      ]
-                        ? `tdBox clicked` // Add 'clicked' class if the cell is clicked
-                        : `tdBox`
-                    }
+                    className="tdBox"
                     style={{
                       backgroundColor:
                         clickedCells[
@@ -183,19 +162,22 @@ const HabitsIndex = () => {
                             habit._id
                           }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
                         ] !== undefined
-                          ? rowColors[
-                              clickedCells[
-                                `${
-                                  habit._id
-                                }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
-                              ]
-                            ]
+                          ? rowColors[habitIndex % rowColors.length]
                           : "transparent",
                     }}
                     onClick={() =>
                       handleClick(habit._id, habitIndex, dateIndex)
                     }
-                  ></td>
+                  >
+                    {/* const colorIndex = habitIndex % rowColors.length; */}
+                    {clickedCells[
+                      `${
+                        habit._id
+                      }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                    ] !== undefined ? (
+                      <div className="checkMark">&#10003;</div>
+                    ) : null}
+                  </td>
                 ))}
                 <td className="goal">{habit.goal}</td>
                 <td

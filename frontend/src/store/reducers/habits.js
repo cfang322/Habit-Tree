@@ -56,7 +56,6 @@ export const updateHabit = (habitId, updatedHabit) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(fetchHabits());
     dispatch(receiveHabit(data));
   }
 };
@@ -74,9 +73,12 @@ const habitsReducer = (state = {}, action) => {
   const nextState = { ...state };
   switch (action.type) {
     case RECEIVE_HABITS:
-      return action.habits;
+      return action.habits.reduce((acc, habit) => {
+        acc[habit._id] = habit;
+        return acc;
+      }, {});
     case RECEIVE_HABIT:
-      return { ...nextState, [action.habit.id]: action.habit };
+      return { ...nextState, [action.habit._id]: action.habit };
     case REMOVE_HABIT:
       delete nextState[action.habitId];
       return nextState;
