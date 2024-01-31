@@ -5,14 +5,6 @@ const RECEIVE_HABITS = "RECEIVE_HABITS";
 const RECEIVE_HABIT = "RECEIVE_HABIT";
 const REMOVE_HABIT = "REMOVE_HABIT";
 
-// Define action type
-const UPDATE_HABIT_SUCCESS = "UPDATE_HABIT_SUCCESS";
-
-// Action creator for updating a habit successfully
-export const updateHabitSuccess = (updatedHabit) => ({
-  type: UPDATE_HABIT_SUCCESS,
-  updatedHabit,
-});
 export const receiveHabits = (habits) => ({
   type: RECEIVE_HABITS,
   habits,
@@ -53,10 +45,10 @@ export const createHabit = (habit) => async (dispatch) => {
   }
 };
 
-export const updateHabit = (habitId, habit) => async (dispatch) => {
+export const updateHabit = (habitId, updatedHabit) => async (dispatch) => {
   const res = await jwtFetch(`/api/habits/${habitId}`, {
     method: "PUT",
-    body: JSON.stringify(habit),
+    body: JSON.stringify(updatedHabit),
   });
 
   if (res.ok) {
@@ -84,14 +76,6 @@ const habitsReducer = (state = {}, action) => {
     case REMOVE_HABIT:
       delete nextState[action.habitId];
       return nextState;
-    case UPDATE_HABIT_SUCCESS:
-      return {
-        ...state,
-        [action.updatedHabit.id]: {
-          ...state[action.updatedHabit.id],
-          ...action.updatedHabit,
-        },
-      };
     default:
       return state;
   }

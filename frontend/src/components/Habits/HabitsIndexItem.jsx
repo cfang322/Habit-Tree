@@ -1,9 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { deleteHabit, selectAllHabitsArray } from "../../store/reducers/habits";
+import {
+  deleteHabit,
+  fetchHabits,
+  selectAllHabitsArray,
+  // updateHabit,
+} from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./createHabit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HabitIndexItem = () => {
   const navigate = useNavigate();
@@ -15,6 +20,10 @@ const HabitIndexItem = () => {
 
   const [editMode, setEditMode] = useState(false);
 
+  useEffect(() => {
+    dispatch(fetchHabits());
+  }, [dispatch, habitId]);
+
   const handleDelete = () => {
     dispatch(deleteHabit(habitId));
     navigate("/feed");
@@ -24,6 +33,7 @@ const HabitIndexItem = () => {
     setEditMode(true);
     dispatch(modalActions.showModal("SHOW_HABITS"));
   };
+
   const handleCloseModal = () => {
     setEditMode(false);
     dispatch(modalActions.hideModal());
@@ -44,6 +54,7 @@ const HabitIndexItem = () => {
           editMode={true}
           habitToEdit={habit}
           handleCloseModal={handleCloseModal}
+          // handleUpdate={handleUpdate}
         />
       ) : (
         <div className="allTheHabits">
