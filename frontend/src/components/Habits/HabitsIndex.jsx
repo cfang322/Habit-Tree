@@ -173,8 +173,8 @@ const HabitsIndex = () => {
                         habit._id
                       }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
                     ] !== undefined ? (
-                      <div className="checkMarks">&#10003;</div>
-                    ) : null}
+                        <div className="checkMarks">&#10003;</div>
+                      ) : null}
                   </td>
                 ))}
                 <td className="goal">{habit.goal}</td>

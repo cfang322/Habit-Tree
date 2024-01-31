@@ -8,7 +8,7 @@ import NoteIndex from "../Notes/NotesIndex"; // Import NoteIndex component
 import { useEffect, useState } from "react";
 import './HabitsIndexItem.css';
 import placeholder from '../../assets/placeholder.jpg';
-
+import "../Notes/NotesIndex.css";
 const HabitIndexItem = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -74,6 +74,10 @@ const HabitIndexItem = () => {
               </div>
               <div className="deleteDiv">
                 <button onClick={handleDelete}>Delete</button>
+              </div>
+              <div className="notesComponentDiv">
+                <NoteIndex  habitId={habitId}/>
+
               </div>
             </div>
           </>

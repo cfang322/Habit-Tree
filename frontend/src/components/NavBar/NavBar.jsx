@@ -1,10 +1,9 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 import "./NavBar.css";
 import { logout } from "../../store/reducers/session";
-import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 

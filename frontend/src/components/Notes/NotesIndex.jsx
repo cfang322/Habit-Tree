@@ -21,16 +21,16 @@ const NotesIndex = ({ habitId }) => {
   };
 
   return (
-    <div className="noteIndexPage">
-      <div className="createNoteBtnDiv">
-        <button className="creatNoteBtn" onClick={handleClick}>
+    <div id="noteIndexPage">
+      <div id="createNoteBtnDiv">
+        <button id="creatNoteBtn" onClick={handleClick}>
           Create Note
         </button>
       </div>
       {modalType && <CreateNotes habitId={habitId} />}
-      <ul className="notesList">
-        <div className="notesIndex">
-          <ul className="scrollable-list">
+      <ul id="notesList">
+        <div id="notesIndex">
+          <ul id="scrollable-list">
             {notes.map((note, index) => (
               <NoteIndexItem key={`${note._id}_${index}`} note={note} habitId={habitId} />
             ))}

@@ -1,10 +1,10 @@
 .habit-container {
     display: flex;
-    align-items: flex-start; /* Align items to the start of the flex container */
+    align-items: flex-start;
 }
 
 .habit-image {
-    /* max-width: 200px; */
+
     border-radius: 8px;
     margin-right: 20px;
 }
@@ -47,14 +47,14 @@
 .allTheHabits::before {
     content: '';
     display: block;
-    height: 2px; /* Adjust the thickness of the line */
-    background: linear-gradient(to right, transparent 10%, #ccc 45%, #ccc 55%, transparent 90%); /* Adjust the gradient stops for pointy ends */
+    height: 2px;
+    background: linear-gradient(to right, transparent 10%, #ccc 45%, #ccc 55%, transparent 90%); 
     position: absolute;
     width: 100%;
     top: 60px;
     left: 0;
-    margin-top: 10px; /* Adjust the space between line and h1 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the line */
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
 .allTheHabits {
@@ -74,7 +74,7 @@
 }
 
 .allTheHabits li {
-    margin: 5px 0; /* Add margin to each li for spacing */
+    margin: 5px 0;
     font-weight: 300;
     font-size: x-large;
     font-style: oblique;
@@ -97,3 +97,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.notesComponentDiv {
+    width: 100%;
+    height: 100px;
+}

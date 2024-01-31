@@ -2,7 +2,7 @@ import HabitsIndex from "../Habits/HabitsIndex";
 import { useDispatch, useSelector } from "react-redux";
 import * as modalActions from "../../store/reducers/modals";
 
-import CreateHabit from "../Habits/createHabit";
+import CreateHabit from "../Habits/CreateHabit";
 import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
 import { useEffect } from "react";
