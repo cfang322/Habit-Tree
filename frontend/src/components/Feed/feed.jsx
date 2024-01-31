@@ -5,10 +5,17 @@ import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "../Habits/CreateHabit";
 import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
+import { useEffect } from "react";
+import { fetchHabits } from "../../store/reducers/habits";
+import Habit from "../Habits/Habit";
 
 const Feed = () => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modals.type === "SHOW_HABITS");
+
+  useEffect(() => {
+    dispatch(fetchHabits());
+  }, [dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault;
