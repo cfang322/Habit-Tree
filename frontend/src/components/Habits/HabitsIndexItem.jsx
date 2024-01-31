@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { fetchNotes } from "../../store/reducers/notes";
 import { deleteHabit, fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
-import CreateHabit from "./createHabit";
+import CreateHabit from "./CreateHabit";
+import NoteIndex from "../Notes/NotesIndex"; // Import NoteIndex component
 import { useEffect, useState } from "react";
 import './HabitsIndexItem.css';
 import placeholder from '../../assets/placeholder.jpg';
@@ -13,7 +15,6 @@ const HabitIndexItem = () => {
   const { habitId } = useParams();
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
-  
   const [editMode, setEditMode] = useState(false);
   
   useEffect(() => {
@@ -24,7 +25,12 @@ const HabitIndexItem = () => {
     dispatch(deleteHabit(habitId));
     navigate("/feed");
   };
-  
+
+  useEffect(() => {
+    dispatch(fetchNotes(habitId));
+  }, [dispatch, habitId]);
+
+
   const handleEdit = () => {
     setEditMode(true);
     dispatch(modalActions.showModal("SHOW_HABITS"));

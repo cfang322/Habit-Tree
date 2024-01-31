@@ -26,60 +26,63 @@ export const selectNote = (noteId) => (state) => {
 
 const selectNotes = (state) => state?.notes || {};
 
-export const memoizedSelectNotes = createSelector([selectNotes], (notes) =>
-  Object.values(notes)
-);
 
-export const fetchNotes = () => async (dispatch) => {
-  const res = await jwtFetch("/api/notes");
+
+export const memoizedSelectNotes = (habitId) =>
+  createSelector([selectNotes], (notes) =>
+    Object.values(notes).filter((note) => note.habit === habitId)
+  );
+
+export const fetchNotes = (habitId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/notes/${habitId}`);
   if (res.ok) {
     const notes = await res.json();
     dispatch(receiveNotes(notes));
   }
 };
 
-export const fetchNote = (note) => async (dispatch) => {
-  const res = await jwtFetch(`/api/notes/${note._id}`, {
-    method: "DELETE",
+export const fetchNote = (habitId, note) => async (dispatch) => {
+  const res = await jwtFetch(`/api/notes/${habitId}/${note._id}`, {
+    method: "GET",
   });
   if (res.ok) {
-    const data = await res.json;
+    const data = await res.json();
     dispatch(receiveNote(data));
   }
 };
 
-export const createNote = (note) => async (dispatch) => {
-  const res = await jwtFetch(`/api/notes`, {
+export const createNote = (habitId, note) => async (dispatch) => {
+  const res = await jwtFetch(`/api/notes/${habitId}`, {
     method: "POST",
     body: JSON.stringify(note),
   });
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveNote(data));
+    // dispatch(fetchNotes(habitId));
   }
 };
 
-export const updateNote = (note) => async (dispatch) => {
-  const { _id, content } = note; // Assuming `_id` is the unique identifier
-  const res = await jwtFetch(`/api/notes/${_id}`, {
+export const updateNote = (habitId, note) => async (dispatch) => {
+  const { _id, content } = note;
+  const res = await jwtFetch(`/api/notes/${habitId}/${_id}`, {
     method: "PUT",
-    body: JSON.stringify({ content }), // Send only the updated field
+    body: JSON.stringify({ content }),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
   if (res.ok) {
     const data = await res.json();
-    dispatch(fetchNotes());
     dispatch(receiveNote(data));
+    
   }
 };
 
-export const deleteNote = (noteId) => async (dispatch) => {
-  const res = await jwtFetch(`api/notes/${noteId}`, {
+export const deleteNote = (habitId, noteId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/notes/${habitId}/${noteId}`, {
     method: "DELETE",
-    body: JSON.stringify(noteId),
+    body: JSON.stringify({ noteId }),
   });
   if (res.ok) {
     dispatch(removeNote(noteId));
@@ -88,21 +91,24 @@ export const deleteNote = (noteId) => async (dispatch) => {
 
 const notesReducer = (state = {}, action) => {
   const nextState = { ...state };
+
   switch (action.type) {
-    case RECEIVE_NOTES:
-      return action.notes;
-    case RECEIVE_NOTE:
-      return {
-        ...state,
-        [action.note.id]: action.note,
-      };
-    case REMOVE_NOTE:
-      delete nextState[action.noteId];
-      return nextState;
-    default:
-      return state;
+  case RECEIVE_NOTES:
+    return {
+      ...nextState,
+      ...action.notes.reduce((acc, note) => {
+        acc[note._id] = note;
+        return acc;
+      }, {}),
+    };
+  case RECEIVE_NOTE:
+    return { ...nextState, [action.note._id]: action.note };
+  case REMOVE_NOTE:
+    delete nextState[action.noteId];
+    return nextState;
+  default:
+    return state;
   }
 };
-
 
 export default notesReducer;

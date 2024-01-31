@@ -39,14 +39,14 @@ const router = createBrowserRouter([
             <ProtectedRoute component={HabitsIndexItem} />,
           </>
       },
-      // {
-      //   path: "notes",
-      //   element: <ProtectedRoute component={NotesIndex} />,
-      // },
-      // {
-      //   path: `notes/${note.id}`,
-      //   element: <ProtectedRoute component={NoteIndexItem} />,
-      // },
+      {
+        path: "notes",
+        element: <ProtectedRoute component={NotesIndex} />,
+      },
+      {
+        path: 'notes/:habitId',
+        element: <ProtectedRoute component={NoteIndexItem} />,
+      },
     ],
   },
 ]);

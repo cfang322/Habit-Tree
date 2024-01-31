@@ -5,14 +5,14 @@ import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
 import './CreateNote.css';
 
-const CreateNoteModal = () => {
+const CreateNoteModal = ({ habitId }) => {
   const [newNoteContent, setNewNoteContent] = useState("");
   const dispatch = useDispatch();
 
   const handleCreateNote = () => {
     if (newNoteContent.trim() !== "") {
-      const newNote = { content: newNoteContent };
-      dispatch(createNote(newNote));
+      const newNote = { content: newNoteContent, habitId };
+      dispatch(createNote(habitId, newNote));
       setNewNoteContent("");
       dispatch(modalActions.hideModal());
     }
@@ -20,7 +20,6 @@ const CreateNoteModal = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-
       e.preventDefault();
       handleCreateNote();
     }
@@ -46,9 +45,7 @@ const CreateNoteModal = () => {
         </div>
       </div>
     </Modal>
-
   );
 };
 
 export default CreateNoteModal;
-

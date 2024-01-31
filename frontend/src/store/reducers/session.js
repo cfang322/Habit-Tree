@@ -55,25 +55,25 @@ const initialState = {
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_CURRENT_USER:
-      return { user: action.currentUser };
-    case RECEIVE_USER_LOGOUT:
-      return initialState;
-    default:
-      return state;
+  case RECEIVE_CURRENT_USER:
+    return { user: action.currentUser };
+  case RECEIVE_USER_LOGOUT:
+    return initialState;
+  default:
+    return state;
   }
 };
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {
   switch (action.type) {
-    case RECEIVE_SESSION_ERRORS:
-      return action.errors;
-    case RECEIVE_CURRENT_USER:
-    case CLEAR_SESSION_ERRORS:
-      return nullErrors;
-    default:
-      return state;
+  case RECEIVE_SESSION_ERRORS:
+    return action.errors;
+  case RECEIVE_CURRENT_USER:
+  case CLEAR_SESSION_ERRORS:
+    return nullErrors;
+  default:
+    return state;
   }
 };
 export const getCurrentUser = () => async (dispatch) => {
