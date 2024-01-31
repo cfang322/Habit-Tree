@@ -1,4 +1,16 @@
-const HabitIndexItem = ({ habit }) => {
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { selectAllHabitsArray } from "../../store/reducers/habits";
+
+const HabitIndexItem = () => {
+  const { habitId } = useParams();
+  const habits = useSelector(selectAllHabitsArray); // Assuming 'habits' is the slice of state containing habit data
+  const habit = habits.find((habit) => habit._id === habitId); // Find the habit with the corresponding id
+
+  if (!habit) {
+    return <div>Habit not found</div>;
+  }
+
   return (
     <div className="habit">
       <h2>{habit.name}</h2>
@@ -13,4 +25,5 @@ const HabitIndexItem = ({ habit }) => {
     </div>
   );
 };
+
 export default HabitIndexItem;

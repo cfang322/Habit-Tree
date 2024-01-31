@@ -1,8 +1,7 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
-// import { useEffect } from "react";
-// // import HabitIndexItem from "./HabitsIndexItem";
-// import "./HabitsIndex.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
+import { useEffect, useState } from "react";
+import "./Habitsindex.css";
 
 // const HabitsIndex = () => {
 //   const dispatch = useDispatch();
@@ -105,9 +104,13 @@ import "./Habitsindex.css";
 import { useSelector } from "react-redux";
 import { selectAllHabitsArray } from "../../store/reducers/habits";
 
+
+
 const HabitsIndex = () => {
+  const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const habits = useSelector(selectAllHabitsArray);
+  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]; // Define daysOfWeek here
 
   const goToPreviousMonth = () => {
     const previousMonth = new Date(currentMonth);
@@ -139,47 +142,82 @@ const HabitsIndex = () => {
   };
 
   const generateDaysRow = () => {
-    const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
-    return daysOfWeek;
+    const totalDays = getDaysInMonth(currentMonth);
+    const daysRow = [];
+
+    let dayIndex = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      1
+    ).getDay();
+    for (let i = 0; i < totalDays; i++) {
+      daysRow.push(daysOfWeek[dayIndex]);
+      dayIndex = (dayIndex + 1) % 7;
+    }
+
+    return daysRow;
   };
 
   const datesRow = generateDatesRow();
   const daysRow = generateDaysRow();
 
+  useEffect(() => {
+    dispatch(fetchHabits());
+  }, [dispatch]);
+
   return (
     <div>
       <div className="navigation">
         <button onClick={goToPreviousMonth}>Previous Month</button>
+        <span colSpan={datesRow.length + 1}>
+          {currentMonth.toLocaleDateString("en-US", {
+            month: "long",
+            year: "numeric",
+          })}
+        </span>
         <button onClick={goToNextMonth}>Next Month</button>
       </div>
-      <table className="month-table">
+      <table className="table">
         <thead>
           <tr>
-            <th colSpan={datesRow.length + 1}>
-              {currentMonth.toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+            <th rowSpan={2} className="th">
+              Habits
+            </th>
+            {daysRow.map((day, index) => (
+              <th key={index} className="th">
+                {day}
+              </th>
+            ))}
+            <th rowSpan={2} className="th">
+              Goal
+            </th>
+            <th rowSpan={2} className="th">
+              Achieved
             </th>
           </tr>
           <tr>
-            <th></th>
             {datesRow.map((date, index) => (
-              <th key={index}>{date}</th>
+              <th
+                key={index}
+                className={
+                  date === new Date().getDate() &&
+                  currentMonth.getMonth() === new Date().getMonth()
+                    ? "current-date th"
+                    : "th"
+                }
+              >
+                {date}
+              </th>
             ))}
           </tr>
         </thead>
-        <tbody>
-          {daysRow.map((day, index) => (
-            <tr key={index}>
-              <th>{day}</th>
+        <tbody className="tbody">
+          {habits.map((habit, index) => (
+            <tr key={`${habit.id}_${index}`}>
+              <Habit habit={habit} />
               {datesRow.map((date, index) => (
-                <td key={index}>
-                  {habits.map((habit) => (
-                    <span key={habit.id}>
-                      {habit.dates.includes(date) && <span>{habit.name}</span>}
-                    </span>
-                  ))}
+                <td key={index} className="td">
+                  {/* <div className="box"></div> */}
                 </td>
               ))}
             </tr>
@@ -189,5 +227,4 @@ const HabitsIndex = () => {
     </div>
   );
 };
-
 export default HabitsIndex;
