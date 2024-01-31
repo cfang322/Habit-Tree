@@ -101,3 +101,9 @@ td.boxId {
 .checkMarks {
   text-align: center;
 }
+
+button.arrow {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}

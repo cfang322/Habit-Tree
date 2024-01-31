@@ -68,14 +68,13 @@ const HabitsIndex = () => {
   const handleClick = (habitId, habitIndex, dateIndex) => {
     const updatedHabit = { ...habits[habitIndex] };
     const cellKey = `${habitId}_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`;
-    console.log("habitId", habitId, habitIndex, dateIndex, "cellKey", cellKey);
 
     setClickedCells((prevClickedCells) => {
       const newClickedCells = { ...prevClickedCells };
-      console.log("newClick", newClickedCells);
+
       if (newClickedCells[cellKey]) {
         if (updatedHabit.achieved === 0) {
-          return newClickedCells; // No change if achieved count is already 0
+          return prevClickedCells; // No change if achieved count is already 0
         }
 
         updatedHabit.achieved -= 1;
@@ -85,21 +84,20 @@ const HabitsIndex = () => {
         newClickedCells[cellKey] = true;
       }
 
-      // Update localStorage
-      localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
-
       // Update habit in Redux store
       updatedHabit.achieved = Math.max(0, updatedHabit.achieved);
       dispatch(updateHabit(habitId, updatedHabit));
 
+      // Update localStorage
+      localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
+
       return newClickedCells; // Update clickedCells state
     });
   };
-
   return (
     <div>
       <div className="navigation">
-        <button onClick={goToPreviousMonth}>
+        <button onClick={goToPreviousMonth} className="arrow">
           <img src="https://app.dailyhabits.xyz/static/icons/left.svg" />
         </button>
         <span colSpan={datesRow.length + 1}>
@@ -108,7 +106,7 @@ const HabitsIndex = () => {
             year: "numeric",
           })}
         </span>
-        <button onClick={goToNextMonth}>
+        <button onClick={goToNextMonth} className="arrow">
           <img src="https://app.dailyhabits.xyz/static/icons/right.svg" />
         </button>
       </div>
