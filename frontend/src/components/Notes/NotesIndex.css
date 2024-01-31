@@ -1,0 +1,51 @@
+.noteIndexPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+
+
+
+.scrollable-list {
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(167, 202, 141);
+  max-height: 500px;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+
+.createNoteBtnDiv {
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.creatNoteBtn {
+  margin-right: 17px;
+  background-color: #ccc;
+  color: green;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  width: 120px;
+  margin-bottom: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.creatNoteBtn:hover {
+  color: black;
+  background-color: rgb(167, 202, 141);
+}

@@ -1,5 +1,7 @@
-// import { Link } from "react-router-dom";
+
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+
 import "./NavBar.css";
 import { logout } from "../../store/reducers/session";
 import "./NavBar.css";
@@ -7,46 +9,42 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 function NavBar() {
-  const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
-
-  // const getLinks = () => {
-  //   if (loggedIn) {
-  //     return (
-  //       <div className="links-nav">
-  //         {/* <Link to={"/tweets"}>All Tweets</Link>
-  //         <Link to={"/profile"}>Profile</Link>
-  //         <Link to={"/tweets/new"}>Write a Tweet</Link> */}
-  //         <button onClick={logoutUser}>Logout</button>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div className="linksAuth">
-  //         <Link to={"/signup"}>
-  //           <button>Signup</button>
-  //         </Link>
-  //         {/* <Link to={"/login"}>Login</Link> */}
-  //       </div>
-  //     );
-  //   }
-  // };
-
+  
+  const handleDropdownToggle = () => {
+    setShowDropdown(!showDropdown);
+  };
+  
+  const sessionUser = useSelector((state) => state.session.user);
+  
+  const sessionLinks = (
+    <div className="dropdown-content">
+      <NavLink to="/profile">Profile</NavLink>
+      <div onClick={logoutUser}>Logout</div>
+    </div>
+  );
+  
   return (
     <div className="navBar">
-      <div className="home">
-        <NavLink to="/feed">
-          <img src={logo} alt="logo" width={50} height={50} />
-        </NavLink>
+      <div className="homeBtn">
+        <div className="home">
+          <NavLink to="/feed">
+            <img src={logo} alt="logo" width={50} height={50} />
+          </NavLink>
+        </div>
       </div>
-      <button className="logoutBtn" onClick={logoutUser}>
-        Logout
-      </button>
+      <div className="logout">
+        <div className="logoutBtn" onClick={handleDropdownToggle}>
+          {sessionUser ? `Hello, ${sessionUser.username}` : 'Hello, sign in'}
+        </div>
+        {showDropdown && sessionUser && sessionLinks}
+      </div>
     </div>
   );
 }
