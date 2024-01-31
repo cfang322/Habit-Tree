@@ -1,14 +1,10 @@
+// HabitsIndex.js
 import { useDispatch } from "react-redux";
-import {
-  fetchHabits,
-  selectAllHabitsArray,
-  updateHabit,
-} from "../../store/reducers/habits";
+import { selectAllHabitsArray, updateHabit } from "../../store/reducers/habits";
 import "./Habitsindex.css";
 import Habit from "./Habit";
 
 import { useEffect, useState } from "react";
-import "./Habitsindex.css";
 import { useSelector } from "react-redux";
 
 const HabitsIndex = () => {
@@ -63,10 +59,6 @@ const HabitsIndex = () => {
   const datesRow = generateDatesRow();
   const daysRow = generateDaysRow();
 
-  useEffect(() => {
-    dispatch(fetchHabits());
-  }, [dispatch]);
-
   // Load clicked cells from localStorage on component mount
   useEffect(() => {
     const storedClickedCells = localStorage.getItem("clickedCells");
@@ -77,34 +69,35 @@ const HabitsIndex = () => {
 
   const handleClick = (habitId, habitIndex, dateIndex) => {
     const updatedHabit = { ...habits[habitIndex] };
-    const cellKey = `${habitId}_${dateIndex}`;
+    const cellKey = `${habitId}_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`;
 
     if (clickedCells[cellKey]) {
-      // If the cell was clicked, decrement the achieved count and remove from clickedCells
+      if (updatedHabit.achieved === 0) {
+        return;
+      }
+
       updatedHabit.achieved -= 1;
       const newClickedCells = { ...clickedCells };
       delete newClickedCells[cellKey];
       setClickedCells(newClickedCells);
 
-      // Remove the cell from localStorage
       const updatedLocalStorage = {
         ...JSON.parse(localStorage.getItem("clickedCells")),
       };
       delete updatedLocalStorage[cellKey];
       localStorage.setItem("clickedCells", JSON.stringify(updatedLocalStorage));
     } else {
-      // If the cell was not clicked, increment the achieved count and add to clickedCells
       updatedHabit.achieved += 1;
       setClickedCells({ ...clickedCells, [cellKey]: true });
 
-      // Add the cell to localStorage
       localStorage.setItem(
         "clickedCells",
         JSON.stringify({ ...clickedCells, [cellKey]: true })
       );
     }
 
-    // Dispatch the update to Redux store
+    updatedHabit.achieved = Math.max(0, updatedHabit.achieved);
+
     dispatch(updateHabit(habitId, updatedHabit));
   };
 
@@ -161,20 +154,38 @@ const HabitsIndex = () => {
           </thead>
           <tbody className="tbody">
             {habits.map((habit, habitIndex) => (
-              <tr key={`${habit.id}_${habitIndex}`}>
+              <tr key={`${habit._id}_${habitIndex}`}>
                 <Habit habit={habit} />
                 {datesRow.map((date, dateIndex) => (
                   <td
                     key={dateIndex}
                     className={
-                      clickedCells[`${habit._id}_${dateIndex}`]
-                        ? "tdBox clicked" // Add 'clicked' class if the cell is clicked
-                        : "tdBox"
+                      clickedCells[
+                        `${
+                          habit._id
+                        }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                      ]
+                        ? `tdBox clicked` // Add 'clicked' class if the cell is clicked
+                        : `tdBox`
                     }
                     onClick={() =>
                       handleClick(habit._id, habitIndex, dateIndex)
                     }
-                  ></td>
+                  >
+                    {dateIndex ===
+                    clickedCells[
+                      `${
+                        habit._id
+                      }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
+                    ] ? (
+                      <div
+                        style={{
+                          backgroundColor:
+                            rowColors[habitIndex % rowColors.length],
+                        }}
+                      ></div>
+                    ) : null}
+                  </td>
                 ))}
                 <td className="goal">{habit.goal}</td>
                 <td

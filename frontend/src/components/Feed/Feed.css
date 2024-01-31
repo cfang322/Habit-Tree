@@ -9,6 +9,11 @@ div.feedContainer {
   padding: 8px;
   border: 1px solid #ddd;
   cursor: pointer;
+  border-radius: 10px;
+}
+
+.addBtn:hover {
+  background-color: rgb(125, 168, 125);
 }
 
 .feedTableBox {

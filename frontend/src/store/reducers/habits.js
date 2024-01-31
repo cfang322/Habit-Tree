@@ -49,11 +49,15 @@ export const updateHabit = (habitId, updatedHabit) => async (dispatch) => {
   const res = await jwtFetch(`/api/habits/${habitId}`, {
     method: "PUT",
     body: JSON.stringify(updatedHabit),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveHabit(data));
+    dispatch(fetchHabits());
   }
 };
 
@@ -63,6 +67,7 @@ export const deleteHabit = (habitId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(removeHabit(habitId));
+    dispatch(fetchHabits());
   }
 };
 
@@ -70,9 +75,9 @@ const habitsReducer = (state = {}, action) => {
   const nextState = { ...state };
   switch (action.type) {
     case RECEIVE_HABITS:
-      return { ...state, ...action.habits };
+      return action.habits;
     case RECEIVE_HABIT:
-      return { ...nextState, [action.habit.id]: action.habit };
+      return { ...state, [action.habit.id]: action.habit };
     case REMOVE_HABIT:
       delete nextState[action.habitId];
       return nextState;
