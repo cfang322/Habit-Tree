@@ -1,13 +1,16 @@
 .noteItem {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 95vw;
-  padding: 16px;
+  margin-left: 17px;
+  padding: 12px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(161, 161, 161);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .noteContent {
@@ -24,41 +27,38 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-content {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .dropdown {
-  display: flex;
-
-}
-
-
-.dropdown {
-  position: relative;
-  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 1px;
+  margin-right: 40px;
 }
 
 .dropdown-btn {
   background: none;
   border: none;
-  font-size: 20px;
-  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .dropdown-content {
+  display: none;
   position: absolute;
-  top: 30px;
-  right: 0;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  right: 0;
+}
+
+.noteItem:hover .dropdown-content {
   display: flex;
-  flex-direction: column;
-  z-index: 1;
 }
 
 .dropdown-content button {

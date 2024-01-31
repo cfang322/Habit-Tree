@@ -69,15 +69,15 @@ export const deleteHabit = (habitId) => async (dispatch) => {
 const habitsReducer = (state = {}, action) => {
   const nextState = { ...state };
   switch (action.type) {
-    case RECEIVE_HABITS:
-      return { ...state, ...action.habits };
-    case RECEIVE_HABIT:
-      return { ...nextState, [action.habit.id]: action.habit };
-    case REMOVE_HABIT:
-      delete nextState[action.habitId];
-      return nextState;
-    default:
-      return state;
+  case RECEIVE_HABITS:
+    return { ...state, ...action.habits };
+  case RECEIVE_HABIT:
+    return { ...nextState, [action.habit.id]: action.habit };
+  case REMOVE_HABIT:
+    delete nextState[action.habitId];
+    return nextState;
+  default:
+    return state;
   }
 };
 

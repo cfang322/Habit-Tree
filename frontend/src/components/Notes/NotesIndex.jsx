@@ -6,33 +6,33 @@ import NoteIndexItem from "./NoteIndexItem";
 import * as modalActions from "../../store/reducers/modals";
 import "./NotesIndex.css";
 
-const NotesIndex = () => {
+const NotesIndex = ({ habitId }) => {
   const dispatch = useDispatch();
-  const notes = useSelector(memoizedSelectNotes);
-  const modalType = useSelector((state) => state.modals.type === "SHOW_HABITS");
-
+  const notes = useSelector(memoizedSelectNotes(habitId));
+  const modalType = useSelector((state) => state.modals.type === "SHOW_CREATE_NOTE");
   useEffect(() => {
-    dispatch(fetchNotes());
-    dispatch(modalActions.hideModal());
-  }, [dispatch]);
+    dispatch(fetchNotes(habitId));
+
+  }, [dispatch, habitId]);
 
   const handleClick = (e) => {
-    e.preventDefault;
-    dispatch(modalActions.showModal("SHOW_HABITS"));
+    e.preventDefault();
+    dispatch(modalActions.showModal("SHOW_CREATE_NOTE"));
   };
-
-
 
   return (
     <div className="noteIndexPage">
       <div className="createNoteBtnDiv">
-        <button className="creatNoteBtn" onClick={handleClick}>Create Note</button>      </div>
-      {modalType && <CreateNotes />}
+        <button className="creatNoteBtn" onClick={handleClick}>
+          Create Note
+        </button>
+      </div>
+      {modalType && <CreateNotes habitId={habitId} />}
       <ul className="notesList">
         <div className="notesIndex">
           <ul className="scrollable-list">
             {notes.map((note, index) => (
-              <NoteIndexItem key={`${note.id}_${index}`} note={note} />
+              <NoteIndexItem key={`${note._id}_${index}`} note={note} habitId={habitId} />
             ))}
           </ul>
         </div>
