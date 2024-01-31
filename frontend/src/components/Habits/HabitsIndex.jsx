@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   fetchHabits,
   selectAllHabitsArray,
@@ -7,16 +6,10 @@ import {
 } from "../../store/reducers/habits";
 import "./Habitsindex.css";
 import Habit from "./Habit";
-=======
 
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Habitsindex.css";
 import { useSelector } from "react-redux";
-import { selectAllHabitsArray } from "../../store/reducers/habits";
-
-
-
 
 const HabitsIndex = () => {
   const dispatch = useDispatch();
