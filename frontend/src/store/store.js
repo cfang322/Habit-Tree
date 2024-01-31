@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   session,
   habits,
   modals,
+  notes,
 });
 
 let enhancer;

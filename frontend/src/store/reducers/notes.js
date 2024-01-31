@@ -20,9 +20,13 @@ export const removeNote = (noteId) => ({
   noteId,
 });
 
-const selectNotes = (state) => state.notes;
+export const selectNote = (noteId) => (state) => {
+  return state?.notes ? state.notes[noteId] : null;
+};
 
-export const selectAllNotesArray = createSelector(selectNotes, (notes) =>
+const selectNotes = (state) => state?.notes || {};
+
+export const memoizedSelectNotes = createSelector([selectNotes], (notes) =>
   Object.values(notes)
 );
 
@@ -31,6 +35,16 @@ export const fetchNotes = () => async (dispatch) => {
   if (res.ok) {
     const notes = await res.json();
     dispatch(receiveNotes(notes));
+  }
+};
+
+export const fetchNote = (note) => async (dispatch) => {
+  const res = await jwtFetch(`/api/notes/${note._id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const data = await res.json;
+    dispatch(receiveNote(data));
   }
 };
 
@@ -46,12 +60,18 @@ export const createNote = (note) => async (dispatch) => {
 };
 
 export const updateNote = (note) => async (dispatch) => {
-  const res = await jwtFetch(`/api/notes/${note.id}`, {
+  const { _id, content } = note; // Assuming `_id` is the unique identifier
+  const res = await jwtFetch(`/api/notes/${_id}`, {
     method: "PUT",
-    body: JSON.stringify(note),
+    body: JSON.stringify({ content }), // Send only the updated field
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
+
   if (res.ok) {
     const data = await res.json();
+    dispatch(fetchNotes());
     dispatch(receiveNote(data));
   }
 };
@@ -69,16 +89,20 @@ export const deleteNote = (noteId) => async (dispatch) => {
 const notesReducer = (state = {}, action) => {
   const nextState = { ...state };
   switch (action.type) {
-  case RECEIVE_NOTES:
-    return { ...action.notes };
-  case RECEIVE_NOTE:
-    return { ...nextState, [action.note.id]: action.note };
-  case REMOVE_NOTE:
-    delete nextState[action.noteId];
-    return nextState;
-  default:
-    return state;
+    case RECEIVE_NOTES:
+      return action.notes;
+    case RECEIVE_NOTE:
+      return {
+        ...state,
+        [action.note.id]: action.note,
+      };
+    case REMOVE_NOTE:
+      delete nextState[action.noteId];
+      return nextState;
+    default:
+      return state;
   }
 };
+
 
 export default notesReducer;
