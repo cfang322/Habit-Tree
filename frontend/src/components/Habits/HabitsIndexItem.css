@@ -1,10 +1,7 @@
 .habit {
     max-width: 600px;
-    /* margin: 20px auto; */
     padding: 50px;
-    border: 2px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     position: relative;
     margin-left: auto;
@@ -36,21 +33,54 @@
     background-color: rgb(167, 202, 141);
 }
 
+.allTheHabits::before {
+    content: '';
+    display: block;
+    height: 2px; /* Adjust the thickness of the line */
+    background: linear-gradient(to right, transparent 10%, #ccc 45%, #ccc 55%, transparent 90%); /* Adjust the gradient stops for pointy ends */
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    left: 0;
+    margin-top: 10px; /* Adjust the space between line and h1 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the line */
+}
+
+.allTheHabits {
+    position: relative;
+}
+
 .allTheHabits h1 {
     color: rgb(71, 34, 34);
-    margin-bottom: 30px;
-    font-weight: 800;
+    margin-bottom: 10px;
+    font-weight: 400;
     font-size: xxx-large;
     font-style: oblique;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding-left: 10%;
     padding-bottom: 8%;
+    text-shadow: 0 0 10px rgba(10, 126, 78, 0.5), 0 0 20px rgba(8, 140, 98, 0.5);
 }
 
-.allTheHabits p {
+.allTheHabits li {
     margin: 20px 0;
     padding-left: 20%;
-    font-weight: 500;
+    font-weight: 300;
+    font-size: x-large;
+    font-style: oblique;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.allTheHabits .habit-detail li {
+    display: inline; 
+    margin-right: 10px; 
+    margin-bottom: 5px; 
+}
+
+.allTheHabits ul {
+    margin: 20px 0;
+    padding-left: 15%;
+    font-weight: 400;
     font-size: x-large;
     font-style: oblique;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

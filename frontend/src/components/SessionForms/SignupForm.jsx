@@ -12,7 +12,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
@@ -96,7 +96,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           value={password2}
           onChange={update("password2")}
         />
-
+        
         <input
           className={email || username ? "active" : "btn"}
           type="submit"

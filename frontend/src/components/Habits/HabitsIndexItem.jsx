@@ -50,14 +50,14 @@ const HabitIndexItem = () => {
         <>
           <div className="allTheHabits">
             <h1>{habit.name}</h1>
-            <p>Category: {habit.category}</p>
-            <p>Habit: {habit.habitType}</p>
-            <p>Achieved: {habit.achieved}</p>
-            <p>Goal: {habit.goal}</p>
-            <p>Goal Period: {habit.goalPeriod}</p>
-            <p>Start Date: {habit.startDate}</p>
-            <p>End Date: {habit.endDate}</p>
-            <p>Completed: {habit.completed}</p>
+            <ul className="habit-detail">Category: <li>{habit.category}</li></ul>
+            <ul className="habit-detail">Habit: <li>{habit.habitType}</li></ul>
+            <ul className="habit-detail">Achieved: <li>{habit.achieved}</li></ul>
+            <ul className="habit-detail">Goal: <li>{habit.goal}</li></ul>
+            <ul className="habit-detail">Goal Period: <li>{habit.goalPeriod}</li></ul>
+            <ul className="habit-detail">Start Date: <li>{habit.startDate ? new Date(habit.startDate).toLocaleDateString() : 'Not Specified'}</li></ul>
+            <ul className="habit-detail">End Date: <li>{habit.endDate ? new Date(habit.endDate).toLocaleDateString() : 'Not Specified'}</li></ul>
+            <ul className="habit-detail">Completed: <li>{habit.completed}</li></ul>
           </div>
           <div className="buttonsDiv">
             <div className="editDiv">
