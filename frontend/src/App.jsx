@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { getCurrentUser } from "./store/reducers/session";
 
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 
@@ -10,9 +11,8 @@ import SignupForm from "./components/SessionForms/SignupForm";
 import Feed from "./components/Feed/feed";
 import NotesIndex from "./components/Notes/NotesIndex";
 import NoteIndexItem from "./components/Notes/NoteIndexItem";
-
-import { getCurrentUser } from "./store/reducers/session";
-import HabitIndexItem from "./components/Habits/HabitsIndexItem";
+import HabitsIndexItem from "./components/Habits/HabitsIndexItem";
+import NavBar from "./components/NavBar/NavBar"; 
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/habits/:habitId",
-        element: <ProtectedRoute component={HabitIndexItem} />,
+        element: 
+          <>
+            <ProtectedRoute component={NavBar} />
+            <ProtectedRoute component={HabitsIndexItem} />,
+          </>
       },
       // {
       //   path: "notes",
