@@ -17,6 +17,7 @@ const HabitsIndex = () => {
   const [clickedCells, setClickedCells] = useState({}); // State to track clicked cells
   const habits = useSelector(selectAllHabitsArray);
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+  const rowColors = ["#FF5733", "#33FF57", "#5733FF", "#FF3399", "#33FFFF"]; // Example colors
 
   const goToPreviousMonth = () => {
     const previousMonth = new Date(currentMonth);
@@ -176,7 +177,13 @@ const HabitsIndex = () => {
                   ></td>
                 ))}
                 <td className="goal">{habit.goal}</td>
-                <td className="achieved">{habit.achieved}</td>
+                <td
+                  className={
+                    habit.achieved >= habit.goal ? "achieved" : "notAchieved"
+                  }
+                >
+                  {habit.achieved}
+                </td>
               </tr>
             ))}
           </tbody>
