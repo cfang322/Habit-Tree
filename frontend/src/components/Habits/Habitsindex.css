@@ -89,7 +89,21 @@ td.boxId {
   cursor: pointer;
 }
 
-.clicked {
-  background-color: green;
-  color: white;
+.achieved {
+  background-color: #0de0a1;
+}
+
+.notAchieved {
+  background-color: yellow;
+  text-align: center;
+}
+
+.checkMarks {
+  text-align: center;
+}
+
+button.arrow {
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }

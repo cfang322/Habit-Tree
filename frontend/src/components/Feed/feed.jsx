@@ -2,13 +2,19 @@ import HabitsIndex from "../Habits/HabitsIndex";
 import { useDispatch, useSelector } from "react-redux";
 import * as modalActions from "../../store/reducers/modals";
 
-import CreateHabit from "../Habits/CreateHabit";
+import CreateHabit from "../Habits/createHabit";
 import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
+import { useEffect } from "react";
+import { fetchHabits } from "../../store/reducers/habits";
 
 const Feed = () => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modals.type === "SHOW_HABITS");
+
+  useEffect(() => {
+    dispatch(fetchHabits());
+  }, [dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault;
