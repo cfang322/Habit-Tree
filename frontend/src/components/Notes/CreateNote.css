@@ -42,21 +42,22 @@
 }
 
 #noteModalBtn {
-
-  margin-bottom: 20px;
-  background-color: #ccc;
-  color: green;
+  background-color: #3c7148;
+  color: #ecf0f1;
   border-radius: 10px;
   border: none;
   padding: 10px;
   outline: none;
   width: 120px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: medium;
+  transition: background-color 0.5s ease;
 }
 
 #noteModalBtn:hover {
-  color: black;
-  background-color: rgb(167, 202, 141);
+  background-color: rgb(40, 112, 1);
+    transition: background-color 0.5s ease;
 }
 
 
