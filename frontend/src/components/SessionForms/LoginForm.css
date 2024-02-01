@@ -40,8 +40,8 @@ input.btn {
 }
 
 input.active {
-  background-color: green;
-  color: white;
+  background-color: #3c7148;
+  color: #ecf0f1;
 }
 
 div.signUp {

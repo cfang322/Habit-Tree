@@ -30,18 +30,18 @@ const CreateNoteModal = ({ habitId }) => {
   };
 
   return (
-    <Modal className='noteModal'>
-      <div className='modalwrapper'>
-        <div className="noteModalContent">
-          <button className="close-btn" onClick={handleCloseBtn}>&#x2715;</button>
+    <Modal id='noteModal'>
+      <div id='modalwrapper'>
+        <div id="noteModalContent">
+          <button id="close-btn" onClick={handleCloseBtn}>&#x2715;</button>
           <textarea
             placeholder="Enter new note content..."
-            className="noteText"
+            id="noteText"
             value={newNoteContent}
             onChange={(e) => setNewNoteContent(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button className="noteModalBtn" onClick={handleCreateNote}>Create Note</button>
+          <button id="noteModalBtn" onClick={handleCreateNote}>Create Note</button>
         </div>
       </div>
     </Modal>
