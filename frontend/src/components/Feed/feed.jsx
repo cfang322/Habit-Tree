@@ -5,12 +5,14 @@ import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "../Habits/createHabit";
 import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchHabits } from "../../store/reducers/habits";
+import ReminderButton from "../Email/email";
 
 const Feed = () => {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.modals.type === "SHOW_HABITS");
+  const userEmail = useSelector((state) => state.session.user.email);
 
   useEffect(() => {
     dispatch(fetchHabits());
@@ -35,6 +37,7 @@ const Feed = () => {
             + Add Habit
           </button>
           {modalType && <CreateHabit />}
+          <ReminderButton userEmail={userEmail} />
         </div>
       </div>
     </div>

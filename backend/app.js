@@ -1,34 +1,36 @@
-const debug = require('debug');
-const passport = require('passport');
+const debug = require("debug");
+const passport = require("passport");
 
 const express = require("express");
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-const cors = require('cors')
-const csurf = require('csurf')
-const { isProduction } = require('./config/keys')
+const cors = require("cors");
+const csurf = require("csurf");
+const { isProduction } = require("./config/keys");
 
-require('./models/User');
-require('./config/passport');
-require('./models/Habit');
-require('./models/Note');
+require("./models/User");
+require("./config/passport");
+require("./models/Habit");
+require("./models/Note");
 
-const notesRouter = require('./routes/api/notes');
-const usersRouter = require('./routes/api/users');
-const habitsRouter = require('./routes/api/habits');
-const csrfRouter = require('./routes/api/csrf');
+const sendReminderRouter = require("./routes/api/email");
+const notesRouter = require("./routes/api/notes");
+const usersRouter = require("./routes/api/users");
+const habitsRouter = require("./routes/api/habits");
+const csrfRouter = require("./routes/api/csrf");
 
 const app = express();
 
 app.use(passport.initialize());
-app.use(logger('dev')); 
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: false })); 
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 if (!isProduction) {
-  app.use(cors())
+  app.use(cors());
 }
 
 app.use(
@@ -36,26 +38,24 @@ app.use(
     cookie: {
       secure: isProduction,
       sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
+      httpOnly: true,
+    },
   })
-)
+);
 
-
-app.use('/api/habits', habitsRouter);
-app.use('/api/notes', notesRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/csrf', csrfRouter);
-
+app.use("/api/habits", habitsRouter);
+app.use("/api/notes", notesRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/csrf", csrfRouter);
+app.use("/api/send-reminder", sendReminderRouter);
 
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.statusCode = 404;
   next(err);
 });
 
-const serverErrorLogger = debug('backend:error');
-
+const serverErrorLogger = debug("backend:error");
 
 app.use((err, req, res, next) => {
   serverErrorLogger(err);
@@ -64,8 +64,8 @@ app.use((err, req, res, next) => {
   res.json({
     message: err.message,
     statusCode,
-    errors: err.errors
-  })
+    errors: err.errors,
+  });
 });
 
 module.exports = app;
