@@ -1,11 +1,9 @@
 
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-
+import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { logout } from "../../store/reducers/session";
-import "./NavBar.css";
-import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 function NavBar() {
@@ -23,9 +21,15 @@ function NavBar() {
   
   const sessionUser = useSelector((state) => state.session.user);
   
+  if (!sessionUser) {
+    // If there is no logged-in user, do not render the navbar
+    return null;
+  }
+  
   const sessionLinks = (
     <div className="dropdown-content">
       <NavLink to="/profile">Profile</NavLink>
+      <NavLink to="/about-us">About US</NavLink>
       <div onClick={logoutUser}>Logout</div>
     </div>
   );
@@ -42,11 +46,11 @@ function NavBar() {
           </NavLink>
         </div>
       </div>
-      <div className="logout">
-        <div className="logoutBtn" onClick={handleDropdownToggle}>
-          {sessionUser ? `Hello, ${sessionUser.username}` : 'Hello, sign in'}
+      <div className="logout" onMouseOver={handleDropdownToggle}>
+        <div className="logoutBtn">
+          {`Hello, ${sessionUser.username}`}
         </div>
-        {showDropdown && sessionUser && sessionLinks}
+        {showDropdown && sessionLinks}
       </div>
     </div>
   );
