@@ -19,3 +19,36 @@
   left: 0;
   z-index: 10;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .main {
+    background-size: cover;
+    /* Adjust background size for smaller screens */
+  }
+
+  .title {
+    margin-top: 50px;
+    /* Adjust margin for smaller screens */
+    font-size: 30px;
+    /* Adjust font size for smaller screens */
+  }
+
+  /* You can add more styles specific to smaller screens here */
+}
+
+@media only screen and (max-height: 768px) {
+  .main {
+    background-size: cover;
+    /* Adjust background size for smaller screens */
+  }
+
+  .title {
+    margin-top: 50px;
+    /* Adjust margin for smaller screens */
+  font-size: 50px;
+    color: white;
+  }
+
+  /* You can add more styles specific to smaller screens here */
+}
