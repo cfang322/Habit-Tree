@@ -9,10 +9,10 @@ import setting from "../../assets/images/setting.png";
 
 const Profile = () => {
   const userEmail = useSelector((state) => state.session.user.email);
+  const user = useSelector((state) => state.session.user);
   const [showSettings, setShowSettings] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
   const [profilePictureURL, setProfilePictureURL] = useState(() => {
-    // Initialize profile picture URL from localStorage
     return localStorage.getItem(`profilePictureURL_${userEmail}`) || "";
   });
 
@@ -20,7 +20,6 @@ const Profile = () => {
     if (profilePicture) {
       const url = URL.createObjectURL(profilePicture);
       setProfilePictureURL(url);
-      // Save the profile picture URL to localStorage
       localStorage.setItem(`profilePictureURL_${userEmail}`, url);
     }
   }, [profilePicture, userEmail]);
@@ -47,7 +46,7 @@ const Profile = () => {
       </div>
 
       <div className="profileBody">
-        <div className="profileInfo">
+        <div className="profileBox">
           <div className="profilePhoto">
             {profilePictureURL && (
               <img
@@ -58,6 +57,14 @@ const Profile = () => {
                 height={400}
               />
             )}
+          </div>
+          <div className="profileInfo">
+            <p>
+              <span>Username:</span> {user.username}
+            </p>
+            <p>
+              <span>Email:</span> {userEmail}
+            </p>
           </div>
         </div>
 
@@ -82,8 +89,11 @@ const Profile = () => {
                     Delete Picture
                   </button>
                 </div>
-                <div className="emailReminderSetting">
-                  <ReminderButton userEmail={userEmail} />
+                <div>
+                  <div className="emailReminderSetting">
+                    <ReminderButton userEmail={userEmail} />
+                  </div>
+                  <span>Receive Weekly Reminder: Every Sunday at 9 AM</span>
                 </div>
                 <div>
                   <button onClick={handleSaveSettings}>Save Settings</button>

@@ -63,7 +63,26 @@ input:hover {
   width: 150px;
 }
 
-.profileInfo {
+.profileBox {
   display: flex;
   justify-content: space-between;
+  margin-left: 100px;
+  margin-top: 90px;
+  /* align-items: center; */
+}
+
+.profileInfo {
+  margin-top: 50px;
+  margin-left: 40px;
+}
+
+.profileInfo p {
+  margin-bottom: 10px;
+  color: #7da87d;
+  font-weight: 600;
+}
+
+.profileInfo span {
+  font-weight: bold;
+  color: black;
 }

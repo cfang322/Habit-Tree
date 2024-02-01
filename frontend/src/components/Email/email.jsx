@@ -27,8 +27,9 @@ const ReminderButton = ({ userEmail }) => {
     }
   };
 
-  const handleButtonClick = () => {
-    if (!reminderSent) {
+  const handleCheckboxChange = (event) => {
+    const isChecked = event.target.checked;
+    if (isChecked) {
       sendReminderEmail();
     } else {
       setReminderSent(false);
@@ -37,9 +38,15 @@ const ReminderButton = ({ userEmail }) => {
 
   return (
     <div className="emailReminder">
-      <button onClick={handleButtonClick} className="reminderBtn">
+      <label>
+        <input
+          type="checkbox"
+          checked={reminderSent}
+          onChange={handleCheckboxChange}
+          className="reminderCheckbox"
+        />
         {reminderSent ? "Email Reminder Sent" : "Send Email Reminder"}
-      </button>
+      </label>
     </div>
   );
 };
