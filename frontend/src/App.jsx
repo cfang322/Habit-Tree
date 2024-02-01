@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <ProtectedRoute component={NavBar} />
-            <ProtectedRoute component={HabitsIndexItem} />,
+            <ProtectedRoute component={HabitsIndexItem} />
           </>
         ),
       },
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element: (
           <>
             <ProtectedRoute component={NavBar} />
-            <ProtectedRoute component={AboutUs} />,
+            <ProtectedRoute component={AboutUs} />
           </>
         ),
       },
