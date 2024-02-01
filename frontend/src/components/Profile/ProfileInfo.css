@@ -1,0 +1,15 @@
+.profileInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profileInfoWrapper h2,
+.habitTitle {
+  text-decoration: underline;
+  font-size: 20px;
+}
+.profileInfoWrapper p {
+  margin-top: 10px;
+  margin-left: 20px;
+}

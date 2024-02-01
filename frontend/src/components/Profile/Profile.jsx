@@ -4,6 +4,7 @@ import ReminderButton from "../Email/email";
 import "./Profile.css";
 import NavBar from "../NavBar/NavBar";
 import setting from "../../assets/images/setting.png";
+import ProfileInfo from "./ProfileInfo";
 
 const Profile = () => {
   const userEmail = useSelector((state) => state.session.user.email);
@@ -110,6 +111,7 @@ const Profile = () => {
             <p>
               <span>Email:</span> {userEmail}
             </p>
+            <ProfileInfo />
           </div>
         </div>
 
