@@ -5,7 +5,8 @@
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  height: auto;
+  /* height: auto; */
+  min-height: 100vh;
   background: linear-gradient(to right, #b4eb6c, #ffffff);
 }
 
