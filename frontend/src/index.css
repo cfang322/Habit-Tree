@@ -1,4 +1,28 @@
-/* TODO: Add sitewide styles */
+@font-face {
+  font-family: "Nunito-Medium";
+  src: url('./assets/fonts/Nunito-Medium.ttf')
+}
+
+@font-face {
+  font-family: "Nunito-Lite";
+  src: url('./assets//fonts/Nunito-Light.ttf')
+}
+
+
+form>.errors {
+  color: red;
+  font-size: 0.875em;
+  height: 15px;
+  display: flex;
+  align-items: center;
+}
+
+
+#root {
+  font-family: Nunito-Medium;
+}
+
+
 form > .errors {
   color: red;
   font-size: 0.875em;
@@ -6,3 +30,5 @@ form > .errors {
   display: flex;
   align-items: center;
 }
+
+
