@@ -19,3 +19,28 @@
   left: 0;
   z-index: 10;
 }
+
+@media only screen and (max-width: 768px) {
+  .main {
+    background-size: cover;
+    /* Adjust background size for smaller screens */
+  }
+
+  .title {
+    margin-top: 50px;
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-height: 768px) {
+  .main {
+    background-size: cover;
+  }
+
+  .title {
+    margin-top: 50px;
+
+    font-size: 50px;
+    color: white;
+  }
+}
