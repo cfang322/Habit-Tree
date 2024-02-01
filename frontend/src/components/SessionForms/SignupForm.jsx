@@ -10,9 +10,10 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [receiveReminder, setReceiveReminder] = useState(false);
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
@@ -41,6 +42,9 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
 
     return (e) => setState(e.currentTarget.value);
   };
+  const handleReminderChange = () => {
+    setReceiveReminder(!receiveReminder);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +52,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
       email,
       username,
       password,
+      receiveReminder,
     };
 
     dispatch(signup(user));
@@ -96,7 +101,16 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           value={password2}
           onChange={update("password2")}
         />
-        
+        <div>
+          <label>
+            <span className="email">Receive Email Reminder</span>
+            <input
+              type="checkbox"
+              checked={receiveReminder}
+              onChange={handleReminderChange}
+            />
+          </label>
+        </div>
         <input
           className={email || username ? "active" : "btn"}
           type="submit"

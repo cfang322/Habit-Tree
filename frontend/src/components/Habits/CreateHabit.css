@@ -1,8 +1,8 @@
 .habitModalWrapper {
   margin-top: 10px;
   width: 500px;
-  height: 500px;
-
+  height: 600px;
+  background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;

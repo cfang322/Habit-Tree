@@ -19,3 +19,7 @@ div.login {
   display: flex;
   justify-content: center;
 }
+
+.email {
+  font-weight: 800;
+}
