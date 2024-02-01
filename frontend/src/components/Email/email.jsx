@@ -1,29 +1,42 @@
-import { useState } from "react";
-import jwtFetch from "../../store/jwt"; // Assuming jwtFetch.js is in the same directory
+import { useState, useEffect } from "react";
+import jwtFetch from "../../store/jwt";
 
 const ReminderButton = ({ userEmail }) => {
-  // Pass userEmail as a prop
-  const [reminderSent, setReminderSent] = useState(false);
+  const [reminderSent, setReminderSent] = useState(
+    localStorage.getItem("reminderSent") === "true" ? true : false
+  );
+
+  useEffect(() => {
+    localStorage.setItem("reminderSent", reminderSent);
+  }, [reminderSent]);
 
   const sendReminderEmail = async () => {
     try {
       const res = await jwtFetch("/api/send-reminder", {
         method: "POST",
-        body: JSON.stringify({ email: userEmail }), // Include userEmail in the request body
+        body: JSON.stringify({ email: userEmail }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       console.log("Reminder email sent:", res);
+      setReminderSent(true);
     } catch (error) {
       console.error("Error sending reminder email:", error);
     }
-    setReminderSent(true);
+  };
+
+  const handleButtonClick = () => {
+    if (!reminderSent) {
+      sendReminderEmail();
+    } else {
+      setReminderSent(false);
+    }
   };
 
   return (
     <div>
-      <button onClick={sendReminderEmail} className="reminderBtn">
+      <button onClick={handleButtonClick} className="reminderBtn">
         {reminderSent ? "Email Reminder Sent" : "Send Email Reminder"}
       </button>
     </div>
