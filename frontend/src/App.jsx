@@ -61,7 +61,12 @@ const router = createBrowserRouter([
       },
       {
         path: "about-us",
-        element: <ProtectedRoute component={AboutUs} />,
+        element: (
+          <>
+            <ProtectedRoute component={NavBar} />
+            <ProtectedRoute component={AboutUs} />,
+          </>
+        ),
       },
     ],
   },

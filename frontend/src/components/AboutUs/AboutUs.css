@@ -39,4 +39,20 @@
 .personCard p {
     margin-bottom: 10px;
     color: #555;
+    font-family: "Nunito-Lite";
+}
+
+.socialLinks {
+    display: flex;
+    flex-direction: column; /* Align links vertically */
+}
+
+.socialLinks a {
+    margin-bottom: 5px; /* Add space between links */
+    text-decoration: none; /* Remove underlines */
+    color: #333; /* Set link color */
+}
+
+.socialLinks a:hover {
+    color: #007bff; /* Change color on hover */
 }
