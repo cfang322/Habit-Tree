@@ -25,7 +25,7 @@ const ProfileInfo = () => {
         {completedHabits.length > 0 ? (
           completedHabits.map((habit) => (
             <div key={habit._id} className="habitItem">
-              <p className="habitTitle">{habit.name}</p>
+              <p className="habitTitleBox">{habit.name}</p>
               <p className="habitDetail">Goal: {habit.goal}</p>
               <p className="habitDetail">Achieved: {habit.achieved}</p>
             </div>
