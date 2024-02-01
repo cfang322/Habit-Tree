@@ -37,6 +37,9 @@ function NavBar() {
           <NavLink to="/feed">
             <img src={logo} alt="logo" width={50} height={50} />
           </NavLink>
+          <NavLink to="/feed">
+            <div className="typewriter-text">HABIT-TREE</div>
+          </NavLink>
         </div>
       </div>
       <div className="logout">
