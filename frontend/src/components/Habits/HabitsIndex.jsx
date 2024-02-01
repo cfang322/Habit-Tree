@@ -75,6 +75,7 @@ const HabitsIndex = () => {
         if (updatedHabit.achieved === 0) {
           return prevClickedCells;
         }
+        
         dispatch(updateHabit(habitId, (updatedHabit._id, { ...updatedHabit, achieved: updatedHabit.achieved - 1 })));
         delete newClickedCells[cellKey];
       } else {

@@ -7,9 +7,9 @@ import CreateHabit from "./CreateHabit";
 import NoteIndex from "../Notes/NotesIndex"; // Import NoteIndex component
 import { useEffect, useState } from "react";
 import './HabitsIndexItem.css';
-import placeholder from '../../assets/tree.png';
+// import placeholder from '../../assets/tree.png';
 import "../Notes/NotesIndex.css";
-
+import Tree from "../AnimateTree/Tree";
 
 const HabitIndexItem = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const HabitIndexItem = () => {
   
   useEffect(() => {
     dispatch(fetchHabits());
+
   }, [dispatch, habitId]);
   
   const handleDelete = () => {
@@ -49,7 +50,8 @@ const HabitIndexItem = () => {
   
   return (
     <div className="habit-container">
-      <img src={placeholder} alt="gsap-image" className="habit-image" height={500} width={500}/>
+      <Tree progress={(habit.achieved / habit.goal) * 100} />
+      {/* <img src={placeholder} alt="gsap-image" className="habit-image" height={500} width={500}/> */}
       <div className="habit">
         {editMode ? (
           <CreateHabit
