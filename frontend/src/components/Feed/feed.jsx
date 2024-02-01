@@ -5,7 +5,7 @@ import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "../Habits/createHabit";
 import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchHabits } from "../../store/reducers/habits";
 import ReminderButton from "../Email/email";
 
