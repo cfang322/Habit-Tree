@@ -1,5 +1,3 @@
-// Profile.js
-
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ReminderButton from "../Email/email";
@@ -17,10 +15,30 @@ const Profile = () => {
   });
 
   useEffect(() => {
+    // Fetch profile picture data from the server when the component mounts
+    async function fetchProfilePicture() {
+      try {
+        const response = await fetch(`/api/user/profile-picture/${userEmail}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfilePictureURL(data.profilePictureURL);
+        }
+      } catch (error) {
+        console.error("Error fetching profile picture:", error);
+      }
+    }
+
+    fetchProfilePicture();
+  }, [userEmail]);
+
+  useEffect(() => {
     if (profilePicture) {
-      const url = URL.createObjectURL(profilePicture);
-      setProfilePictureURL(url);
-      localStorage.setItem(`profilePictureURL_${userEmail}`, url);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilePictureURL(reader.result);
+        localStorage.setItem(`profilePictureURL_${userEmail}`, reader.result);
+      };
+      reader.readAsDataURL(profilePicture);
     }
   }, [profilePicture, userEmail]);
 
@@ -29,22 +47,49 @@ const Profile = () => {
     setProfilePicture(file);
   };
 
-  const handleDeleteProfilePicture = () => {
+  const handleDeleteProfilePicture = async () => {
     setProfilePicture(null);
     setProfilePictureURL("");
     localStorage.removeItem(`profilePictureURL_${userEmail}`);
+    try {
+      const response = await fetch("/api/user/delete-profile-picture", {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Profile picture deleted successfully");
+      } else {
+        console.error("Failed to delete profile picture");
+      }
+    } catch (error) {
+      console.error("Error deleting profile picture:", error);
+    }
   };
 
-  const handleSaveSettings = () => {
+  const handleSaveSettings = async () => {
     setShowSettings(false);
+    if (profilePicture) {
+      const formData = new FormData();
+      formData.append("profilePicture", profilePicture);
+
+      try {
+        const response = await fetch("/api/user/profile-picture", {
+          method: "POST",
+          body: formData,
+        });
+        if (response.ok) {
+          console.log("Profile picture uploaded successfully");
+        } else {
+          console.error("Failed to upload profile picture");
+        }
+      } catch (error) {
+        console.error("Error uploading profile picture:", error);
+      }
+    }
   };
 
   return (
     <div className="profileWrapper">
-      <div>
-        <NavBar />
-      </div>
-
+      <NavBar />
       <div className="profileBody">
         <div className="profileBox">
           <div className="profilePhoto">
