@@ -6,7 +6,7 @@
   align-items: center; 
   background-color: #132b1e;
   padding: 0 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logout {
