@@ -24,20 +24,20 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
     let setState;
 
     switch (field) {
-      case "email":
-        setState = setEmail;
-        break;
-      case "username":
-        setState = setUsername;
-        break;
-      case "password":
-        setState = setPassword;
-        break;
-      case "password2":
-        setState = setPassword2;
-        break;
-      default:
-        throw Error("Unknown field in Signup Form");
+    case "email":
+      setState = setEmail;
+      break;
+    case "username":
+      setState = setUsername;
+      break;
+    case "password":
+      setState = setPassword;
+      break;
+    case "password2":
+      setState = setPassword2;
+      break;
+    default:
+      throw Error("Unknown field in Signup Form");
     }
 
     return (e) => setState(e.currentTarget.value);
