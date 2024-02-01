@@ -14,6 +14,7 @@ import NoteIndexItem from "./components/Notes/NoteIndexItem";
 import HabitsIndexItem from "./components/Habits/HabitsIndexItem";
 import NavBar from "./components/NavBar/NavBar";
 import Profile from "./components/Profile/Profile";
+// import AboutUs from "./components/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
       },
       {
         path: "feed",
-        element: <ProtectedRoute component={Feed} />,
+        element: (
+          <>
+            <ProtectedRoute component={NavBar} />
+            <ProtectedRoute component={Feed} />,
+          </>
+        ),
       },
       {
         path: "/habits/:habitId",
@@ -53,6 +59,10 @@ const router = createBrowserRouter([
         path: "profile",
         element: <ProtectedRoute component={Profile} />,
       },
+      // {
+      //   path: "about-us",
+      //   element: <ProtectedRoute component={AboutUs} />,
+      // },
     ],
   },
 ]);

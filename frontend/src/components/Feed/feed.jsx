@@ -23,9 +23,6 @@ const Feed = () => {
 
   return (
     <div className="feedPage">
-      <div className="navBar">
-        <NavBar />
-      </div>
       <div className="feedContainer">
         <div className="feedTableBox">
           <HabitsIndex />
