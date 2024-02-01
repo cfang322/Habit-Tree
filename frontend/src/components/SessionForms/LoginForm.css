@@ -1,19 +1,19 @@
 div.loginForm {
   font-family: sans-serif;
-  background-color: rgba(255, 255, 255, 0.5);
-  /* background-color: transparent; */
-  /* background-color: #ccc; */
+  background-color: rgba(228, 228, 228, 0.558);
   width: 500px;
   height: 350px;
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #c3c3c3;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: green;
+  color: #3c7148;
+  font-weight: bold;
+
 }
 
 form.sessionForm {
@@ -21,7 +21,6 @@ form.sessionForm {
   flex-direction: column;
   margin-bottom: 5px;
   padding: 20px;
-  /* justify-content: center; */
 }
 
 .sessionForm input {
@@ -36,12 +35,17 @@ form.sessionForm {
 input.btn {
   margin-top: 10px;
   background-color: #ccc;
-  color: green;
+  color: #3c7148;
+  font-size: medium;
 }
 
 input.active {
+  font-size: medium;
+  margin-top: 10px;
   background-color: #3c7148;
-  color: #ecf0f1;
+  color: white;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
 }
 
 div.signUp {
@@ -52,11 +56,51 @@ div.signUp {
 .demoBtn {
   margin-top: 10px;
   background-color: #ccc;
-  color: green;
+  color: #3c7148;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: medium;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.demoBtn:hover {
+  background-color: #3c7148;
   margin-top: 5px;
   border-radius: 10px;
   border: none;
   padding: 10px;
   outline: none;
   margin-bottom: 10px;
+  color: #ecf0f1;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+
+.sessionRedirect {
+  color: #3c7148;
+  font-size: large;
+  font-weight: bold;
+}
+
+#sessionLinkA {
+  color: #714290;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#sessionLinkA:hover {
+  color: #714290;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#loginLabel {
+  margin-right: 20px;
 }

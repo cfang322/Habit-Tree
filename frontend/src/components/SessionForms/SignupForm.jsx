@@ -103,7 +103,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
         />
         <div>
           <label>
-            <span className="email">Receive Email Reminder</span>
+            <span id='emailSpan' className="email">Receive Email Reminder</span>
             <input
               type="checkbox"
               checked={receiveReminder}
@@ -120,9 +120,10 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
       </form>
       <div className="login">
         <p className="session-redirect">
-          Already in Habit Tree?&#160;
+          Already in Habit Tree? &#160;
           <Link
-            style={{ textDecoration: "none" }}
+            id="sessionLinkA"
+            // style={{ textDecoration: "none" }}
             onClick={() => {
               setShowSignUp(false);
               setShowLogin(true);
