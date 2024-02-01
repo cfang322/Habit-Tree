@@ -10,9 +10,9 @@ const NotesIndex = ({ habitId }) => {
   const dispatch = useDispatch();
   const notes = useSelector(memoizedSelectNotes(habitId));
   const modalType = useSelector((state) => state.modals.type === "SHOW_CREATE_NOTE");
+
   useEffect(() => {
     dispatch(fetchNotes(habitId));
-
   }, [dispatch, habitId]);
 
   const handleClick = (e) => {
@@ -21,20 +21,25 @@ const NotesIndex = ({ habitId }) => {
   };
 
   return (
-    <div className="noteIndexPage">
-      <div className="createNoteBtnDiv">
-        <button className="creatNoteBtn" onClick={handleClick}>
+    <div id="noteIndexPage">
+      <div id="createNoteBtnDiv">
+        <button id="creatNoteBtn" onClick={handleClick}>
           Create Note
         </button>
       </div>
       {modalType && <CreateNotes habitId={habitId} />}
-      <ul className="notesList">
-        <div className="notesIndex">
-          <ul className="scrollable-list">
-            {notes.map((note, index) => (
-              <NoteIndexItem key={`${note._id}_${index}`} note={note} habitId={habitId} />
-            ))}
-          </ul>
+      <ul id="notesList">
+        <div id="notesIndex">
+          {notes.length > 0 ? (
+            <ul id="scrollable-list">
+              {notes.map((note, index) => (
+                <NoteIndexItem key={`${note._id}_${index}`} note={note} habitId={habitId} />
+              ))}
+            </ul>
+          ) : (
+            <p></p>
+            
+          )}
         </div>
       </ul>
     </div>
