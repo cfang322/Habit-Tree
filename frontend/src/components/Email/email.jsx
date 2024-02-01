@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import jwtFetch from "../../store/jwt";
+import "./email.css";
 
 const ReminderButton = ({ userEmail }) => {
   const [reminderSent, setReminderSent] = useState(
@@ -35,7 +36,7 @@ const ReminderButton = ({ userEmail }) => {
   };
 
   return (
-    <div>
+    <div className="emailReminder">
       <button onClick={handleButtonClick} className="reminderBtn">
         {reminderSent ? "Email Reminder Sent" : "Send Email Reminder"}
       </button>

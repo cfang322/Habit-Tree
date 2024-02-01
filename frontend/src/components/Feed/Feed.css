@@ -19,13 +19,15 @@ div.feedContainer {
 }
 
 .feedTableBox {
+  margin-left: 60px;
   margin-top: 20px; /* Adjust margin as needed */
   width: 90%; /* Adjust the width of the table box */
   overflow-x: auto; /* Enable horizontal scrolling if necessary */
 }
 
 div.feedTable {
-  margin-left: 60px;
+  width: 100%;
+  /* margin-left: 60px; */
 }
 
 .reminderBtn {
