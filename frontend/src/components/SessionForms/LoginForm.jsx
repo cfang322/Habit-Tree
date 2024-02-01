@@ -38,8 +38,8 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
       <form className="sessionForm" onSubmit={handleSubmit}>
         {/* <h2>Log In Form</h2> */}
         <div className="errors">{errors?.email}</div>
-        <label>
-          <span>Email</span>
+        <label id="loginLabel">
+          Email
         </label>
         <input
           type="text"
@@ -49,7 +49,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
         />
 
         <div className="errors">{errors?.password}</div>
-        <label>
+        <label id="loginLabel">
           <span>Password</span>
         </label>
         <input type="password" value={password} onChange={update("password")} />
@@ -65,10 +65,11 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
       </form>
 
       <div className="signUp">
-        <p className="session-redirect">
-          New to Habit Tree?&#160;
+        <p className="sessionRedirect">
+          New to Habit Tree? &#160;
           <Link
-            style={{ textDecoration: "none" }}
+            id="signupLink"
+            // style={{ textDecoration: "none" }}
             onClick={() => {
               setShowSignUp(true);
               setShowLogin(false);

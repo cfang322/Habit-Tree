@@ -1,18 +1,17 @@
 div.signupForm {
   font-family: sans-serif;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(216, 214, 214, 0.623);
   width: 500px;
   height: 500px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #c3c3c3;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: green;
-
-  /* padding: 10px; */
+  color: #3c7148;
+  font-weight: bold;
 }
 
 div.login {
@@ -21,5 +20,6 @@ div.login {
 }
 
 .email {
-  font-weight: 800;
+  font-weight: 700;
 }
+
