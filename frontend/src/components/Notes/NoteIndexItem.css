@@ -1,4 +1,4 @@
-.noteItem {
+#noteItem {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,29 +13,32 @@
   margin-top: 16px;
 }
 
-.noteContent {
+#noteContent {
   word-wrap: break-word;
   width: 800px;
   font-size: 18px;
   margin-bottom: 20px;
   padding: 12px;
   padding-left: 18px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
-.noteItem:hover {
+#noteItem:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown {
+#noteDropdown {
   position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   top: 0;
   right: 0;
-  margin-top: 1px;
+  margin-top: 10px;
   margin-right: 40px;
 }
 
-.dropdown-btn {
+#noteDropdown-btn {
   background: none;
   border: none;
   display: flex;
@@ -43,32 +46,32 @@
   align-items: flex-end;
 }
 
-.dropdown-content {
+#noteDropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 100px;
   height: 50px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
   z-index: 2;
   right: 0;
 }
 
-.noteItem:hover .dropdown-content {
+#noteItem:hover #noteDropdown-content {
   display: flex;
 }
 
-.dropdown-content button {
+#noteBtn {
   background: none;
   border: none;
+  text-align: center;
+  /* margin-left: 2px; */
   padding: 8px;
   cursor: pointer;
 }
 
-.dropdown-content button:hover {
+#noteBtn:hover {
   background: none;
   border: none;
   padding: 8px;
@@ -77,7 +80,7 @@
 }
 
 
-.createText {
+#createText {
   height: 170px;
   margin-bottom: 80px;
 }

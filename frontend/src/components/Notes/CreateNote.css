@@ -14,7 +14,7 @@
   display: flex;
 }
 
-.noteModalContent {
+#noteModalContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@
   border-radius: 8px;
 }
 
-.noteModal {
+#noteModal {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,7 +41,7 @@
   border-radius: 8px;
 }
 
-.noteModalBtn {
+#noteModalBtn {
 
   margin-bottom: 20px;
   background-color: #ccc;
@@ -54,13 +54,13 @@
   /* margin-bottom: 10px; */
 }
 
-.noteModalBtn:hover {
+#noteModalBtn:hover {
   color: black;
   background-color: rgb(167, 202, 141);
 }
 
 
-.noteText {
+#noteText {
   resize: none;
   outline: none;
   border: none;
@@ -69,8 +69,7 @@
   max-width: 900px;
 }
 
-
-.close-btn {
+#close-btn {
   margin-top: 10px;
   background: none;
   border: none;
@@ -78,7 +77,7 @@
   font-size: 14px;
 }
 
-.close-btn:hover {
+#close-btn:hover {
   background: none;
   border: none;
   cursor: pointer;

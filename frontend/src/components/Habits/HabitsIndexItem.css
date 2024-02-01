@@ -1,10 +1,19 @@
 .habit-container {
+    /* margin-top: 25px; */
+
     display: flex;
-    align-items: flex-start; /* Align items to the start of the flex container */
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: auto;
+    background: linear-gradient(to right, #b4eb6c, #ffffff);
+
 }
 
 .habit-image {
-    /* max-width: 200px; */
+
     border-radius: 8px;
     margin-right: 20px;
 }
@@ -13,20 +22,24 @@
     max-width: 600px;
     padding: 50px;
     border-radius: 8px;
-    background-color: #fff;
+    /* background-color: #fff; */
     position: relative;
-    margin-left: auto;
+    /* margin-left: auto; */
 }
 
 .buttonsDiv {
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    right: 0px;
+    margin-top: 50px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end; 
-    margin-left: auto;
-    padding-right: 5%;
+    flex-direction: row;
+    align-items: left;
+
+    width: 50px;
+    /* margin-left: auto; */
+    /* border: 1px solid black */
+
 }
 
 .habit button {
@@ -47,53 +60,68 @@
 .allTheHabits::before {
     content: '';
     display: block;
-    height: 2px; /* Adjust the thickness of the line */
-    background: linear-gradient(to right, transparent 10%, #ccc 45%, #ccc 55%, transparent 90%); /* Adjust the gradient stops for pointy ends */
+    height: 1px;
+    background: linear-gradient(to right, transparent 10%, #ccc 45%, #ccc 55%, transparent 90%);
     position: absolute;
     width: 100%;
     top: 60px;
     left: 0;
-    margin-top: 10px; /* Adjust the space between line and h1 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the line */
+    margin-top: 10px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  */
 }
 
 .allTheHabits {
     position: relative;
+
 }
 
 .allTheHabits h1 {
-    color: rgb(71, 34, 34);
+    /* color: rgb(71, 34, 34); */
     margin-bottom: 10px;
     font-weight: 400;
     font-size: xxx-large;
-    font-style: oblique;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding-left: 10%;
+    /* font-style: oblique; */
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    padding-left: 20%;
     padding-bottom: 8%;
-    text-shadow: 0 0 10px rgba(10, 126, 78, 0.5), 0 0 20px rgba(8, 140, 98, 0.5);
+    /* text-shadow: 0 0 10px rgba(10, 126, 78, 0.5), 0 0 20px rgba(8, 140, 98, 0.5); */
 }
 
 .allTheHabits li {
-    margin: 5px 0; /* Add margin to each li for spacing */
+    margin: 5px 0;
     font-weight: 300;
     font-size: x-large;
-    font-style: oblique;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-style: oblique; */
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     display: inline;
 }
 
+#habitLi {
+    align-items: left;
+}
+
+#completedLi {
+    font-weight: bold;
+    font-size: 27px;
+    color: rgb(37, 177, 37);
+}
+
 .allTheHabits .habit-detail li {
-    display: inline; 
-    margin-right: 10px; 
-    margin-bottom: 5px; 
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .allTheHabits ul {
     margin: 20px 0;
     padding-left: 15%;
-    font-weight: 400;
+    /* font-weight: 400; */
     font-size: x-large;
-    font-style: oblique;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-style: oblique; */
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 }
 
+.notesComponentDiv {
+    width: 100%;
+    height: 100px;
+}

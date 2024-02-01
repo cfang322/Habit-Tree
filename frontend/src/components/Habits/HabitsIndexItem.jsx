@@ -7,7 +7,9 @@ import CreateHabit from "./CreateHabit";
 import NoteIndex from "../Notes/NotesIndex"; // Import NoteIndex component
 import { useEffect, useState } from "react";
 import './HabitsIndexItem.css';
-import placeholder from '../../assets/placeholder.jpg';
+import placeholder from '../../assets/tree.png';
+import "../Notes/NotesIndex.css";
+
 
 const HabitIndexItem = () => {
   const navigate = useNavigate();
@@ -59,14 +61,15 @@ const HabitIndexItem = () => {
           <>
             <div className="allTheHabits">
               <h1>{habit.name}</h1>
-              <ul className="habit-detail">Category: <li>{habit.category}</li></ul>
-              <ul className="habit-detail">Habit: <li>{habit.habitType}</li></ul>
-              <ul className="habit-detail">Achieved: <li>{habit.achieved}</li></ul>
-              <ul className="habit-detail">Goal: <li>{habit.goal}</li></ul>
-              <ul className="habit-detail">Goal Period: <li>{habit.goalPeriod}</li></ul>
-              <ul className="habit-detail">Start Date: <li>{habit.startDate ? new Date(habit.startDate).toLocaleDateString() : 'Not Specified'}</li></ul>
-              <ul className="habit-detail">End Date: <li>{habit.endDate ? new Date(habit.endDate).toLocaleDateString() : 'Not Specified'}</li></ul>
-              <ul className="habit-detail">Completed: <li>{habit.completed}</li></ul>
+              <ul className="habit-detail">Category: <li id="habitLi">{habit.category}</li></ul>
+              <ul className="habit-detail">Habit: <li id="habitLi">{habit.habitType}</li></ul>
+              <ul className="habit-detail">Achieved: <li id="habitLi">{habit.achieved}</li></ul>
+              <ul className="habit-detail">Goal: <li id="habitLi">{habit.goal}</li></ul>
+              <ul className="habit-detail">Goal Period: <li id="habitLi">{habit.goalPeriod}</li></ul>
+              <ul className="habit-detail">Start Date: <li id="habitLi">{habit.startDate ? new Date(habit.startDate).toLocaleDateString() : 'Not Specified'}</li></ul>
+              <ul className="habit-detail">End Date: <li id="habitLi">{habit.endDate ? new Date(habit.endDate).toLocaleDateString() : 'Not Specified'}</li></ul>
+              <ul className="habit-detail">{habit.completed ? <li id="completedLi">Compeleted &#10003;</li> : ""}</ul>
+              {/* <ul className="habit-detail">Completed: <li>{habit.completed}</li></ul> */}
             </div>
             <div className="buttonsDiv">
               <div className="editDiv">
@@ -79,6 +82,7 @@ const HabitIndexItem = () => {
           </>
         )}
       </div>
+      <NoteIndex  habitId={habitId}/>
     </div>
   );
 };
