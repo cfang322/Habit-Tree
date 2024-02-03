@@ -1,30 +1,22 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import placeholder from '../../assets/tree.png';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+
 const Tree = ({ progress }) => {
-  const treeRef = useRef(null);
+  const treeRef = useRef();
 
   useEffect(() => {
-    const treeAnimation = gsap.timeline();
-
-    // Your tree drawing animation logic here
-    // For simplicity, let's just scale the tree based on progress
-    treeAnimation.to(treeRef.current, { scaleX: progress / 100, scaleY: progress / 100, duration: 1 });
-
-    // Cleanup the animation on component unmount
-    return () => treeAnimation.kill();
+    // Use GSAP to animate tree growth
+    gsap.to(treeRef.current, {
+      scaleY: progress, // Adjust scaleY based on your progress
+      duration: 1, // Animation duration in seconds
+      ease: 'power2.out', // Easing function
+    });
   }, [progress]);
 
   return (
-    <div className="tree-container">
-      <img
-        ref={treeRef}
-        src={placeholder}
-        alt="tree"
-        className="tree-image"
-        height={500}
-        width={500}
-      />
+    <div ref={treeRef} className="tree">
+      {/* Your tree components here */}
+      {/* For example, you might have tree branches and leaves as child elements */}
     </div>
   );
 };

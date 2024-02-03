@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import './HabitsIndexItem.css';
 // import placeholder from '../../assets/tree.png';
 import "../Notes/NotesIndex.css";
-import Tree from "../AnimateTree/Tree";
+// import Tree from "../AnimateTree/Tree";
 
 const HabitIndexItem = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const HabitIndexItem = () => {
   
   return (
     <div className="habit-container">
-      <Tree progress={(habit.achieved / habit.goal) * 100} />
+      {/* <Tree progress={(habit.achieved / habit.goal) * 100} /> */}
       {/* <img src={placeholder} alt="gsap-image" className="habit-image" height={500} width={500}/> */}
       <div className="habit">
         {editMode ? (
