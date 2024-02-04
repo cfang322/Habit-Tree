@@ -6,6 +6,7 @@ div.feedContainer {
 }
 
 .addBtn {
+  margin-top: 10px;
   margin-left: 45px;
   padding: 8px;
   border: 1px solid #ddd;

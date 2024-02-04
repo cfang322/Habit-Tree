@@ -75,11 +75,23 @@ const HabitsIndex = () => {
         if (updatedHabit.achieved === 0) {
           return prevClickedCells;
         }
-        
-        dispatch(updateHabit(habitId, (updatedHabit._id, { ...updatedHabit, achieved: updatedHabit.achieved - 1 })));
+
+        dispatch(
+          updateHabit(
+            habitId,
+            (updatedHabit._id,
+            { ...updatedHabit, achieved: updatedHabit.achieved - 1 })
+          )
+        );
         delete newClickedCells[cellKey];
       } else {
-        dispatch(updateHabit(habitId, (updatedHabit._id, { ...updatedHabit, achieved: updatedHabit.achieved + 1 })));
+        dispatch(
+          updateHabit(
+            habitId,
+            (updatedHabit._id,
+            { ...updatedHabit, achieved: updatedHabit.achieved + 1 })
+          )
+        );
         newClickedCells[cellKey] = true;
       }
       localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
@@ -87,7 +99,6 @@ const HabitsIndex = () => {
       return newClickedCells;
     });
   };
-
 
   return (
     <div>
@@ -168,8 +179,8 @@ const HabitsIndex = () => {
                         habit._id
                       }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
                     ] !== undefined ? (
-                        <div className="checkMarks">&#10003;</div>
-                      ) : null}
+                      <div className="checkMarks">&#10003;</div>
+                    ) : null}
                   </td>
                 ))}
                 <td className="goal">{habit.goal}</td>
