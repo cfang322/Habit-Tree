@@ -106,7 +106,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               </select>
             </div>
             <div>
-              <label>Count</label>
+              <label>Goal</label>
               <input
                 type="number"
                 name="goal"
@@ -160,7 +160,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               />
             </div>
 
-            <button type="submit" onClick={handleKeyDown}>
+            <button type="submit" onClick={handleKeyDown} className="submit">
               {editMode ? "Update Habit" : "Create Habit"}
             </button>
           </form>

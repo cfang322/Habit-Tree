@@ -47,7 +47,7 @@
 }
 
 .profileSettings button,
-input {
+.profilePicture input {
   margin: 8px;
   padding: 8px;
   border: 1px solid #ddd;
@@ -55,8 +55,7 @@ input {
   border-radius: 10px;
 }
 
-.profileSettings button:hover,
-input:hover {
+.profileSettings button:hover {
   background-color: #7da87d;
 }
 
