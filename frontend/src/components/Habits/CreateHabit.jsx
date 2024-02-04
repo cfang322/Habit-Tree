@@ -60,7 +60,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
 
   const handleCloseBtn = () => {
     if (editMode) {
-      handleCloseModal(); // Call the function to close the modal
+      handleCloseModal();
     }
     dispatch(modalActions.hideModal());
   };

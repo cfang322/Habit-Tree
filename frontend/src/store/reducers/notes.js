@@ -59,7 +59,6 @@ export const createNote = (habitId, note) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveNote(data));
-    // dispatch(fetchNotes(habitId));
   }
 };
 

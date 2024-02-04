@@ -4,14 +4,14 @@ import { fetchNotes } from "../../store/reducers/notes";
 import {
   deleteHabit,
   fetchHabits,
-  selectAllHabitsArray,
+  selectAllHabitsArray
 } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";
-import NoteIndex from "../Notes/NotesIndex"; // Import NoteIndex component
+import NoteIndex from "../Notes/NotesIndex";
+import Tree from "../AnimateTree/Tree";
 import { useEffect, useState } from "react";
 import "./HabitsIndexItem.css";
-// import placeholder from '../../assets/tree.png';
 import "../Notes/NotesIndex.css";
 
 const HabitIndexItem = () => {

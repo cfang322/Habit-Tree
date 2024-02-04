@@ -9,7 +9,7 @@ const validateLoginInput = require("../../validations/login");
 const { loginUser, restoreUser } = require("../../config/passport");
 const { isProduction } = require("../../config/keys");
 
-/* GET users listing. */
+
 router.get("/", function (req, res, next) {
   res.json({
     message: "GET /api/users",
@@ -18,12 +18,12 @@ router.get("/", function (req, res, next) {
 
 router.post("/profile-picture", async (req, res) => {
   try {
-    const userId = req.user.id; // Assuming you have user authentication middleware
+    const userId = req.user.id;
     const user = await User.findById(userId);
 
-    // Update the profile picture data
-    user.profilePicture.data = req.body.profilePictureData; // Assuming the image data is sent in the request body
-    user.profilePicture.contentType = req.body.contentType; // Assuming the MIME type is sent in the request body
+
+    user.profilePicture.data = req.body.profilePictureData; 
+    user.profilePicture.contentType = req.body.contentType;
 
     await user.save();
     res.status(200).json({ message: "Profile picture updated successfully" });
@@ -33,16 +33,13 @@ router.post("/profile-picture", async (req, res) => {
   }
 });
 
-// POST /api/users/register
 router.post("/register", validateRegisterInput, async (req, res, next) => {
-  // Check to make sure no one has already registered with the proposed email or
-  // username.
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }],
   });
 
   if (user) {
-    // Throw a 400 error if the email address and/or email already exists
+
     const err = new Error("Validation Error");
     err.statusCode = 400;
     const errors = {};
@@ -56,7 +53,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     return next(err);
   }
 
-  // Otherwise create a new user
+
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
