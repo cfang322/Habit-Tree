@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babylonjs/core": "^6.41.0",
     "@react-email/render": "^0.0.12",
     "axios": "^1.6.7",
     "babylonjs": "^6.41.0",
@@ -21,6 +20,7 @@
     "mongoose": "^8.1.1",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.8",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-babylonjs": "^3.1.27",
     "react-dom": "^18.2.0",
@@ -31,6 +31,8 @@
     "reselect": "^5.1.0"
   },
   "devDependencies": {
+    "@babylonjs/core": "^6.41.0",
+    "@babylonjs/inspector": "^6.41.0",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
