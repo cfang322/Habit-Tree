@@ -20,7 +20,7 @@
 }
 
 #modal-content {
-  width: 500px;
+  min-width: 500px;
   min-height: 600px;
   position: absolute;
   background-color: white;
