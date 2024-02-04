@@ -51,7 +51,7 @@ const HabitIndexItem = () => {
 
   return (
     <div className="habit-container">
-      {/* <img src={placeholder} alt="gsap-image" className="habit-image" height={500} width={500}/> */}
+      <Tree progress={(habit.achieved / habit.goal) * 100} />
       <div className="habit">
         {editMode ? (
           <CreateHabit
@@ -101,7 +101,6 @@ const HabitIndexItem = () => {
                   ""
                 )}
               </ul>
-              {/* <ul className="habit-detail">Completed: <li>{habit.completed}</li></ul> */}
             </div>
             <div className="buttonsDiv">
               <div className="editDiv">

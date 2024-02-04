@@ -1,6 +1,8 @@
-import "./AboutUs.css";
+import dominicProfile from '../../assets/dominicProfile.jpg';
 import christinaProfile from "../../assets/christinaProfile.jpeg";
 import farhatProfile from "../../assets/farhatProfile.jpeg";
+import "./AboutUs.css";
+
 
 function AboutUs() {
   const profiles = [
@@ -24,13 +26,13 @@ function AboutUs() {
     {
       name: "Dominic Cashiola",
       role: "Backend",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "person3.jpg",
-      github: "",
-      linkedin: "",
+      description: "Student at App Academy",
+      image: dominicProfile,
+      github: "https://github.com/Dominic5591",
+      linkedin: "https://www.linkedin.com/in/dominic-c-1076322a8/",
     },
   ];
-
+  
   return (
     <div className="aboutUsWrapper">
       <div className="aboutUsContainer">
