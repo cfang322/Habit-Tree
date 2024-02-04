@@ -71,7 +71,7 @@
   margin-bottom: 10px;
   font-weight: 400;
   font-size: xxx-large;
-  padding-left: 20%;
+  padding-left: 12%;
   padding-bottom: 8%;
 }
 
@@ -109,7 +109,3 @@
     height: 100px;
 }
 
-#treeContainer {
-  width: 100px;
-  height: 100px;
-}

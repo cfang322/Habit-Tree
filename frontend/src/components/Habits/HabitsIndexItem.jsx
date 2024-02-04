@@ -62,7 +62,7 @@ const HabitIndexItem = () => {
         ) : (
           <>
             <div className="allTheHabits">
-              <h1>{habit.name}</h1>
+              <h1 id="habitNameH1">{habit.name}</h1>
               <ul className="habit-detail">Category: <li id="habitLi">{habit.category}</li></ul>
               <ul className="habit-detail">Habit: <li id="habitLi">{habit.habitType}</li></ul>
               <ul className="habit-detail">Achieved: <li id="habitLi">{habit.achieved}</li></ul>
