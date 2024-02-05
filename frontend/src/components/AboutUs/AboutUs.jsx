@@ -18,7 +18,7 @@ function AboutUs() {
     {
       name: "Yaqi Fang",
       role: "Lead",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description: "As a passionate full-stack developer and proud graduate of App Academy, my focus lies in crafting intuitive websites and applications. I thrive on staying ahead in the ever-evolving tech landscape, ensuring seamless user experiences through continuous learning and adaptation to cutting-edge technologies.",
       image: christinaProfile,
       github: "https://github.com/cfang322",
       linkedin: "https://www.linkedin.com/in/yaqi-fang-125807250/",
