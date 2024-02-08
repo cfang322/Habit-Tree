@@ -7,6 +7,7 @@ import './CreateNote.css';
 
 const CreateNoteModal = ({ habitId }) => {
   const [newNoteContent, setNewNoteContent] = useState("");
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const handleCreateNote = () => {
@@ -15,6 +16,8 @@ const CreateNoteModal = ({ habitId }) => {
       dispatch(createNote(habitId, newNote));
       setNewNoteContent("");
       dispatch(modalActions.hideModal());
+    } else {
+      setError("Note content cannot be blank");
     }
   };
 
@@ -38,9 +41,13 @@ const CreateNoteModal = ({ habitId }) => {
             placeholder="Enter new note content..."
             id="noteText"
             value={newNoteContent}
-            onChange={(e) => setNewNoteContent(e.target.value)}
             onKeyDown={handleKeyDown}
+            onChange={(e) => {
+              setNewNoteContent(e.target.value);
+              setError(null); 
+            }}
           />
+          {error && <div id="editNoteError">{error}</div>}
           <button id="noteModalBtn" onClick={handleCreateNote}>Create Note</button>
         </div>
       </div>
