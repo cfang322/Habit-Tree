@@ -7,12 +7,18 @@ import "./CreateNote.css";
 
 const EditNote = ({ note: initialNote, habitId }) => {
   const [editedContent, setEditedContent] = useState("");
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const handleUpdateNote = () => {
-    const updatedNote = { ...initialNote, content: editedContent };
-    dispatch(updateNote(habitId, updatedNote));
-    dispatch(modalActions.hideModal());
+    const trimmedContent = editedContent.trim();
+    if (trimmedContent !== "") {
+      const updatedNote = { ...initialNote, content: trimmedContent };
+      dispatch(updateNote(habitId, updatedNote));
+      dispatch(modalActions.hideModal());
+    } else {
+      setError("Note content cannot be blank");
+    }
   };
 
   const handleEditKeyDown = (e) => {
@@ -39,9 +45,13 @@ const EditNote = ({ note: initialNote, habitId }) => {
             placeholder="Edit note content..."
             id="noteText"
             value={editedContent}
-            onChange={(e) => setEditedContent(e.target.value)}
+            onChange={(e) => {
+              setEditedContent(e.target.value);
+              setError(null); 
+            }}
             onKeyDown={handleEditKeyDown}
           />
+          {error && <div id="editNoteError">{error}</div>}
           <button id="noteModalBtn" onClick={handleUpdateNote}>Update Note</button>
         </div>
       </div>

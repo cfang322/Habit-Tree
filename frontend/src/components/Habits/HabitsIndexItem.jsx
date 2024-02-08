@@ -21,7 +21,7 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-
+  const maxGoal = Math.max(...habits.map(habit => habit.goal));
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch, habitId]);
@@ -45,13 +45,15 @@ const HabitIndexItem = () => {
     dispatch(modalActions.hideModal());
   };
 
-  if (!habit) {
+  if (!habit) { 
     return <div>Habit not found</div>;
   }
+  console.log(habit.goal);
 
+  const normalizedProgress = habit.achieved / maxGoal;
   return (
     <div className="habit-container">
-      <Tree progress={(habit.achieved / habit.goal) * 100} />
+      <Tree progress={normalizedProgress} goal={1} />
       <div className="habit">
         {editMode ? (
           <CreateHabit

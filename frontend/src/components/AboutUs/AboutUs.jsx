@@ -1,6 +1,6 @@
-import dominicProfile from '../../assets/dominicProfile.jpg';
-import christinaProfile from "../../assets/christinaProfile.jpeg";
-import farhatProfile from "../../assets/farhatProfile.jpeg";
+import dominicProfile from '../../assets/images/dominicProfile.jpg';
+import christinaProfile from "../../assets/images/christinaProfile.jpeg";
+import farhatProfile from "../../assets/images/farhatProfile.jpeg";
 import "./AboutUs.css";
 
 

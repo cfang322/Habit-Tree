@@ -85,3 +85,8 @@
   color: green;
   font-size: 14px;
 }
+
+#editNoteError {
+  color: red;
+  font-size: 14px;
+}

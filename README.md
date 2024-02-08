@@ -16,8 +16,8 @@ Habit Tree is a habit tracking web application designed to help users establish 
 
 - Users can create accounts and log in securely to create and maintain habits. A user must have an account and be logged in, in order to access personal habit info.
 
-![homepage-signup-screenshot](./homepage-signup-screenshot.png)
-![homepage-login-screenshot](./homepage-login-screenshot.png)
+![homepage-signup-screenshot](./frontend/src/assets/readme-pictures/homepage-signup-screenshot.png)
+![homepage-login-screenshot](./frontend/src/assets/readme-pictures/homepage-login-screenshot.png)
 
 ```javascript
 const MainPage = () => {
@@ -54,7 +54,7 @@ const MainPage = () => {
 - Create and manage habits with ease. (CRUD)
 - Users will be able to check and uncheck a select habit for a specific day.
 
-![habits-showpage-screenshot](./habits-showpage-screenshot.png)
+![habits-showpage-screenshot](./frontend/src/assets/readme-pictures/habits-showpage-screenshot.png)
 
 ```javascript
 const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
@@ -225,7 +225,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
 
 - Users will be able to edit, update and delete the selected habit.
 
-![habit-showpage-screenshot](./habit-showpage-screenshot.png)
+![habit-showpage-screenshot](./frontend/src/assets/readme-pictures/habit-showpage-screenshot.png)
 
 ```javascript
 const HabitIndexItem = () => {
@@ -341,7 +341,7 @@ const HabitIndexItem = () => {
 - Leave notes or comments upon checking in your habit to reflect on your progress and share insights. (CRUD)
 - Users can create, edit, update, and delete a note thats attached to a specific habit. 
 
-![notes-screenshot](./notes-screenshot.png)
+![notes-screenshot](./frontend/src/assets/readme-pictures/notes-screenshot.png)
 
 ```javascript
 const NoteIndexItem = ({ note, habitId }) => {
@@ -393,7 +393,7 @@ const NoteIndexItem = ({ note, habitId }) => {
 - Users can go to their profile page and opt in to receive email reminders for their habits, enhancing engagement and consistency.
 - Users can add a profile picture and check their goal counts and progress on this page.
 
-![email-screenshot](./email-screenshot.png)
+![email-screenshot](./frontend/src/assets/readme-pictures/email-screenshot.png)
 
 ```javascript
 const ReminderButton = ({ userEmail }) => {
