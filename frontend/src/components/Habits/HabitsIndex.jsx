@@ -34,12 +34,32 @@ const HabitsIndex = () => {
 
   const generateDatesRow = () => {
     const totalDays = getDaysInMonth(currentMonth);
-    return Array.from({ length: totalDays }, (_, index) => index + 1);
+    const datesRow = [];
+    const currentDate = new Date();
+
+    for (let i = 0; i < totalDays; i++) {
+      const currentDay = new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth(),
+        i + 1
+      );
+
+      datesRow.push({
+        day: i + 1,
+        isCurrentDate:
+          currentDay.getMonth() === currentDate.getMonth() &&
+          currentDay.getFullYear() === currentDate.getFullYear() &&
+          currentDay.getDate() === currentDate.getDate(),
+      });
+    }
+
+    return datesRow;
   };
 
   const generateDaysRow = () => {
     const totalDays = getDaysInMonth(currentMonth);
     const daysRow = [];
+    const currentDate = new Date();
 
     let dayIndex = new Date(
       currentMonth.getFullYear(),
@@ -48,7 +68,19 @@ const HabitsIndex = () => {
     ).getDay();
 
     for (let i = 0; i < totalDays; i++) {
-      daysRow.push(daysOfWeek[dayIndex]);
+      const currentDay = new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth(),
+        i + 1
+      );
+
+      daysRow.push({
+        day: daysOfWeek[dayIndex],
+        isCurrentDate:
+          currentDay.getMonth() === currentDate.getMonth() &&
+          currentDay.getFullYear() === currentDate.getFullYear() &&
+          currentDay.getDate() === currentDate.getDate(),
+      });
       dayIndex = (dayIndex + 1) % 7;
     }
 
@@ -124,8 +156,13 @@ const HabitsIndex = () => {
                 Habits
               </th>
               {daysRow.map((day, index) => (
-                <th key={index} className="th">
-                  {day}
+                <th
+                  key={index}
+                  className={
+                    day.isCurrentDate ? "current-date th" : "th"
+                  }
+                >
+                  {day.day}
                 </th>
               ))}
               <th rowSpan={2} className="th">
@@ -140,13 +177,10 @@ const HabitsIndex = () => {
                 <th
                   key={index}
                   className={
-                    date === new Date().getDate() &&
-                    currentMonth.getMonth() === new Date().getMonth()
-                      ? "current-date th"
-                      : "th"
+                    date.isCurrentDate ? "current-date th" : "th"
                   }
                 >
-                  {date}
+                  {date.day}
                 </th>
               ))}
             </tr>
@@ -179,8 +213,8 @@ const HabitsIndex = () => {
                         habit._id
                       }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
                     ] !== undefined ? (
-                      <div className="checkMarks">&#10003;</div>
-                    ) : null}
+                        <div className="checkMarks">&#10003;</div>
+                      ) : null}
                   </td>
                 ))}
                 <td className="goal">{habit.goal}</td>

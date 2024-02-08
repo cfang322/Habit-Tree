@@ -29,10 +29,39 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setHabitData({
-      ...habitData,
-      [name]: value,
-    });
+    if (name === "endDate") {
+      if (new Date(value) < new Date(habitData.startDate)) {
+
+        setHabitData({
+          ...habitData,
+          [name]: habitData.startDate,
+        });
+      } else {
+        setHabitData({
+          ...habitData,
+          [name]: value,
+        });
+      }
+    } else if (name === "startDate") {
+      const currentDate = new Date().toISOString().slice(0, 10);
+      if (value < currentDate) {
+        setHabitData({
+          ...habitData,
+          [name]: currentDate,
+        });
+      } else {
+        setHabitData({
+          ...habitData,
+          [name]: value,
+        });
+      }
+    } else {
+
+      setHabitData({
+        ...habitData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (e) => {
