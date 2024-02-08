@@ -2,22 +2,23 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import treePng from '../../assets/tree.png';
 
-const Tree = ({ progress }) => {
+const Tree = ({ progress, goal }) => {
   const treeRef = useRef(null);
   const maxHeight = 100;
   const maxWidth = 100;
 
   useEffect(() => {
-    const limitedProgressHeight = Math.min(progress, maxHeight);
-    const limitedProgressWidth = Math.min(progress, maxWidth);
+    // Ensure progress does not exceed goal
+    const limitedProgress = Math.min(progress, goal);
+    const limitedProgressHeight = Math.min(limitedProgress, maxHeight);
+    const limitedProgressWidth = Math.min(limitedProgress, maxWidth);
 
     const treeAnimation = gsap.timeline();
 
-
-    treeAnimation.to(treeRef.current, { scaleX: limitedProgressWidth / 100, scaleY: limitedProgressHeight / 100, duration: 0 });
+    treeAnimation.to(treeRef.current, { scaleX: limitedProgressWidth, scaleY: limitedProgressHeight, duration: 0 });
 
     return () => treeAnimation.kill();
-  }, [progress]);
+  }, [progress, goal]);
 
   return (
     <div className="tree-container">
