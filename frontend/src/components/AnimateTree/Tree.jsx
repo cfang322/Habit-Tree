@@ -8,7 +8,7 @@ const Tree = ({ progress, goal }) => {
   const maxWidth = 100;
 
   useEffect(() => {
-    // Ensure progress does not exceed goal
+
     const limitedProgress = Math.min(progress, goal);
     const limitedProgressHeight = Math.min(limitedProgress, maxHeight);
     const limitedProgressWidth = Math.min(limitedProgress, maxWidth);
