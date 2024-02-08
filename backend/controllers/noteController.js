@@ -11,6 +11,7 @@ const indexNotesByHabit = async (req, res) => {
   }
 };
 
+
 const showNote = async (req, res) => {
   const { habitId, noteId } = req.params;
 
