@@ -12,8 +12,8 @@ const habitSchema = new Schema({
     type: String,
     enum: ["day", "week", "month"],
   },
-  startDate: { type: Date },
-  endDate: { type: Date },
+  startDate: { type: Date, default: Date.now },
+  endDate: { type: Date, default: Date.now },
   completed: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });

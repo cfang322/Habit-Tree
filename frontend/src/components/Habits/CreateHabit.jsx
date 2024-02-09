@@ -5,6 +5,7 @@ import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
 import "./CreateHabit.css";
 
+
 const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session.user._id);
@@ -76,8 +77,8 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     e.preventDefault();
     const formattedData = {
       ...habitData,
-      startDate: new Date(habitData.startDate).toISOString(),
-      endDate: new Date(habitData.endDate).toISOString(),
+      startDate: habitData.startDate ? new Date(habitData.startDate).toISOString() : null,
+      endDate: habitData.endDate ? new Date(habitData.endDate).toISOString() : null,
     };
 
     if (editMode) {
@@ -94,6 +95,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
       handleSubmit();
     }
   };
+
 
   const handleCloseBtn = () => {
     if (editMode) {
