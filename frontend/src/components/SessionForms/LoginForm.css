@@ -95,7 +95,7 @@ div.signUp {
 }
 
 #sessionLinkA:hover {
-  color: #714290;
+  color: #513265;
   font-size: large;
   font-weight: bold;
   text-decoration: underline;
@@ -106,13 +106,9 @@ div.signUp {
 }
 
 #errors {
-  font-size: 22px;
-
-  /* font-weight: 500; */
+  font-size: 17px;
   width: 450px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-family: Nunito-Lite;
-  color: rgb(184, 0, 0);
+  color: rgb(156, 4, 4);
 }

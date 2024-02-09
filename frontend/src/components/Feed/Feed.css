@@ -6,16 +6,23 @@ div.feedContainer {
 }
 
 .addBtn {
-  margin-top: 10px;
-  margin-left: 45px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  cursor: pointer;
+  background-color: #3c7148;
+  color: #ecf0f1;
   border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  width: 120px;
+  margin-top: 50px;
+  font-weight: 500;
+  font-size: medium;
+  transition: background-color 0.5s ease;
+  margin-left: 50px;
 }
 
 .addBtn:hover {
-  background-color: #7da87d;
+  background-color: rgb(40, 112, 1);
+  transition: background-color 0.5s ease;
 }
 
 .feedTableBox {

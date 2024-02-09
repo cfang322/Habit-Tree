@@ -65,7 +65,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
         <p className="sessionRedirect">
           New to Habit Tree? &#160;
           <Link
-            id="signupLink"
+            id="sessionLinkA"
             onClick={() => {
               setShowSignUp(true);
               setShowLogin(false);
