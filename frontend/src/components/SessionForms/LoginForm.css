@@ -104,3 +104,15 @@ div.signUp {
 #loginLabel {
   margin-right: 20px;
 }
+
+#errors {
+  font-size: 22px;
+
+  /* font-weight: 500; */
+  width: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Nunito-Lite;
+  color: rgb(184, 0, 0);
+}
