@@ -29,9 +29,9 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     if (name === "endDate") {
       if (new Date(value) < new Date(habitData.startDate)) {
-
         setHabitData({
           ...habitData,
           [name]: habitData.startDate,
@@ -49,6 +49,12 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
           ...habitData,
           [name]: currentDate,
         });
+      } else if (new Date(value) > new Date(habitData.endDate)) {
+        setHabitData({
+          ...habitData,
+          [name]: value,
+          endDate: value,
+        });
       } else {
         setHabitData({
           ...habitData,
@@ -56,13 +62,13 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
         });
       }
     } else {
-
       setHabitData({
         ...habitData,
         [name]: value,
       });
     }
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
