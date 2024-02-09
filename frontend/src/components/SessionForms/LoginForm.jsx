@@ -17,13 +17,9 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
   }, [dispatch]);
 
   const update = (field) => {
-    const setState = field === "email" ? setEmail : setPassword;
-    return (e) => {
-      const value = field === "email" ? e.currentTarget.value.toLowerCase() : e.currentTarget.value;
-      setState(value);
-    };
+    const setState = field === 'email' ? setEmail : setPassword;
+    return e => setState(e.currentTarget.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
