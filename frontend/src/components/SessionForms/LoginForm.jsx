@@ -26,10 +26,12 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
   };
 
   const handleDemoLogin = () => {
-    const demoEmail = "demo@user.io";
-    const demoPassword = "password";
-    dispatch(login({ email: demoEmail, password: demoPassword }));
+    dispatch(clearSessionErrors());
+    setEmail("demo@user.io");
+    setPassword("password");
+    dispatch(login({ email: "demo@user.io", password: "password" }));
   };
+
 
   return (
     <div className="loginForm">
