@@ -1,29 +1,27 @@
-/* HabitsIndex.css */
 
 .table {
   width: 100%;
   background-color: #f7f7f7;
   border-collapse: collapse;
-  margin-bottom: 20px; /* Add margin at the bottom for spacing */
+  margin-bottom: 20px; 
 }
 
 .th,
 .tdBox {
   padding: 12px;
   text-align: center;
-  border: 1px solid #ddd; /* Add border to table cells */
+  border: 1px solid #ddd;
 }
 
 .th {
-  background-color: #f0f0f0; /* Light gray background for header cells */
+  background-color: #f0f0f0; 
   font-weight: bold;
 }
 
 .tbody .tdBox {
-  border-top: none; /* Remove top border from tbody cells */
+  border-top: none;
 }
 
-/* Adjustments for mobile responsiveness */
 @media only screen and (max-width: 600px) {
   .table {
     width: 100%;
@@ -31,7 +29,7 @@
   }
 }
 
-/* Styles for header and footer */
+
 .header,
 .footer {
   background-color: #4caf50;
@@ -46,21 +44,21 @@
   height: 20px;
 }
 
-/* Adjust the width of .td and td.boxId */
+
 .td,
 td.boxId {
   width: 20px;
 }
 
-/* HabitsIndex.css */
+
 .current-date {
   background-color: black;
-  color: white; /* Light gray background for the current date */
+  color: white;
 }
 
 .current-day {
   background-color: black;
-  color: white; /* Light gray background for the current day */
+  color: white;
 }
 
 .navigation {
@@ -77,7 +75,6 @@ td.boxId {
 .feedTable table {
   width: 400px;
   margin-left: 30px;
-  /* margin-right: 0px; */
 }
 
 .goal,

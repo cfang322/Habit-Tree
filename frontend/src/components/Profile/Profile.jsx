@@ -16,7 +16,6 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    // Fetch profile picture data from the server when the component mounts
     async function fetchProfilePicture() {
       try {
         const response = await fetch(`/api/user/profile-picture/${userEmail}`);

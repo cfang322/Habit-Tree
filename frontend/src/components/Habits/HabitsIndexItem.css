@@ -45,7 +45,7 @@
   transition: background-color 0.5s ease;
 }
 
-.habit button:hover {
+.submitBtn:hover {
   background-color: rgb(40, 112, 1);
   transition: background-color 0.3s ease;
 }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
 import { fetchNotes } from "../../store/reducers/notes";
 import {
   deleteHabit,
@@ -10,7 +11,6 @@ import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";
 import NoteIndex from "../Notes/NotesIndex";
 import Tree from "../AnimateTree/Tree";
-import { useEffect, useState } from "react";
 import "./HabitsIndexItem.css";
 import "../Notes/NotesIndex.css";
 
@@ -48,7 +48,7 @@ const HabitIndexItem = () => {
   if (!habit) { 
     return <div>Habit not found</div>;
   }
-  console.log(habit.goal);
+
 
   const normalizedProgress = habit.achieved / maxGoal;
   return (
