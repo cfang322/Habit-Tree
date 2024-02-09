@@ -10,7 +10,6 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
   const [password, setPassword] = useState("");
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
-
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
@@ -36,8 +35,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
   return (
     <div className="loginForm">
       <form className="sessionForm" onSubmit={handleSubmit}>
-        {/* <h2>Log In Form</h2> */}
-        <div className="errors">{errors?.email}</div>
+        <div id="errors">{errors?.email}</div>
         <label id="loginLabel">
           Email
         </label>
@@ -47,7 +45,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
           onChange={update("email")}
         />
 
-        <div className="errors">{errors?.password}</div>
+        <div id="errors">{errors?.password}</div>
         <label id="loginLabel">
           <span>Password</span>
         </label>
@@ -67,7 +65,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
         <p className="sessionRedirect">
           New to Habit Tree? &#160;
           <Link
-            id="signupLink"
+            id="sessionLinkA"
             onClick={() => {
               setShowSignUp(true);
               setShowLogin(false);

@@ -95,7 +95,7 @@ div.signUp {
 }
 
 #sessionLinkA:hover {
-  color: #714290;
+  color: #513265;
   font-size: large;
   font-weight: bold;
   text-decoration: underline;
@@ -103,4 +103,12 @@ div.signUp {
 
 #loginLabel {
   margin-right: 20px;
+}
+
+#errors {
+  font-size: 17px;
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  color: rgb(156, 4, 4);
 }

@@ -4,12 +4,14 @@ import session from "./reducers/session";
 import habits from "./reducers/habits";
 import notes from "./reducers/notes";
 import modals from "./reducers/modals";
+import { sessionErrorsReducer } from "./reducers/session";
 
 const rootReducer = combineReducers({
   session,
   habits,
   modals,
   notes,
+  errors: sessionErrorsReducer,
 });
 
 let enhancer;
