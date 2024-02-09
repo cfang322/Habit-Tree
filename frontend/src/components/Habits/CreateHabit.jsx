@@ -21,15 +21,17 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     endDate: "",
     completed: false,
   });
+
+
   useEffect(() => {
     if (editMode && habitToEdit) {
       setHabitData(habitToEdit);
     }
   }, [editMode, habitToEdit]);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "endDate") {
       if (new Date(value) < new Date(habitData.startDate)) {
         setHabitData({
