@@ -45,7 +45,6 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
           type="text"
           value={email}
           onChange={update("email")}
-          // placeholder="Email"
         />
 
         <div className="errors">{errors?.password}</div>
@@ -69,7 +68,6 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
           New to Habit Tree? &#160;
           <Link
             id="signupLink"
-            // style={{ textDecoration: "none" }}
             onClick={() => {
               setShowSignUp(true);
               setShowLogin(false);

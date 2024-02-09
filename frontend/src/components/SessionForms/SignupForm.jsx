@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import "./SessionForms.css";
 import { signup, clearSessionErrors } from "../../store/reducers/session";
 import "./SignupForm.css";
 import { Link } from "react-router-dom";
@@ -72,7 +71,6 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           <span>Username</span>
         </label>
         <input
-          // className="signInput"
           type="text"
           value={username}
           onChange={update("username")}
@@ -83,7 +81,6 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           <span>Password</span>
         </label>
         <input
-          // className="signInput"
           type="password"
           value={password}
           onChange={update("password")}
@@ -96,7 +93,6 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           <span>Confirm Password</span>
         </label>
         <input
-          // className="signInput"
           type="password"
           value={password2}
           onChange={update("password2")}
@@ -123,7 +119,6 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           Already in Habit Tree? &#160;
           <Link
             id="sessionLinkA"
-            // style={{ textDecoration: "none" }}
             onClick={() => {
               setShowSignUp(false);
               setShowLogin(true);
