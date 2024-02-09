@@ -34,8 +34,9 @@ router.post("/profile-picture", async (req, res) => {
 });
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
+  const email = req.body.email.toLowerCase();
   const user = await User.findOne({
-    $or: [{ email: req.body.email }, { username: req.body.username }],
+    $or: [{ email }, { username: req.body.username }],
   });
 
   if (user) {
@@ -56,7 +57,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
 
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email,
+    email: email,
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -74,8 +75,9 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
   });
 });
 
-// POST /api/users/login
+
 router.post("/login", validateLoginInput, async (req, res, next) => {
+  const email = req.body.email.toLowerCase();
   passport.authenticate("local", async function (err, user) {
     if (err) return next(err);
     if (!user) {
