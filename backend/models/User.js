@@ -16,8 +16,8 @@ const userSchema = new Schema(
       required: true,
     },
     profilePicture: {
-      data: Buffer, // Binary data for the image
-      contentType: String, // MIME type of the image
+      data: Buffer, 
+      contentType: String,
     },
   },
   {
