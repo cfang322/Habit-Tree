@@ -18,7 +18,10 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
 
   const update = (field) => {
     const setState = field === "email" ? setEmail : setPassword;
-    return (e) => setState(e.currentTarget.value);
+    return (e) => {
+      const value = field === "email" ? e.currentTarget.value.toLowerCase() : e.currentTarget.value;
+      setState(value);
+    };
   };
 
   const handleSubmit = (e) => {
