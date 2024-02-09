@@ -97,7 +97,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
   return (
     <Modal>
       <div className="habitModalWrapper">
-        <button className="closeBtnHabit" onClick={handleCloseBtn}><span id='closeBtnHabit'>&#x2715;</span></button>
+        <button className="closeBtnHabit" onClick={handleCloseBtn}>&#x2715;</button>
         <div className="sharedBody">
           <form onSubmit={handleSubmit}>
             <div>
@@ -194,7 +194,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               />
             </div>
 
-            <button type="submit" onClick={handleKeyDown} className="submit">
+            <button type="submit" onClick={handleKeyDown} className="habitModalSubmitBtn">
               {editMode ? "Update Habit" : "Create Habit"}
             </button>
           </form>

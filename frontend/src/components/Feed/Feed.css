@@ -22,6 +22,32 @@ div.feedContainer {
   margin-top: 20px; /* Adjust margin as needed */
   width: 99%; /* Adjust the width of the table box */
   overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  /* scrollbar-color: red orange; */
+  /* scrollbar-width: thin; */
+
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #193918;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #3c7148;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3c7148;;
+  background-color: rgb(40, 112, 1);
+  transition: background-color 1s ease;
 }
 
 div.feedTable {
