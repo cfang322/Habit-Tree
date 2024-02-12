@@ -23,7 +23,6 @@
 @media only screen and (max-width: 768px) {
   .main {
     background-size: cover;
-    /* Adjust background size for smaller screens */
   }
 
   .title {
