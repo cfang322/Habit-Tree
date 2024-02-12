@@ -41,6 +41,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
           Email
         </label>
         <input
+          id="sessionInput"
           type="text"
           value={email}
           onChange={update("email")}
@@ -50,7 +51,7 @@ function LoginForm({ setShowSignUp, setShowLogin }) {
         <label id="loginLabel">
           <span>Password</span>
         </label>
-        <input type="password" value={password} onChange={update("password")} />
+        <input type="password" id="sessionInput" value={password} onChange={update("password")} />
         <input
           className={email ? "active" : "btn"}
           type="submit"
