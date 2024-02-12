@@ -64,13 +64,14 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
         <label>
           <span>Email</span>{" "}
         </label>
-        <input type="text" value={email} onChange={update("email")} />
+        <input type="text" id="sessionInput" value={email} onChange={update("email")} />
 
         <div className="errors">{errors?.username}</div>
         <label>
           <span>Username</span>
         </label>
         <input
+          id="sessionInput"
           type="text"
           value={username}
           onChange={update("username")}
@@ -81,6 +82,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           <span>Password</span>
         </label>
         <input
+          id="sessionInput"
           type="password"
           value={password}
           onChange={update("password")}
@@ -93,6 +95,7 @@ function SignupForm({ setShowSignUp, setShowLogin }) {
           <span>Confirm Password</span>
         </label>
         <input
+          id="sessionInput"
           type="password"
           value={password2}
           onChange={update("password2")}
