@@ -32,6 +32,15 @@ function AboutUs() {
       linkedin: "https://www.linkedin.com/in/dominic-c-1076322a8/",
     },
   ];
+
+
+  
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   
   return (
     <div className="aboutUsWrapper">
@@ -62,7 +71,14 @@ function AboutUs() {
             </div>
           </div>
         ))}
+
       </div>
+      <ul className='upperFooter' onClick={scrollToTop}>
+        <p className="backToTopP">Back to top</p>
+      </ul>
+      <ul className='lowerFooter'>
+        <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
+      </ul>
     </div>
   );
 }

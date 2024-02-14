@@ -30,6 +30,14 @@ form.sessionForm {
   outline: none;
   margin-bottom: 10px;
 }
+#sessionInputP {
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 10px;
+}
 
 #sessionInput:focus {
   outline: none;

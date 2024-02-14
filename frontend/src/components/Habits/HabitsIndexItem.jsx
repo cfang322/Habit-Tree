@@ -22,14 +22,16 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-  const maxGoal = Math.max(...habits.map((habit) => habit.goal));
-
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch, habitId]);
 
   const handleDelete = () => {
     dispatch(deleteHabit(habitId));
+    navigate("/feed");
+  };
+
+  const handleBack = () => {
     navigate("/feed");
   };
 
@@ -61,11 +63,22 @@ const HabitIndexItem = () => {
     return <div>Habit not found</div>;
   }
 
-  const normalizedProgress = habit.achieved / maxGoal;
+
+  let normalizedProgress = habit.achieved / habit.goal + 0.2;
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div className="habit-container">
-      <Tree progress={normalizedProgress} goal={1} />
+      <div id="habitItemBackBtnDiv">
+        <button id="habitItemBackBtn" onClick={handleBack}>Home</button>
+      </div>
+      <Tree progress={normalizedProgress} goal={habit.goal} />
       <div className="habit">
         {editMode ? (
           <CreateHabit
@@ -132,6 +145,12 @@ const HabitIndexItem = () => {
         )}
       </div>
       <NoteIndex habitId={habitId} />
+      <ul className='upperHomeFooter' onClick={scrollToTop}>
+        <p className="backToTopP">Back to top</p>
+      </ul>
+      <ul className='lowerFooter'>
+        <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
+      </ul>
     </div>
   );
 };

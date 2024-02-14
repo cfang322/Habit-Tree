@@ -20,7 +20,16 @@ const Feed = () => {
     dispatch(modalActions.showModal("SHOW_HABITS"));
   };
 
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
+
     <div className="feedPage">
       <div className="feedContainer">
         <div className="feedTableBox">
@@ -32,6 +41,12 @@ const Feed = () => {
           </button>
           {modalType && <CreateHabit />}
         </div>
+        <ul className='upperFeedFooter' onClick={scrollToTop}>
+          <p className="backToTopP">Back to top</p>
+        </ul>
+        <ul className='lowerFooter'>
+          <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
+        </ul>
       </div>
     </div>
   );
