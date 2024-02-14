@@ -101,37 +101,46 @@ const HabitsIndex = () => {
   const handleClick = (habitId, habitIndex, dateIndex) => {
     const updatedHabit = { ...habits[habitIndex] };
     const cellKey = `${habitId}_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`;
+    const clickedDate = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      dateIndex + 1
+    );
+    const startDate = new Date(updatedHabit.startDate);
+    // const endDate = new Date(updatedHabit.endDate);
 
-    setClickedCells((prevClickedCells) => {
-      const newClickedCells = { ...prevClickedCells };
+    if (clickedDate >= startDate) {
+      setClickedCells((prevClickedCells) => {
+        const newClickedCells = { ...prevClickedCells };
 
-      if (newClickedCells[cellKey]) {
-        if (updatedHabit.achieved === 0) {
-          return prevClickedCells;
+        if (newClickedCells[cellKey]) {
+          if (updatedHabit.achieved === 0) {
+            return prevClickedCells;
+          }
+
+          dispatch(
+            updateHabit(
+              habitId,
+              (updatedHabit._id,
+              { ...updatedHabit, achieved: updatedHabit.achieved - 1 })
+            )
+          );
+          delete newClickedCells[cellKey];
+        } else {
+          dispatch(
+            updateHabit(
+              habitId,
+              (updatedHabit._id,
+              { ...updatedHabit, achieved: updatedHabit.achieved + 1 })
+            )
+          );
+          newClickedCells[cellKey] = true;
         }
+        localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
 
-        dispatch(
-          updateHabit(
-            habitId,
-            (updatedHabit._id,
-            { ...updatedHabit, achieved: updatedHabit.achieved - 1 })
-          )
-        );
-        delete newClickedCells[cellKey];
-      } else {
-        dispatch(
-          updateHabit(
-            habitId,
-            (updatedHabit._id,
-            { ...updatedHabit, achieved: updatedHabit.achieved + 1 })
-          )
-        );
-        newClickedCells[cellKey] = true;
-      }
-      localStorage.setItem("clickedCells", JSON.stringify(newClickedCells));
-
-      return newClickedCells;
-    });
+        return newClickedCells;
+      });
+    }
   };
 
   return (
@@ -160,9 +169,7 @@ const HabitsIndex = () => {
               {daysRow.map((day, index) => (
                 <th
                   key={index}
-                  className={
-                    day.isCurrentDate ? "current-date th" : "th"
-                  }
+                  className={day.isCurrentDate ? "current-date th" : "th"}
                 >
                   {day.day}
                 </th>
@@ -178,9 +185,7 @@ const HabitsIndex = () => {
               {datesRow.map((date, index) => (
                 <th
                   key={index}
-                  className={
-                    date.isCurrentDate ? "current-date th" : "th"
-                  }
+                  className={date.isCurrentDate ? "current-date th" : "th"}
                 >
                   {date.day}
                 </th>
@@ -215,8 +220,8 @@ const HabitsIndex = () => {
                         habit._id
                       }_${dateIndex}_${currentMonth.getMonth()}_${currentMonth.getFullYear()}`
                     ] !== undefined ? (
-                        <div className="checkMarks">&#10003;</div>
-                      ) : null}
+                      <div className="checkMarks">&#10003;</div>
+                    ) : null}
                   </td>
                 ))}
                 <td className="goal">{habit.goal}</td>
