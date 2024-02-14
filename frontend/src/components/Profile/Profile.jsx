@@ -135,13 +135,19 @@ const Profile = () => {
                     Delete Picture
                   </button>
                 </div>
-                <div>
+                <br>
+                </br>
+                <br>
+                </br>
+                <div className="emailStuff">
                   <div className="emailReminderSetting">
                     <ReminderButton userEmail={userEmail} />
                   </div>
-                  <span>Receive Weekly Reminder: Every Sunday at 9 AM</span>
+                  <div className="spanDiv">
+                    <span>Receive Weekly Reminders: Every Sunday at 9 AM</span>
+                  </div>
                 </div>
-                <div>
+                <div className="saveSettingsDiv">
                   <button onClick={handleSaveSettings}>Save Settings</button>
                 </div>
               </div>

@@ -34,13 +34,19 @@
   cursor: pointer;
 }
 
+.settingIcon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 .profileSettings {
   position: absolute;
   top: 50px;
   right: 0;
-  width: 200px;
+  width: 300px;
   padding: 20px;
-  background-color: #f7f7f7;
+  background-color: #f2f2f2;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -55,12 +61,26 @@
   border-radius: 10px;
 }
 
+.profileSettings button {
+  margin-top: 0; /* Adjust as needed */
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #ecf0f1;
+  background-color: #3c7148;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  font-size: medium;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .profileSettings button:hover {
-  background-color: #7da87d;
+  background-color: rgb(78, 67, 37);
 }
 
 .profilePicture input {
-  width: 150px;
+  /* width: 150px; */
 }
 
 .profileBox {
@@ -85,4 +105,21 @@
 .profileInfo span {
   font-weight: bold;
   color: black;
+}
+
+.emailStuff {
+  margin-left: 8px;
+}
+
+.emailStuff span {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.spanDiv {
+  margin-left: 20px;
+}
+
+.saveSettingsDiv {
+  margin-top: 10px;
 }
