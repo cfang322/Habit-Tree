@@ -4,7 +4,7 @@ import { fetchNotes } from "../../store/reducers/notes";
 import {
   deleteHabit,
   fetchHabits,
-  selectAllHabitsArray
+  selectAllHabitsArray,
 } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";

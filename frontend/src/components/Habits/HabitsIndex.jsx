@@ -10,7 +10,9 @@ const HabitsIndex = () => {
   const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [clickedCells, setClickedCells] = useState({});
-  const habits = useSelector(selectAllHabitsArray);
+  const allHabits = useSelector(selectAllHabitsArray);
+  const user = useSelector((state) => state.session.user);
+  const habits = allHabits.filter((habit) => habit.user === user._id);
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
   const rowColors = ["#7da87d", "#33FF57", "#5733FF", "#FF3399", "#33FFFF"];
 
