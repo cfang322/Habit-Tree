@@ -17,7 +17,7 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-  const maxGoal = Math.max(...habits.map(habit => habit.goal));
+  // const maxGoal = Math.max(...habits.map(habit => habit.goal));
 
   useEffect(() => {
     dispatch(fetchHabits());
@@ -50,7 +50,7 @@ const HabitIndexItem = () => {
     return <div>Habit not found</div>;
   }
 
-  const normalizedProgress = habit.achieved / maxGoal;
+  let normalizedProgress = habit.achieved / habit.goal + 0.2;
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -64,7 +64,7 @@ const HabitIndexItem = () => {
       <div id="habitItemBackBtnDiv">
         <button id="habitItemBackBtn" onClick={handleBack}>Home</button>
       </div>
-      <Tree progress={normalizedProgress} goal={1} />
+      <Tree progress={normalizedProgress} goal={habit.goal} />
       <div className="habit">
         {editMode ? (
           <CreateHabit
