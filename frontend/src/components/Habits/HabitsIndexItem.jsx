@@ -17,7 +17,6 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-  // const maxGoal = Math.max(...habits.map(habit => habit.goal));
 
   useEffect(() => {
     dispatch(fetchHabits());
@@ -134,10 +133,9 @@ const HabitIndexItem = () => {
       <ul className='upperHomeFooter' onClick={scrollToTop}>
         <p className="backToTopP">Back to top</p>
       </ul>
-      <ul className='homeFooter'>
+      <ul className='lowerFooter'>
         <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
       </ul>
-      
     </div>
   );
 };

@@ -87,6 +87,13 @@ const Profile = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className="profileWrapper">
       <NavBar />
@@ -149,6 +156,12 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <ul className='upperFooter' onClick={scrollToTop}>
+        <p className="backToTopP">Back to top</p>
+      </ul>
+      <ul className='lowerFooter'>
+        <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
+      </ul>
     </div>
   );
 };

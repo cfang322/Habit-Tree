@@ -1,5 +1,5 @@
 .aboutUsWrapper {
-    width: 100%;
+    /* width: 99.4vw; */
     min-height: 100vh;
     background: linear-gradient(to right, #b4eb6c, #ffffff);
 }
@@ -55,4 +55,23 @@
 
 .socialLinks a:hover {
     color: #007bff;
+}
+
+.upperFooter {
+    list-style: none;
+    position: relative;
+    top: 50px;
+    padding: 11px;
+    background-color: #3c7148;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 98.5.5%;
+    height: 30px;
+}
+.upperFooter:hover {
+    background-color: rgb(40, 112, 1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
