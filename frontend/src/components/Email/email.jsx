@@ -45,7 +45,7 @@ const ReminderButton = ({ userEmail }) => {
           onChange={handleCheckboxChange}
           className="reminderCheckbox"
         />
-        {reminderSent ? "Email Reminder Sent" : "Send Email Reminder"}
+        {reminderSent ? "Email Reminder Sent" : "Receive Email Reminders"}
       </label>
     </div>
   );
