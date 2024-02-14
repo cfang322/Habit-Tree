@@ -63,7 +63,7 @@
 }
 
 .profileSettings button {
-  margin-top: 0; /* Adjust as needed */
+  margin-top: 0;
   border: none;
   border-radius: 8px;
   padding: 8px 15px;
@@ -80,16 +80,12 @@
   background-color: rgb(78, 67, 37);
 }
 
-.profilePicture input {
-  /* width: 150px; */
-}
 
 .profileBox {
   display: flex;
   justify-content: space-between;
   margin-left: 100px;
   margin-top: 90px;
-  /* align-items: center; */
 }
 
 .profileInfo {
