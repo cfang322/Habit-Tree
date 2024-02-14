@@ -2,11 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchNotes } from "../../store/reducers/notes";
-import {
-  deleteHabit,
-  fetchHabits,
-  selectAllHabitsArray
-} from "../../store/reducers/habits";
+import { deleteHabit, fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";
 import NoteIndex from "../Notes/NotesIndex";
@@ -22,12 +18,17 @@ const HabitIndexItem = () => {
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
   const maxGoal = Math.max(...habits.map(habit => habit.goal));
+
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch, habitId]);
 
   const handleDelete = () => {
     dispatch(deleteHabit(habitId));
+    navigate("/feed");
+  };
+
+  const handleBack = () => {
     navigate("/feed");
   };
 
@@ -49,10 +50,20 @@ const HabitIndexItem = () => {
     return <div>Habit not found</div>;
   }
 
-
   const normalizedProgress = habit.achieved / maxGoal;
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className="habit-container">
+      <div id="habitItemBackBtnDiv">
+        <button id="habitItemBackBtn" onClick={handleBack}>Home</button>
+      </div>
       <Tree progress={normalizedProgress} goal={1} />
       <div className="habit">
         {editMode ? (
@@ -120,6 +131,13 @@ const HabitIndexItem = () => {
         )}
       </div>
       <NoteIndex habitId={habitId} />
+      <ul className='upperHomeFooter' onClick={scrollToTop}>
+        <p className="backToTopP">Back to top</p>
+      </ul>
+      <ul className='homeFooter'>
+        <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
+      </ul>
+      
     </div>
   );
 };
