@@ -2,7 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchNotes } from "../../store/reducers/notes";
-import { deleteHabit, fetchHabits, selectAllHabitsArray } from "../../store/reducers/habits";
+import {
+  deleteHabit,
+  fetchHabits,
+  selectAllHabitsArray,
+  updateHabit,
+} from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";
 import NoteIndex from "../Notes/NotesIndex";
@@ -17,7 +22,6 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch, habitId]);
@@ -45,9 +49,20 @@ const HabitIndexItem = () => {
     dispatch(modalActions.hideModal());
   };
 
-  if (!habit) { 
+  useEffect(() => {
+    if (habit && habit.achieved >= habit.goal) {
+      dispatch(updateHabit(habitId, { completed: true }));
+    } else {
+      if (habit && habit.completed) {
+        dispatch(updateHabit(habitId, { completed: false }));
+      }
+    }
+  }, [dispatch, habit, habitId]);
+
+  if (!habit) {
     return <div>Habit not found</div>;
   }
+
 
   let normalizedProgress = habit.achieved / habit.goal + 0.2;
 
@@ -108,7 +123,7 @@ const HabitIndexItem = () => {
               </ul>
               <ul className="habit-detail">
                 {habit.completed ? (
-                  <li id="completedLi">Compeleted &#10003;</li>
+                  <li id="completedLi">Completed &#10003;</li>
                 ) : (
                   ""
                 )}

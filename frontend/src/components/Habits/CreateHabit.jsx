@@ -5,7 +5,6 @@ import * as modalActions from "../../store/reducers/modals";
 import Modal from "../Modal/Modal";
 import "./CreateHabit.css";
 
-
 const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session.user._id);
@@ -23,13 +22,11 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     completed: false,
   });
 
-
   useEffect(() => {
     if (editMode && habitToEdit) {
       setHabitData(habitToEdit);
     }
   }, [editMode, habitToEdit]);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,13 +69,16 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formattedData = {
       ...habitData,
-      startDate: habitData.startDate ? new Date(habitData.startDate).toISOString() : null,
-      endDate: habitData.endDate ? new Date(habitData.endDate).toISOString() : null,
+      startDate: habitData.startDate
+        ? new Date(habitData.startDate).toISOString()
+        : null,
+      endDate: habitData.endDate
+        ? new Date(habitData.endDate).toISOString()
+        : null,
     };
 
     if (editMode) {
@@ -96,7 +96,6 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
     }
   };
 
-
   const handleCloseBtn = () => {
     if (editMode) {
       handleCloseModal();
@@ -107,7 +106,9 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
   return (
     <Modal>
       <div className="habitModalWrapper">
-        <button className="closeBtnHabit" onClick={handleCloseBtn}>&#x2715;</button>
+        <button className="closeBtnHabit" onClick={handleCloseBtn}>
+          &#x2715;
+        </button>
         <div className="sharedBody">
           <form onSubmit={handleSubmit}>
             <div>
@@ -115,7 +116,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               <input
                 type="text"
                 name="name"
-                id='habitModalInput'
+                id="habitModalInput"
                 value={habitData.name}
                 onChange={handleChange}
                 required
@@ -125,7 +126,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               <label>Category: *</label>
               <input
                 type="text"
-                id='habitModalInput'
+                id="habitModalInput"
                 name="category"
                 value={habitData.category}
                 onChange={handleChange}
@@ -136,7 +137,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               <label>Habit Type: *</label>
               <select
                 name="habitType"
-                id='habitModalInput'
+                id="habitModalInput"
                 value={habitData.habitType}
                 onChange={handleChange}
                 required
@@ -150,7 +151,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               <input
                 type="number"
                 name="goal"
-                id='habitModalInput'
+                id="habitModalInput"
                 value={habitData.goal}
                 onChange={handleChange}
               />
@@ -159,7 +160,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
               <label>Goal Period:</label>
               <select
                 name="goalPeriod"
-                id='habitModalInput'
+                id="habitModalInput"
                 value={habitData.goalPeriod}
                 onChange={handleChange}
               >
@@ -171,7 +172,7 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
             <div>
               <label>Start Date:</label>
               <input
-                id='habitModalInput'
+                id="habitModalInput"
                 type="date"
                 name="startDate"
                 value={habitData.startDate}
@@ -181,14 +182,14 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
             <div>
               <label>End Date:</label>
               <input
-                id='habitModalInput'
+                id="habitModalInput"
                 type="date"
                 name="endDate"
                 value={habitData.endDate}
                 onChange={handleChange}
               />
             </div>
-            <div className="checkBox">
+            {/* <div className="checkBox">
               <label>Completed:</label>
               <input
                 className="check"
@@ -202,9 +203,13 @@ const CreateHabit = ({ editMode, habitToEdit, handleCloseModal }) => {
                   })
                 }
               />
-            </div>
+            </div> */}
 
-            <button type="submit" onClick={handleKeyDown} className="habitModalSubmitBtn">
+            <button
+              type="submit"
+              onClick={handleKeyDown}
+              className="habitModalSubmitBtn"
+            >
               {editMode ? "Update Habit" : "Create Habit"}
             </button>
           </form>
