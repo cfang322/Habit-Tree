@@ -6,6 +6,7 @@ import {
   deleteHabit,
   fetchHabits,
   selectAllHabitsArray,
+  updateHabit,
 } from "../../store/reducers/habits";
 import * as modalActions from "../../store/reducers/modals";
 import CreateHabit from "./CreateHabit";
@@ -21,7 +22,8 @@ const HabitIndexItem = () => {
   const habits = useSelector(selectAllHabitsArray);
   const habit = habits.find((habit) => habit._id === habitId);
   const [editMode, setEditMode] = useState(false);
-  const maxGoal = Math.max(...habits.map(habit => habit.goal));
+  const maxGoal = Math.max(...habits.map((habit) => habit.goal));
+
   useEffect(() => {
     dispatch(fetchHabits());
   }, [dispatch, habitId]);
@@ -45,12 +47,22 @@ const HabitIndexItem = () => {
     dispatch(modalActions.hideModal());
   };
 
-  if (!habit) { 
+  useEffect(() => {
+    if (habit && habit.achieved >= habit.goal) {
+      dispatch(updateHabit(habitId, { completed: true }));
+    } else {
+      if (habit && habit.completed) {
+        dispatch(updateHabit(habitId, { completed: false }));
+      }
+    }
+  }, [dispatch, habit, habitId]);
+
+  if (!habit) {
     return <div>Habit not found</div>;
   }
 
-
   const normalizedProgress = habit.achieved / maxGoal;
+
   return (
     <div className="habit-container">
       <Tree progress={normalizedProgress} goal={1} />
@@ -98,7 +110,7 @@ const HabitIndexItem = () => {
               </ul>
               <ul className="habit-detail">
                 {habit.completed ? (
-                  <li id="completedLi">Compeleted &#10003;</li>
+                  <li id="completedLi">Completed &#10003;</li>
                 ) : (
                   ""
                 )}
