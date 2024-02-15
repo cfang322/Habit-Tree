@@ -39,6 +39,11 @@ form.sessionForm {
   margin-bottom: 10px;
 }
 
+#sessionInputP:focus {
+  outline: none;
+  box-shadow: 0 0 5px #3c7148;
+}
+
 #sessionInput:focus {
   outline: none;
   box-shadow: 0 0 5px #3c7148;
