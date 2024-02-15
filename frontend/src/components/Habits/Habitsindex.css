@@ -6,13 +6,35 @@
   margin-bottom: 20px; 
 }
 
+
 .th,
 .tdBox {
-  padding: 12px;
+  padding: 11px;
   text-align: center;
   border: 1px solid #ddd;
 }
 
+
+@media screen and (max-width: 767px) {
+
+  .th,
+  .tdBox {
+    padding: 7px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+}
+
+
+@media screen and (min-width: 1700px) {
+
+  .th,
+  .tdBox {
+    padding: 17px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+}
 .th {
   background-color: #f0f0f0; 
   font-weight: bold;

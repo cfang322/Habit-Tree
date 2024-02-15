@@ -44,7 +44,7 @@ const Feed = () => {
         <ul className='upperFeedFooter' onClick={scrollToTop}>
           <p className="backToTopP">Back to top</p>
         </ul>
-        <ul className='lowerFooter'>
+        <ul className='feedLowerFooter'>
           <p className='footerItem'>Copyright &copy; 2024 Habit Tree</p>
         </ul>
       </div>

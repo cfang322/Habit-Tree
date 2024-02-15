@@ -2,6 +2,10 @@
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to right, #b4eb6c, #ffffff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .profileBody {
@@ -43,6 +47,7 @@
 
 .profileSettings {
   position: absolute;
+  background: none;
   top: 50px;
   right: 0;
   width: 300px;
@@ -61,6 +66,7 @@
   cursor: pointer;
   border-radius: 10px;
 }
+
 
 .profileSettings button {
   margin-top: 0;
@@ -86,11 +92,11 @@
   justify-content: space-between;
   margin-left: 100px;
   margin-top: 90px;
+  margin-bottom: 60px;
 }
 
 .profileInfo {
-  margin-top: 50px;
-  margin-left: 40px;
+  margin-left: 80px;
 }
 
 .profileInfo p {
@@ -122,4 +128,10 @@
 
 .saveSettingsDiv {
   margin-top: 10px;
+}
+
+
+.setting {
+  background: none;
+  border: none;
 }

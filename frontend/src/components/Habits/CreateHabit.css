@@ -40,6 +40,10 @@
   border: solid 1px;
   outline: none;
 }
+.sharedBody input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #3c7148;
+}
 
 .sharedBody div {
   margin-bottom: 15px;

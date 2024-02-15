@@ -111,9 +111,7 @@ const Profile = () => {
             )}
           </div>
           <div className="profileInfo">
-            <p>
-              <span>Username:</span> {user.username}
-            </p>
+            <p><span>Username:</span>{user.username}</p>
             <p>
               <span>Email:</span> {userEmail}
             </p>
