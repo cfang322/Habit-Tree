@@ -1,3 +1,4 @@
+// console.log("JWT_SECRET is:", process.env.JWT_SECRET);
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
