@@ -1,6 +1,6 @@
 # Welcome To Habit Tree
 
-Check out the [Live Site]([https://habit-tree.onrender.com/](https://habit-tree-jyku.onrender.com))!
+Check out the [Live Site](https://habit-tree-jyku.onrender.com)
 
 Habit Tree is a habit tracking web application designed to help users establish and maintain healthy habits. The app provides a user-friendly interface for tracking habits, adding notes, and visualizing progress with the growth of a virtual tree. To create a seamless user experience, we used technologies like:
 
