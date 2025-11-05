@@ -7,7 +7,7 @@ Habit Tree is a habit tracking web application designed to help users establish 
 * Languages: Javascript, HTML, and CSS
 * Frontend: React/Node.js
 * Backend: MongoDB, Express, and Nodemailer 
-* Database: PostgreSQL
+* Database: MongoDB
 * Hosting: Render
 
 ## Features
