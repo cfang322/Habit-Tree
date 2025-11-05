@@ -5,8 +5,8 @@ Check out the [Live Site](https://habit-tree-jyku.onrender.com)
 Habit Tree is a habit tracking web application designed to help users establish and maintain healthy habits. The app provides a user-friendly interface for tracking habits, adding notes, and visualizing progress with the growth of a virtual tree. To create a seamless user experience, we used technologies like:
 
 * Languages: Javascript, HTML, and CSS
-* Frontend: React/Node.js
-* Backend: MongoDB, Express, and Nodemailer 
+* Frontend: React
+* Backend: Node.js, Express.js , and Nodemailer (for sending emails)
 * Database: MongoDB
 * Hosting: Render
 
