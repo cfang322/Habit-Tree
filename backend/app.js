@@ -56,7 +56,7 @@ if (isProduction) {
     res.cookie("CSRF-TOKEN", req.csrfToken());
     res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
   });
-  app.use(express.static(path.resolve("../frontend/dist")));
+  app.use(express.static(path.resolve(__dirname, "../frontend/dist")));
   app.get(/^(?!\/?api).*/, (req, res) => {
     res.cookie("CSRF-TOKEN", req.csrfToken());
     res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
